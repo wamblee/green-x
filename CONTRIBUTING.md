@@ -184,9 +184,10 @@ no problem getting your changes merged in.
       ```bash
       $ git remote add upstream https://urlofupstream
       ```
-
       - if your upstream has authentication enabled, you’ll need to supply a username, issue:
+       ```bash
       $ git remote add upstream https://user@example.org/maintainer/repo.git
+      ```
   4. when working on a feature, bugfix, styling or anything, issue the following command (full the naming style in #General Workflow and #### Commit Message Guidelines
   in your commits :
       ```bash
@@ -222,7 +223,7 @@ no problem getting your changes merged in.
     switch back to branch by issueing:
     git checkout branchname
     ```
-    
+
 <!-- Links -->
 [curriculum workflow diagram]: http://i.imgur.com/p0e4tQK.png
 [cons of merge]: https://f.cloud.github.com/assets/1577682/1458274/1391ac28-435e-11e3-88b6-69c85029c978.png
