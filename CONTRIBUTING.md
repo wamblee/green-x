@@ -176,28 +176,44 @@ no problem getting your changes merged in.
 
 ## Summary workflow
   1. Fork the repo
-  2. Clone repo into your local machine: $ git clone https://yourrepourl
+  2. Clone repo into your local machine: 
+  ```bash
+  $ git clone https://yourrepourl
+  ```
   3. add organization's repo: 
+      ```bash
       $ git remote add upstream https://urlofupstream
+      ```
+
       - if your upstream has authentication enabled, you’ll need to supply a username, issue:
       $ git remote add upstream https://user@example.org/maintainer/repo.git
   4. when working on a feature, bugfix, styling or anything, issue the following command (full the naming style in #General Workflow and #### Commit Message Guidelines
   in your commits :
+      ```bash
       $ git checkout -b feat/add-button
       # Edit some code
       $ git commit -a -m "(feat) Add first draft of add-button"
+      ```
   5. After you are done with your changes and you want to push to your branch repo, issue: $ git push origin feat/add-button
-  6. When you are ready to deploy your feature changes, first update your local copy of master with: $ git pull --rebase origin master
+  6. When you are ready to deploy your feature changes, first update your local copy of master with: 
+    ```bash
+    $ git pull --rebase origin master
+    ```
   7. Then go to your master branch and rewire your branch on top of master:
+    ```bash
     $ git checkout master
     $ git pull --rebase origin master
     $ git checkout feat/add-button
     $ git rebase master
+    ```
     Note during the rebase, if you face any conflicts, then the rebase will pause until you resolve your conflicts then issuing: git rebase --continue
   8. Merge your master HEAD with your latest commit by issuing: 
+    ```bash
     $ git checkout master
     $ git merge --ff-only feat/add-button
+    ```
   Note: if you have to make changes to master (fixing a bug for example) while you are working on your branch, you can simply after commiting your changes to branch, simply:
+    ```bash
     $ git checkout master
     make changes
     add and commit
@@ -205,6 +221,7 @@ no problem getting your changes merged in.
     then create pull request, stage and deploy
     switch back to branch by issueing:
     git checkout branchname
+    ```
     
 <!-- Links -->
 [curriculum workflow diagram]: http://i.imgur.com/p0e4tQK.png
