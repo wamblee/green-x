@@ -213,7 +213,8 @@ no problem getting your changes merged in.
     $ git checkout master
     $ git merge --ff-only feat/add-button
     ```
-  - Note: if you have to make changes to master (fixing a bug for example) while you are working on your branch, you can simply after commiting your changes to branch, simply:
+  
+  Note: if you have to make changes to master (fixing a bug for example) while you are working on your branch, you can simply after commiting your changes to branch, simply:
     ```bash
     $ git checkout master
     make changes
