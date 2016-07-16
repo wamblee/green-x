@@ -197,7 +197,12 @@ no problem getting your changes merged in.
       $ git commit -a -m "(feat) Add first draft of add-button"
     ```
       
-  5. After you are done with your changes and you want to push to your branch repo, issue: $ git push origin feat/add-button
+  5. After you are done with your changes and you want to push to your branch repo, issue: 
+  
+  ```bash
+  $ git push origin feat/add-button
+  ```
+  
   6. When you are ready to deploy your feature changes, first update your local copy of master with: 
     
     ```bash
@@ -213,7 +218,12 @@ no problem getting your changes merged in.
     $ git rebase master
     ```
     
-    Note during the rebase, if you face any conflicts, then the rebase will pause until you resolve your conflicts then issuing: git rebase --continue
+    Note during the rebase, if you face any conflicts, then the rebase will pause until you resolve your conflicts then issuing: 
+    
+    ```bash
+    git rebase --continue
+    ```
+    
   8. Merge your master HEAD with your latest commit by issuing: 
     
     ```bash
