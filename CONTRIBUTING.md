@@ -177,17 +177,17 @@ no problem getting your changes merged in.
 ## Summary workflow
   1. Fork the repo
   2. Clone repo into your local machine: 
-  ```bash
+  ```
   $ git clone https://yourrepourl
   ```
   3. add organization's repo: 
-      ```bash
-      $ git remote add upstream https://urlofupstream
-      ```
+  ```
+  $ git remote add upstream https://urlofupstream
+  ```
       - if your upstream has authentication enabled, you’ll need to supply a username, issue:
-       ```bash
-      $ git remote add upstream https://user@example.org/maintainer/repo.git
-      ```
+  ```
+  $ git remote add upstream https://user@example.org/maintainer/repo.git
+  ```
   4. when working on a feature, bugfix, styling or anything, issue the following command (full the naming style in #General Workflow and #### Commit Message Guidelines
   in your commits :
       ```bash
