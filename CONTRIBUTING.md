@@ -240,7 +240,7 @@ no problem getting your changes merged in.
 
 #### Scrum computer:
   
-  Merge pull request with repo master.
+  Merge pull request with repo master
   
 <!-- Links -->
 [curriculum workflow diagram]: http://i.imgur.com/p0e4tQK.png
