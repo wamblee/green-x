@@ -188,7 +188,7 @@ no problem getting your changes merged in.
   ```
   $ git remote add upstream https://user@example.org/maintainer/repo.git
   ```
-  4. when working on a feature, bugfix, styling or anything, issue the following command (full the naming style in #General Workflow and #### Commit Message Guidelines
+  4. when working on a feature, bugfix, styling or anything, issue the following command (follow the naming style in #General Workflow and #### Commit Message Guidelines
   in your commits :
     
     ```bash
@@ -196,20 +196,35 @@ no problem getting your changes merged in.
       # Edit some code
       $ git commit -a -m "(feat) Add first draft of add-button"
     ```
-      
-  5. After you are done with your changes and you want to push to your branch repo, first update your master:
   
+  6. Go to your master branch and rewire your branch on top of master:
+
     ```bash
-  $ git pull --rebase upstream master
-  ```
-  
-  6. After you are done with your changes and you want to push to your branch repo, issue: 
+    $ git checkout master
+    $ git pull --rebase upstream master
+    $ git checkout feat/add-button
+    $ git rebase master
+    ```
+
+    Note during the rebase, if you face any conflicts, then the rebase will pause until you resolve your conflicts then issuing: 
+    
+    ```bash
+    git rebase --continue
+    ```
+    
+  7. Merge your master HEAD with your latest commit by issuing: 
+    
+    ```bash
+    $ git checkout master
+    $ git merge --ff-only feat/add-button
+    ```
+  7. After you are done with your changes and you want to push to your repo, issue: 
   
   ```bash
-  $ git push origin feat/add-button
+  $ git push origin master
   ```
   
-  7. Create pull request to upstream repo (Organization repo) for branch
+  7. Create pull request to upstream repo (Organization repo)
  
  Note: if you have to make changes to master (fixing a bug for example) while you are working on your branch, you can simply after commiting your changes to branch, simply:
    
@@ -224,29 +239,7 @@ no problem getting your changes merged in.
     ```
 
 #### Scrum computer:
-  1. pull all changes from organization's repo into local machine.
-  2. Go to your master branch and rewire your branch on top of master:
-    
-    ```bash
-    $ git checkout master
-    $ git pull --rebase origin master
-    $ git checkout feat/add-button
-    $ git rebase master
-    ```
-    
-    Note during the rebase, if you face any conflicts, then the rebase will pause until you resolve your conflicts then issuing: 
-    
-    ```bash
-    git rebase --continue
-    ```
-    
-  3. Merge your master HEAD with your latest commit by issuing: 
-    
-    ```bash
-    $ git checkout master
-    $ git merge --ff-only feat/add-button
-    ```
-  4. Push to organization's repo
+  Merge pull request with repo master.
   
 <!-- Links -->
 [curriculum workflow diagram]: http://i.imgur.com/p0e4tQK.png
