@@ -239,6 +239,7 @@ no problem getting your changes merged in.
     ```
 
 #### Scrum computer:
+  
   Merge pull request with repo master.
   
 <!-- Links -->
