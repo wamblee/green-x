@@ -197,19 +197,35 @@ no problem getting your changes merged in.
       $ git commit -a -m "(feat) Add first draft of add-button"
     ```
       
-  5. After you are done with your changes and you want to push to your branch repo, issue: 
+  5. After you are done with your changes and you want to push to your branch repo, first update your master:
+  
+    ```bash
+  $ git pull --rebase upstream master
+  ```
+  
+  6. After you are done with your changes and you want to push to your branch repo, issue: 
   
   ```bash
   $ git push origin feat/add-button
   ```
   
-  6. When you are ready to deploy your feature changes, first update your local copy of master with: 
-    
+  7. Create pull request to upstream repo (Organization repo) for branch
+ 
+ Note: if you have to make changes to master (fixing a bug for example) while you are working on your branch, you can simply after commiting your changes to branch, simply:
+   
     ```bash
-    $ git pull --rebase origin master
+    $ git checkout master
+    make changes
+    add and commit
+    $ git push origin master
+    then create pull request, stage and deploy
+    switch back to branch by issueing:
+    git checkout branchname
     ```
-    
-  7. Then go to your master branch and rewire your branch on top of master:
+
+#### Scrum computer:
+  1. pull all changes from organization's repo into local machine.
+  2. Go to your master branch and rewire your branch on top of master:
     
     ```bash
     $ git checkout master
@@ -224,24 +240,14 @@ no problem getting your changes merged in.
     git rebase --continue
     ```
     
-  8. Merge your master HEAD with your latest commit by issuing: 
+  3. Merge your master HEAD with your latest commit by issuing: 
     
     ```bash
     $ git checkout master
     $ git merge --ff-only feat/add-button
     ```
+  4. Push to organization's repo
   
-  Note: if you have to make changes to master (fixing a bug for example) while you are working on your branch, you can simply after commiting your changes to branch, simply:
-    ```bash
-    $ git checkout master
-    make changes
-    add and commit
-    $ git push origin master
-    then create pull request, stage and deploy
-    switch back to branch by issueing:
-    git checkout branchname
-    ```
-
 <!-- Links -->
 [curriculum workflow diagram]: http://i.imgur.com/p0e4tQK.png
 [cons of merge]: https://f.cloud.github.com/assets/1577682/1458274/1391ac28-435e-11e3-88b6-69c85029c978.png
