@@ -178,15 +178,15 @@ no problem getting your changes merged in.
   1. Fork the repo
   2. Clone repo into your local machine: 
   ```
-  $ git clone https://yourrepourl
+  $ git clone https://github.com/USERNAME/green-x.git
   ```
   3. add organization's repo: 
   ```
-  $ git remote add upstream https://urlofupstream
+  $ git remote add upstream https://github.com/Green-X/green-x.git
   ```
       - if your upstream has authentication enabled, you’ll need to supply a username, issue:
   ```
-  $ git remote add upstream https://user@example.org/maintainer/repo.git
+  $ git remote add upstream https://USERNAME@github.com/Green-X/green-x.git
   ```
   4. when working on a feature, bugfix, styling or anything, issue the following command (follow the naming style in #General Workflow and #### Commit Message Guidelines
   in your commits :
@@ -237,10 +237,6 @@ no problem getting your changes merged in.
     switch back to branch by issueing:
     git checkout branchname
     ```
-
-#### Scrum computer:
-  
-  Merge pull request with repo master
   
 <!-- Links -->
 [curriculum workflow diagram]: http://i.imgur.com/p0e4tQK.png
