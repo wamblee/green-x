@@ -2,7 +2,7 @@ var Q = require('q');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
-
+var db = require('../dbConfig.js')
 
 var UserSchema = new mongoose.Schema({
   username: {
@@ -16,7 +16,10 @@ var UserSchema = new mongoose.Schema({
     required: true
   },
   salt: String,
- // GARDEN: Array
+  garden:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Plant'
+  }]
 });
 
 UserSchema.methods.comparePasswords = function (candidatePassword) {
@@ -52,4 +55,13 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-module.exports = mongoose.model('users', UserSchema);
+var User = mongoose.model('User', UserSchema);
+
+// var newUser = new User({_id:1, username:"ff", password: "656575"});
+
+// newUser.save(function(err,newrecord){
+//   console.log(err)
+//   console.log(newrecord)
+// })
+
+module.exports = User;
