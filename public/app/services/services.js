@@ -5,7 +5,7 @@ angular.module('iGrow.services', [])
   var AllPlants = function(){
      return $http({
       method:'GET',
-      url:'/api/plants',
+      url:'/api/plants'
      })
      .then(function(resp){
       return resp.data;
@@ -13,7 +13,7 @@ angular.module('iGrow.services', [])
   };
 
   //add a plant to my garden
-  var addPlant = function(plant){
+  var AddPlant = function(plant){
     return $http({
       method:'POST',
       url:'/api/plants',
@@ -27,10 +27,10 @@ angular.module('iGrow.services', [])
 
   return {
     AllPlants:AllPlants,
-    addPlant:addPlant
+    AddPlant:AddPlant
   }
 
-});
+})
 
 .factory('Auth', function ($http, $location, $window) {
 
