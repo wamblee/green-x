@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
 var db = require('../dbConfig.js')
+var Plant = require('../plants/plantsModel')
 
 var UserSchema = new mongoose.Schema({
   username: {
@@ -56,6 +57,11 @@ UserSchema.pre('save', function (next) {
 });
 
 var User = mongoose.model('User', UserSchema);
+// // Plant.findOne({name:"rose"}).exec(function(err,plantObject){
+//   var newUser = new User({_id:5, username:"fjgfhg", password: "656575", garden:[plantObject]}).save(function(err,result){
+//     console.log(Plant.find({_id: result.garden[0]})  
+//   });
+// });
 
 // var newUser = new User({_id:1, username:"ff", password: "656575"});
 
