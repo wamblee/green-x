@@ -14,8 +14,8 @@ require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);
 
 // start listening to requests on port 8000
-app.get('/',function(req,res){
+/*app.get('/',function(req,res){
 	res.redirect('./public')
-});
+});*/
 app.listen(8000);
 module.exports = app;
