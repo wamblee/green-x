@@ -24,10 +24,22 @@ angular.module('iGrow.services', [])
     })
   }
 
+  var CreatePlant = function(plant){
+    return $http({
+      method: 'POST',
+      url: '/api/plants',
+      data: plant
+    })
+    .then(function(resp){
+      return resp;
+    })
+  }
+
 
   return {
     AllPlants:AllPlants,
-    AddPlant:AddPlant
+    AddPlant:AddPlant,
+    CreatePlant:CreatePlant
   }
 
 })
