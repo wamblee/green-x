@@ -1,4 +1,4 @@
-var User = require('./userModel.js')
+var User = require('./usersModel.js')
     Q = require('q')
     jwt = require('jwt-simple')
     
@@ -47,7 +47,7 @@ module.exports = {
       })
       .then(function (user) {
         var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        res.send(200);
       })
       .fail(function (error) {
         next(error);
@@ -72,5 +72,19 @@ module.exports = {
           next(error);
         });
     }
+  },
+  
+  addPlant:function(req,res,next,id){
+    var username = req.body.username;
+    var password = req.body.password;
+
+    findUser({username: username})
+      .then(function (user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+           res.json(User.garden.push())
   }
+})
+    }
 };
