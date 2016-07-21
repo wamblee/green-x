@@ -99,5 +99,12 @@ module.exports = {
       .fail(function(err){
         console.log(err)
       })
+  },
+  getGarden: function(req, res, next){
+    var username= req.body.username;
+    User.findUser({username:username})
+    .then(function(data){
+        return data.garden
+    }) 
   }
 };
