@@ -5,7 +5,7 @@
     <title>iGrow</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
   </head>
-  <body>
+  <body class="body">
 
     <h1>iGrow</h1>
     <div class="options">
@@ -20,14 +20,18 @@
        <a href='#/' data-toggle="tab">Categories</a>
        </li>
        <li class="one">
+       <a href='#/newplant' data-toggle="tab">Create a Plant</a>
+       </li>
+       <li class="one">
        <a href='#/' data-toggle="tab">Nearby Stores</a>
        </li>
         <li class="one">
-       <a href='#/' data-toggle="tab">Contact Us</a>
+       <a href='#/' data-toggle="tab">Contact us</a>
        </li>
        </ul>
     </div>
     
+<p id ='demo'></p>
  <!--    <button onclick="Function()">Click me</button> -->
     
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
@@ -37,8 +41,6 @@
     <script src="lib/angular-route/angular-route.js"></script>
 
     <script src="app/auth/auth.js"></script>
-    <script src="app/links/links.js"></script>
-    <script src="app/plants/plants.js"></script>
     <script src="app/services/services.js"></script>
     <script src="app/app.js"></script>
   </body>

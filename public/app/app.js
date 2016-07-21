@@ -1,7 +1,6 @@
-angular.model('iGrow',[
+angular.module('iGrow',[
 	'iGrow.services',
-	'iGrow.auth',
-	'iGrow.plants'
+	'iGrow.auth'
 ])
 
 //routing 
@@ -31,7 +30,8 @@ angular.model('iGrow',[
 
  })
 
- $httpProvider.interceptors.push('AttachTokens');
+ $httpProvider.interceptors.push('AttachTokens')
+})
 
  .factory('AttachTokens', function ($window) {
   // this is an $httpInterceptor
@@ -60,7 +60,7 @@ angular.model('iGrow',[
   // if it's not valid, we then redirect back to signin/signup
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-      $location.path('/signin');
+      $location.path('/signin')
     }
-  });
+  })
 });

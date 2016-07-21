@@ -1,12 +1,17 @@
-body {
-  margin: 0;
-  margin-top: 10px;
-  font-family: arial, sans-serif;
+.body {
+  background-image: url("1.jpg");
+  font-size: 30px;
+  color:#ffffff;
+}
+
+.input {
+  background-image: url("1.jpg");
+  
 }
 
 a {
-  color: #333;
-  font-size: 14px;
+  color: #ffffff;
+  font-size: 20px;
   text-decoration: none;
 }
 
