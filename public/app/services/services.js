@@ -22,7 +22,7 @@ angular.module('iGrow.services', [])
     .then(function(resp){
       return resp;
     })
-  };
+  }
 
 
   return {
