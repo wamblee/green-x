@@ -1,0 +1,53 @@
+<div id='container'>
+<!-- Your code here -->
+
+  <nav class="navigation">
+      <ul class="list">
+      <li class="one">
+       <a href='#/plants' data-toggle="tab">Browse Plants</a>
+       </li>
+       <li class="one">
+       <a href='#/mygarden' data-toggle="tab">My Garden</a>
+       </li>
+       <li class="one">
+       <a href='#/' data-toggle="tab">Categories</a>
+       </li>
+       <li class="one">
+       <a href='#newplant' data-toggle="tab">Create a Plant</a>
+       </li>
+       <li class="one">
+       <a href='#/' data-toggle="tab">Nearby Stores</a>
+       </li>
+        <li class="one">
+       <a href='#/' data-toggle="tab" onclick="getElementById('demo').innerHTML=Date()">Contact Us</a>
+       </li>
+       </ul>    
+  </nav>
+  <div class="creator">
+    <form name='shortlyForm' ng-submit="newPlant()" novalidate>
+      <input name='plant' type="text"
+        ng-model="plant">
+
+      <button type="submit" value="Create">
+        Create plant
+      </button>
+    </form>
+  </div>
+  </div>
+
+<!--   <div id='container'>
+
+  <form name='createplant' ng-model=''>
+	<div>
+		Plant name:<input type="img" name="name"><br>
+		Plant type:<input type="text" name="planttype"><br>
+		Sun exposure:<input type="text" name="sunExposure"><br>
+		Blloming time:<input type="text" name="bloomTime"><br>
+		Watering:<input type="text" name="watering"><br>
+		<button onclick='newPlant()'>Create Plant</button>
+	</div>
+	
+</form>
+
+
+</div> -->
