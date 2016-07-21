@@ -1,16 +1,18 @@
 var User = require('./usersModel.js')
+var mongoose = require('mongoose');
     Q = require('q')
     jwt = require('jwt-simple')
-    
-var findUser = Q.nbind(User.findOne, User);
-var createUser = Q.nbind(User.create, User);
+    var Plant=require('../plants/plantsModel.js')
+    var findPlants = Q.nbind(Plant.find, Plant);
 
+var findOneUser = Q.nbind(User.findOne, User);
+var createUser = Q.nbind(User.create, User);
+ 
 module.exports = {
   signin: function (req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
-
-    findUser({username: username})
+   var username = req.query.username;
+    var password = req.query.password;
+    findOneUser({username: username})
       .then(function (user) {
         if (!user) {
           next(new Error('User does not exist'));
@@ -32,9 +34,10 @@ module.exports = {
   },
 
   signup: function (req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
-    findUser({username: username})
+    var username = req.query.username;
+    var password = req.query.password;
+    console.log(req.query, "hi");
+    findOneUser({username: username})
       .then(function (user) {
         if (user) {
           next(new Error('User already exist!'));
@@ -47,7 +50,7 @@ module.exports = {
       })
       .then(function (user) {
         var token = jwt.encode(user, 'secret');
-        res.send(200);
+        res.json({token: token});
       })
       .fail(function (error) {
         next(error);
@@ -60,7 +63,7 @@ module.exports = {
       next(new Error('No token'));
     } else {
       var user = jwt.decode(token, 'secret');
-      findUser({username: user.username})
+      findOneUser({username: user.username})
         .then(function (foundUser) {
           if (foundUser) {
             res.send(200);
@@ -74,17 +77,27 @@ module.exports = {
     }
   },
   
-  addPlant:function(req,res,next,id){
-    var username = req.body.username;
-    var password = req.body.password;
+  addPlant:function(req,res,next){
 
-    findUser({username: username})
+    var plantsId = req.query.plantsId;
+   findOneUser({'username': req.query.username})
       .then(function (user) {
         if (!user) {
           next(new Error('User does not exist'));
            } else {
-           res.json(User.garden.push())
+           user.garden.push(plantsId)
+           user.save();
+           return user.garden
+          }
+        })
+      .then(function(garden){
+        findPlants(garden)
+        .then(function(plants){
+          res.json(plants)
+        })
+      })
+      .fail(function(err){
+        console.log(err)
+      })
   }
-})
-    }
 };

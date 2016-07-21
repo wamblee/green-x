@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var PlantSchema = new mongoose.Schema({
- _id:Number,
  name: String,
  plantType: String,
  sunExposure: String,
