@@ -17,13 +17,25 @@ module.exports = {
   },
   newPlant: function (req, res, next) {
     var name = req.body.name;
-    findPlant({name: name})
-      .then(function (match) {
-        if (match) {
-          res.send(match);
-        } else {
-          return util.getPlantData(name);
-        }
-      })
-  }
+    var plantType = req.body.plantType;
+    var sunExposure = req.body.sunExposure;
+    var bloomTime = req.body.bloomTime;
+    var watering= req.body.watering;
+
+    createPlant({
+      name:name,
+      plantType:plantType,
+      sunExposure:sunExposure,
+      bloomTime:bloomTime,
+      watering:watering
+    })
+    .save(function(err,newrecord){
+      if(err){
+      console.log(err)
+    }else{
+      console.log(newrecord)
+    }
+    })
+  },
+  
  };
