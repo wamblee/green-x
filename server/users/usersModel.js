@@ -63,7 +63,7 @@ var User = mongoose.model('User', UserSchema);
 //   });
 // });
 
-// var newUser = new User({_id:1, username:"ff", password: "656575"});
+// var newUser = new User({ username:"ff", password: "656575"});
 
 // newUser.save(function(err,newrecord){
 //   console.log(err)

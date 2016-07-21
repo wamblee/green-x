@@ -10,6 +10,8 @@ module.exports = {
   findAllPlants({})
     .then(function (plants) {
       res.json(plants);
+      console.log(plants)
+
     })
     .fail(function (error) {
       next(error);
