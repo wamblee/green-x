@@ -78,6 +78,7 @@ module.exports = {
   },
   
   addPlant:function(req,res,next){
+
     var plantsId = req.query.plantsId;
    findOneUser({'username': req.query.username})
       .then(function (user) {
@@ -92,7 +93,6 @@ module.exports = {
       .then(function(garden){
         findPlants(garden)
         .then(function(plants){
-          console.log(plants)
           res.json(plants)
         })
       })
