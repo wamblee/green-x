@@ -3,41 +3,65 @@
   "version": "0.0.1",
   "description": "Learn all about deployment",
   "main": "server.js",
-  "repository": "",
   "license": "Proprietary",
   "private": true,
+  "engines": {
+    "node": "5.9.1"
+  },
+  "author": "github.com/Green-x",
+  "contributors": [
+    "Salah Alomari <sxa741@gmail.com>",
+    "Raghad Khawaldeh",
+    "Eman",
+    "Rana Kilani"
+  ],
   "scripts": {
-    "start": "./node_modules/.bin/nodemon --ignore node_modules server.js",
-    "test": "./node_modules/.bin/mocha --bail --reporter nyan test/ServerSpec.js"
+    "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
+    "test": "node server.js & ./node_modules/.bin/mocha --bail --reporter nyan test/ServerSpec.js; killall node;"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.2",
-    "express": "~3.4.8",
-    "express-partials": "~0.2.0",
-    "forever": "^0.10.11",
-    "browser-sync": "^1.5.7",
-    "chai": "^3.4.1",
-    "clone-stats": "0.0.1",
     "bcrypt-nodejs": "0.0.3",
-    "mongoose": "~3.8.8",
-    "bluebird": "1.0.8",
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5",
+    "mongoose": "^4.1.0",
     "morgan": "^1.1.1",
     "q": "^1.4.1",
     "request": "^2.36.0",
+    "chai": "^1.9.0",
+    "express-partials": "~0.2.0",
+    "forever": "^0.10.11",
     "grunt": "^0.4.4",
-    "grunt-contrib-jshint": "^0.9.2",
     "grunt-contrib-concat": "^0.3.0",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-contrib-jshint": "^0.9.2",
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-shell": "^0.6.4",
-    "grunt-contrib-cssmin": "^0.9.0",
-    "grunt-nodemon": "^0.2.1",
     "grunt-mocha-test": "^0.10.0",
+    "grunt-nodemon": "^0.2.1",
+    "grunt-shell": "^0.6.4",
     "mocha": "^1.17.1",
-    "body-parser": "^1.4.3"
+  },
+  "pre-commit": "lint",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Green-x/green-x.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hackreactor-labs/sprint.shortly-angular/issues"
   },
   "devDependencies": {
+    "jwt-simple": "^0.2.0",
+    "eslint": "^3.0.1",
+    "grunt-eslint": "^19.0.0",
+    "jshint-stylish": "^2.2.0",
+    "load-grunt-tasks": "^3.5.0",
     "supertest": "^0.10.0",
-    "jwt-simple": "^0.2.0"
-  }
+    "pre-commit": "^1.1.1",
+    "sinon": "^1.17.2"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ]
 }
