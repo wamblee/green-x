@@ -11,8 +11,7 @@ angular.module('iGrow',[
 ])
 
 //routing 
-.controller("HeaderController", function($window, $scope, $location, Auth) {
-      $scope.data = {}
+.controller("HeaderController", function($scope, $location, Auth) {
       $scope.isActive = function (viewLocation) { 
           return viewLocation === $location.path();
       };
