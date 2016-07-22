@@ -16,8 +16,8 @@
     "Rana Kilani"
   ],
   "scripts": {
-    "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
-    "test": "node server.js & ./node_modules/.bin/mocha --bail --reporter nyan test/ServerSpec.js; killall node;"
+    "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js"
+    // "test": "node server.js & ./node_modules/.bin/mocha --bail --reporter nyan test/ServerSpec.js; killall node;"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -39,15 +39,11 @@
     "grunt-mocha-test": "^0.10.0",
     "grunt-nodemon": "^0.2.1",
     "grunt-shell": "^0.6.4",
-    "mocha": "^1.17.1",
+    "mocha": "^1.17.1"
   },
-  "pre-commit": "lint",
   "repository": {
     "type": "git",
     "url": "http://github.com/Green-x/green-x.git"
-  },
-  "bugs": {
-    "url": "https://github.com/hackreactor-labs/sprint.shortly-angular/issues"
   },
   "devDependencies": {
     "jwt-simple": "^0.2.0",
@@ -56,7 +52,6 @@
     "jshint-stylish": "^2.2.0",
     "load-grunt-tasks": "^3.5.0",
     "supertest": "^0.10.0",
-    "pre-commit": "^1.1.1",
     "sinon": "^1.17.2"
   },
   "keywords": [
