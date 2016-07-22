@@ -4,6 +4,9 @@ var helpers = require('./helpers.js'); // our custom middleware
 
 module.exports = function (app, express) {
   // app.get('/:code', plantsController.navToLink);
+  app.get('/', function (req, res) {
+    res.render('public/index.html');
+  });
   app.post('/api/users/signin', usersController.signin);
   app.post('/api/users/signup', usersController.signup);
   app.get('/api/users/signedin', usersController.checkAuth);

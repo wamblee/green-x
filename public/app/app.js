@@ -1,39 +1,48 @@
 angular.module('iGrow',[
 	'iGrow.services',
-	'iGrow.auth'
+	'iGrow.auth',
+  'iGrow.browse',
+  'iGrow.newplant',
+  'ngRoute'
 ])
 
 //routing 
-
+.controller("HeaderController", function($scope, $location) {
+      $scope.isActive = function (viewLocation) { 
+          return viewLocation === $location.path();
+      };
+})
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
-
- .when('/signin', {
+  .when('/signin', {
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
     })
- .when('/signup', {
+  .when('/signup', {
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
- .when('/', {
+  .when('/', {
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
     })
- .when('/browse-all', {
- 	templateUrl: 'app/browse-all.html',
- 	controller: 'BrowsController'
- })
- .when('/mygarden', {
- 	templateUrl: 'app/mygarden.html',
- 	controller: 'GardenController'
-
- })
+  .when('/plants', {
+    templateUrl: 'App/Browse-all/browse-all.html',
+    controller: 'BrowseController'
+    })
+  .when('/mygarden', {
+   	templateUrl: 'app/mygarden.html',
+   	controller: 'GardenController'
+   })
+    .when('/newplant', {
+    templateUrl: 'app/newplant/newplant.html',
+    controller: 'plantsController'
+   })
 
  $httpProvider.interceptors.push('AttachTokens')
 })
 
- .factory('AttachTokens', function ($window) {
+ .factory('AttachTokens', function ($rootScope, $window) {
   // this is an $httpInterceptor
   // its job is to stop all out going request
   // then look in local storage and find the user's token

@@ -1,28 +1,32 @@
 {
-  "name": "shortly-deploy",
+  "name": "green-x",
   "version": "0.0.1",
   "description": "Learn all about deployment",
   "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Salomari1987/2016-06-rbk-shortly-deploy.git"
-  },
   "license": "Proprietary",
   "private": true,
   "engines": {
     "node": "5.9.1"
   },
+  "author": "github.com/Green-x",
+  "contributors": [
+    "Salah Alomari <sxa741@gmail.com>",
+    "Raghad Khawaldeh",
+    "Eman",
+    "Rana Kilani"
+  ],
   "scripts": {
-    "start": "./node_modules/.bin/nodemon --ignore node_modules server.js",
-    "test": "node server.js & ./node_modules/.bin/mocha --bail --reporter nyan test/ServerSpec.js; killall node;"
+    "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "bluebird": "1.0.8",
-    "bookshelf": "~0.7.1",
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5",
+    "mongoose": "^4.1.0",
+    "morgan": "^1.1.1",
+    "q": "^1.4.1",
+    "request": "^2.36.0",
     "chai": "^1.9.0",
-    "ejs": "~0.8.5",
-    "express": "~3.4.8",
     "express-partials": "~0.2.0",
     "forever": "^0.10.11",
     "grunt": "^0.4.4",
@@ -34,18 +38,20 @@
     "grunt-mocha-test": "^0.10.0",
     "grunt-nodemon": "^0.2.1",
     "grunt-shell": "^0.6.4",
-    "knex": "~0.6.10",
-    "mocha": "^1.17.1",
-    "mongoose": "^3.8.40",
-    "request": "^2.34.0",
-    "sqlite3": "~3.1.0"
+    "mocha": "^1.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Green-x/green-x.git"
   },
   "devDependencies": {
+    "jwt-simple": "^0.2.0",
     "eslint": "^3.0.1",
     "grunt-eslint": "^19.0.0",
     "jshint-stylish": "^2.2.0",
     "load-grunt-tasks": "^3.5.0",
-    "supertest": "^0.10.0"
+    "supertest": "^0.10.0",
+    "sinon": "^1.17.2"
   },
   "keywords": [
     "node",
