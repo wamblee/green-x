@@ -26,7 +26,26 @@ body {
   position: static;
 }
 
-/*.oucontainer:hover {
+/*.Wrapcontainer {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 50px;
+    overflow: visible;
+    z-index: 1;
+}
+.Wrapcontainer:hover {
+    z-index: 2;
+}
+.oucontainer {
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    margin-bottom: 5px;
+    background: #fff;
+    transition: width 0.3s, height 0.3s;
+}
+.oucontainer:hover {
     width: 350px;
     height: 200px;
     background: #eee;
