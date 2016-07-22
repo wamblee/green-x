@@ -5,6 +5,7 @@ var SALT_WORK_FACTOR = 10;
 var db = require('../dbConfig.js')
 var Plant = require('../plants/plantsModel')
 
+ //creating usermodel and connecting it with plant table
 var UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -23,6 +24,7 @@ var UserSchema = new mongoose.Schema({
   }]
 });
 
+ // user methods for comparing password in signing 
 UserSchema.methods.comparePasswords = function (candidatePassword) {
   var savedPassword = this.password;
   return Q.Promise(function (resolve, reject) {
@@ -36,6 +38,7 @@ UserSchema.methods.comparePasswords = function (candidatePassword) {
   });
 };
 
+// saving the password adding salt and hashing it 
 UserSchema.pre('save', function (next) {
   var user = this;
   if (!user.isModified('password')) {
@@ -57,17 +60,4 @@ UserSchema.pre('save', function (next) {
 });
 
 var User = mongoose.model('User', UserSchema);
-// // Plant.findOne({name:"rose"}).exec(function(err,plantObject){
-//   var newUser = new User({_id:5, username:"fjgfhg", password: "656575", garden:[plantObject]}).save(function(err,result){
-//     console.log(Plant.find({_id: result.garden[0]})  
-//   });
-// });
-
-// var newUser = new User({ username:"ff", password: "656575"});
-
-// newUser.save(function(err,newrecord){
-//   console.log(err)
-//   console.log(newrecord)
-// })
-
 module.exports = User;

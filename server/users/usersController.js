@@ -1,14 +1,16 @@
 var User = require('./usersModel.js')
 var mongoose = require('mongoose');
-    Q = require('q')
-    jwt = require('jwt-simple')
-    var Plant=require('../plants/plantsModel.js')
-    var findPlants = Q.nbind(Plant.find, Plant);
-
+Q = require('q')
+jwt = require('jwt-simple')
+var Plant=require('../plants/plantsModel.js')
+var findPlants = Q.nbind(Plant.find, Plant);
 var findOneUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
  
+
 module.exports = {
+  // signin function that check if the user is exist 
+  // returning his token if his password is correct 
   signin: function (req, res, next) {
    var username = req.query.username;
     var password = req.query.password;
@@ -32,7 +34,7 @@ module.exports = {
         next(error);
       });
   },
-
+  // the function that saves username and password when signup for the first time
   signup: function (req, res, next) {
     var username = req.query.username;
     var password = req.query.password;
@@ -56,13 +58,15 @@ module.exports = {
         next(error);
       });
   },
-
+  // the auth function 
   checkAuth: function (req, res, next) {
     var token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('No token'));
-    } else {
+    } else { 
+      //decoded user token
       var user = jwt.decode(token, 'secret');
+      // find user from his name
       findOneUser({username: user.username})
         .then(function (foundUser) {
           if (foundUser) {
@@ -76,21 +80,22 @@ module.exports = {
         });
     }
   },
-  
+  // the function that adding new plants to user's garden
   addPlant:function(req,res,next){
-
     var plantsId = req.query.plantsId;
    findOneUser({'username': req.query.username})
       .then(function (user) {
         if (!user) {
           next(new Error('User does not exist'));
            } else {
+            //pushin new plant to garden array and saving it
            user.garden.push(plantsId)
            user.save();
            return user.garden
           }
         })
       .then(function(garden){
+        //showing plants details that's inside the garden 
         findPlants(garden)
         .then(function(plants){
           res.json(plants)

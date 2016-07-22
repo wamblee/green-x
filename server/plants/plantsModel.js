@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+//creating plants Schema 
 var PlantSchema = new mongoose.Schema({
  name: String,
  plantType: String,
@@ -7,14 +8,8 @@ var PlantSchema = new mongoose.Schema({
  bloomTime: String,
  watering:String
 });
+ 
+// creating plant model
 var Plant = mongoose.model('Plant', PlantSchema);
-
-// var newPlant = new Plant({name:'rose',plantType:'flower',sunExposure:"full sun",bloomTime:"spring",watering:"twice"});
-
-// newPlant.save(function(err,newrecord){
-//   console.log(err)
-//   console.log(newrecord)
-// });
-
 module.exports = Plant
 
