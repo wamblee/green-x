@@ -1,8 +1,9 @@
-var Plants = require('./plantsModel.js');
+var Plant = require('./plantsModel.js');
     Q = require('q');
 var findPlant = Q.nbind(Plant.findOne, Plant);
 var createPlant = Q.nbind(Plant.create, Plant);
 var findAllPlants = Q.nbind(Plant.find, Plant);
+var user=require('../users/usersController.js')
 
 module.exports = {
 
@@ -36,6 +37,7 @@ module.exports = {
       console.log(newrecord)
     }
     })
-  },
+  }
+  
   
  };
