@@ -17,25 +17,29 @@ module.exports = {
     });
   },
   newPlant: function (req, res, next) {
-    var name = req.body.name;
-    var plantType = req.body.plantType;
-    var sunExposure = req.body.sunExposure;
-    var bloomTime = req.body.bloomTime;
-    var watering= req.body.watering;
+    console.log(req)
+    var name = req.query.name;
+    var img = req.query.img;
+    var plantType = req.query.Type;
+    var sunExposure = req.query.sunExposure;
+    var bloomTime = req.query.bloomTime;
+    var watering= req.query.watering;
+
+    console.log(name, img, plantType, sunExposure, bloomTime, watering)
 
     createPlant({
       name:name,
+      img: img,
       plantType:plantType,
       sunExposure:sunExposure,
       bloomTime:bloomTime,
       watering:watering
     })
-    .save(function(err,newrecord){
-      if(err){
-      console.log(err)
-    }else{
-      console.log(newrecord)
-    }
+    .then(function(newPlant){
+      res.json(newPlant);
+    })
+    .catch(function(error){
+      res.send(204)
     })
   }
   
