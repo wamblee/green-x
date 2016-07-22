@@ -10,10 +10,13 @@ angular.module('iGrow',[
 ])
 
 //routing 
-.controller("HeaderController", function($scope, $location) {
+.controller("HeaderController", function($scope, $location, Auth) {
       $scope.isActive = function (viewLocation) { 
           return viewLocation === $location.path();
       };
+      $scope.logOut = function (){
+        Auth.signout();
+      }
 })
 //routing user to signin page when path includes /signin
 .config(function ($routeProvider, $httpProvider) {
@@ -24,10 +27,6 @@ angular.module('iGrow',[
     })
   .when('/signup', {
       templateUrl: 'app/auth/signup.html',
-      controller: 'AuthController'
-    })
-  .when('/', {
-      templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
     })
   .when('/plants', {
