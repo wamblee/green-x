@@ -1,16 +1,40 @@
-<div id='container'>
+<v-accordion class="vAccordion--default" multiple>
+
+  <!-- add expanded attribute to open the section -->
+  <v-pane expanded>
+    <v-pane-header>
+      Pane header #1
+    </v-pane-header>
+
+    <v-pane-content>
+      Pane content #1
+    </v-pane-content>
+  </v-pane>
+
+  <v-pane disabled>
+    <v-pane-header>
+      Pane header #2
+    </v-pane-header>
+
+    <v-pane-content>
+      Pane content #2
+    </v-pane-content>
+  </v-pane>
+
+</v-accordion>
+<!-- <div id='container' data-ng-repeat="plant in data.plants">
     <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' style="opacity:0.7"> 
       <div class='col-sm-3 col-md-2'>
         <div class='thumbnail'>
-          <img alt="100%x200" style="opacity:0.7" src='https://vienna-wv.com/images/tree.jpg'>
+          <img alt="100%x200" style="opacity:0.7" src={{plant.img}}>
           <div class='caption'>
             <div class='panel panel-default'>
-              <div class="panel-heading" role="tab" id="heading-1"> 
+              <div class="panel-heading" role="tab" id="heading-{{plant.id}}> 
                 <h4 class="panel-title"> 
-                  <a role="button" style="opacity:0.7" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c1" class="collapsed" data-target="#c1"> Orcidia </a> 
+                  <a role="button" style="opacity:0.7" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c{{plant.id}}" class="collapsed" data-target="#c{{plant.id}}"> {{plant.name}}</a> 
                 </h4> 
               </div>
-              <div id='c1' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-1' aria-expanded='false' style='height:0px;'>
+              <div id='c{{plant.id}}"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-{{plant.id}}' aria-expanded='false' style='height:0px;'>
                 <div style="opacity:0.7; font-size:10px" class='panel-body'>
                   <p>Description: </p> <p>Type:</p><p>Sun exposure:</p><p>Bloom time:</p><p>Watering schedule</p>
                   <p>
@@ -24,7 +48,8 @@
         </div>
       </div>
     </div> 
-    <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true'> 
+  </div> -->
+    <!-- <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true'> 
       <div class='col-sm-3 col-md-2'>
         <div class='thumbnail'>
           <img alt="100%x200" src='https://vienna-wv.com/images/tree.jpg'>
@@ -224,7 +249,7 @@
         </div>
       </div>
     </div> 
-  </div>
+  </div> -->
 	<!-- <div id='container'>
 		<div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' ng-repeat-start="plant in data.plants">	
 			<div class='col-sm-3 col-md-2'>
