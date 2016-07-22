@@ -12,8 +12,8 @@ module.exports = {
   // signin function that check if the user is exist 
   // returning his token if his password is correct 
   signin: function (req, res, next) {
-   var username = req.query.username;
-    var password = req.query.password;
+   var username = req.body.username;
+    var password = req.body.password;
     findOneUser({username: username})
       .then(function (user) {
         if (!user) {
@@ -36,8 +36,8 @@ module.exports = {
   },
   // the function that saves username and password when signup for the first time
   signup: function (req, res, next) {
-    var username = req.query.username;
-    var password = req.query.password;
+    var username = req.body.username;
+    var password = req.body.password;
     console.log(username, password);
     findOneUser({username: username})
       .then(function (user) {
@@ -82,10 +82,10 @@ module.exports = {
   },
   // the function that adding new plants to user's garden
   addPlant:function(req,res,next){
-
-    var plantsId = req.query.plantsId;
+    console.log(req.body)
+    var plantsId = req.body.plantsId;
     console.log(plantsId)
-   findOneUser({'username': req.query.username})
+   findOneUser({'username': req.body.username})
       .then(function (user) {
         if (!user) {
           next(new Error('User does not exist'));

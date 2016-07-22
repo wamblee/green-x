@@ -18,12 +18,12 @@ module.exports = {
   },
   newPlant: function (req, res, next) {
     console.log(req)
-    var name = req.query.name;
-    var img = req.query.img;
-    var plantType = req.query.Type;
-    var sunExposure = req.query.sunExposure;
-    var bloomTime = req.query.bloomTime;
-    var watering= req.query.watering;
+    var name = req.body.name;
+    var img = req.body.img;
+    var plantType = req.body.Type;
+    var sunExposure = req.body.sunExposure;
+    var bloomTime = req.body.bloomTime;
+    var watering= req.body.watering;
 
     console.log(name, img, plantType, sunExposure, bloomTime, watering)
 
