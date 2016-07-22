@@ -3,7 +3,9 @@ angular.module('iGrow',[
 	'iGrow.auth',
   'iGrow.browse',
   'iGrow.newplant',
-  'ngRoute'
+  'ngRoute',
+  'vAccordion', 
+  'ngAnimate'
 ])
 
 //routing 
