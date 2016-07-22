@@ -45,7 +45,7 @@ body {
     background: #fff;
     transition: width 0.3s, height 0.3s;
 }
-.oucontainer:hover {
+/*.oucontainer:hover {
     width: 350px;
     height: 200px;
     background: #eee;
