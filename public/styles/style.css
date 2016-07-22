@@ -158,3 +158,48 @@ input[type=url]:focus {
 .list{
   
 }
+/*Make text size responsive*/
+
+@media screen and (max-width: 992px) {
+  p, input,div,span,h4 {
+    font-size: 50%;
+  }
+  h1 {
+    font-size: 24px;  
+  }
+  h2 {
+    font-size: 22px;  
+  }
+  h3 {
+    font-size: 18px;  
+  }
+}
+@media screen and (max-width: 1200px) {
+  p, input,div,span,h4 {
+    font-size: 50%;
+  }
+  h1 {
+    font-size: 24px;  
+  }
+  h2 {
+    font-size: 22px;  
+  }
+  h3 {
+    font-size: 18px;  
+  }
+}
+
+@media screen and (max-width: 768px) {
+  p,input,div,span,h4 {
+    font-size: 50%;
+  }
+  h1 {
+    font-size: 20px;  
+  }
+  h2 {
+    font-size: 18px;  
+  }
+  h3 {
+    font-size: 16px;  
+  }
+}
