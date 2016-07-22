@@ -8,7 +8,7 @@ angular.module('iGrow.auth', [])
     Auth.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.iGrow', token);
-        $location.path('/index');
+        $location.path('/');
       })
       .catch(function (error) {
         console.error(error);
@@ -16,10 +16,11 @@ angular.module('iGrow.auth', [])
   };
 
   $scope.signup = function () {
+    console.log($scope.user)
     Auth.signup($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.iGrow', token);
-        $location.path('/index');
+        $location.path('/');
       })
       .catch(function (error) {
         console.error(error);
