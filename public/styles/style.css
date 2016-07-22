@@ -1,4 +1,27 @@
-.body {
+.nav > li, .navbar-nav > li, .nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav, .navbar-nav, .nav-tabs, .nav-pills {
+    text-align:center;
+}
+.navbar-default {
+  background: none;
+}
+body {
+ margin: 0;
+ background-image: url("../Assets/Background1.jpg");
+/* background: rgba(0, 0, 0, .5);*/
+ background-size: 1440px 800px;
+ background-repeat:no-repeat;
+ display: compact;
+ font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+ color:white;
+}
+/*.body {
   background-image: url("1.jpg");
   font-size: 30px;
   color:#ffffff;
@@ -160,7 +183,7 @@ input[type=url]:focus {
 }
 /*Make text size responsive*/
 
-@media screen and (max-width: 992px) {
+/*@media screen and (max-width: 992px) {
   p, input,div,span,h4 {
     font-size: 50%;
   }
@@ -202,4 +225,4 @@ input[type=url]:focus {
   h3 {
     font-size: 16px;  
   }
-}
+}*/
