@@ -34,6 +34,19 @@ angular.module('iGrow.services', [])
       return resp;
     })
   }
+  //removes plant from user garden
+  var removePlant = function(plantId){
+    return $http({
+      method:'PUT',
+      url:'api/users/removeplant',
+      data: {
+        plantsId:plantId
+      }
+     })
+    .then(function(resp){
+      return resp;
+    })
+  }
 //creating a new plant by filling fields by user
   var createPlant = function(plant){
     console.log(plant)
@@ -52,7 +65,8 @@ angular.module('iGrow.services', [])
     getAll:getAll,
     AddPlant:AddPlant,
     createPlant:createPlant,
-    getGarden: getGarden
+    getGarden: getGarden,
+    removePlant: removePlant
   }
 
 })
@@ -86,6 +100,7 @@ angular.module('iGrow.services', [])
   };
 
   var signout = function () {
+    //remove token and username on session destroy
     $window.localStorage.removeItem('com.iGrow');
     $window.localStorage.removeItem('com.username');
     $location.path('/signin');

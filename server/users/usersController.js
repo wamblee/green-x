@@ -82,31 +82,32 @@ module.exports = {
   },
   // the function that adding new plants to user's garden
   addPlant:function(req,res,next){
+    //Get token from header to identify user
     var plantsId = req.body.plantsId;
-    console.log(plantsId)
     var token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('No token'));
     } else { 
       //decoded user token
       var user = jwt.decode(token, 'secret');
+      //find user from database
       findOneUser({username: user.username})
       .then(function (user) {
         if (!user) {
           next(new Error('User does not exist'));
            } else {
             //pushin new plant to garden array and saving it
+            //push plant id to garden array on user schema
            user.garden.push(plantsId)
            user.save();
            return user.garden
           }
         })
       .then(function(garden){
-        console.log(garden)
-        //showing plants details that's inside the garden 
+        //showing plants details that's inside the garden
+        //Searches the plants schema to find each plant that is listed on the garden
         findPlants({'_id': { $in: garden}})
         .then(function(plants){
-          console.log(plants)
           res.json(plants)
         })
       })
@@ -139,6 +140,41 @@ module.exports = {
         .fail(function(err){
           res.send(204)
         })
+      })
+    }
+  },
+  removePlant: function(req, res, next){
+    var plantsId = req.body.plantsId;
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('No token'));
+    } else { 
+      //decoded user token
+      var user = jwt.decode(token, 'secret');
+      findOneUser({username: user.username})
+      .then(function (user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+            //find the index of the plant Id to be removed from user garden
+           var indexPlant = user.garden.indexOf(plantsId);
+           //Remove the plant
+           user.garden.splice(indexPlant, 1);
+           //Save user changes
+           user.save();
+           return user.garden
+          }
+        })
+      .then(function(garden){
+        //showing plants details that's inside the garden 
+        findPlants({'_id': { $in: garden}})
+        .then(function(plants){
+          //Return plants models for the updated garden
+          res.json(plants)
+        })
+      })
+      .fail(function(err){
+        console.log(err)
       })
     }
   }

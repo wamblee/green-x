@@ -8,6 +8,7 @@ var user=require('../users/usersController.js')
 module.exports = {
 
   allPlants: function (req, res, next) {
+  //Find all plants
   findAllPlants({})
     .then(function (plants) {
       res.json(plants);
@@ -17,7 +18,6 @@ module.exports = {
     });
   },
   newPlant: function (req, res, next) {
-    console.log(req)
     var name = req.body.name;
     var img = req.body.img;
     var plantType = req.body.Type;
@@ -25,8 +25,8 @@ module.exports = {
     var bloomTime = req.body.bloomTime;
     var watering= req.body.watering;
 
-    console.log(name, img, plantType, sunExposure, bloomTime, watering)
-
+    //Use URL image
+    //TODO: use image rather than url
     createPlant({
       name:name,
       img: img,

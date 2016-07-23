@@ -7,7 +7,7 @@ angular.module('iGrow.auth', [])
   $scope.signin = function () {
     Auth.signin($scope.user)
       .then(function (resp) {
-        console.log(resp)
+        //Attach tokens and username to local Storage for use elsewhere
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
         $location.path('/');
@@ -20,7 +20,7 @@ angular.module('iGrow.auth', [])
   $scope.signup = function () {
     Auth.signup($scope.user)
       .then(function (resp) {
-        console.log(resp)
+        //Attach tokens and username to local Storage for use elsewhere
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
         $location.path('/');

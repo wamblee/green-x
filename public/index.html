@@ -3,20 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <title>iGrow</title>
-    
+   
+    <!-- Add bootstrap library -->
     <link data-require="bootsrap@" data-server="3.3.1" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+   
+    <!-- Add Jquery for bootsrap to function -->
     <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Optional theme -->
- <!--    <link rel="stylesheet" data-require="bootsrap@" data-server="3.3.1" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
-    <!-- Latest compiled and minified JavaScript -->
+
+    <!-- Add bootstrap javascript library for functionality i.e. accordion -->
     <script data-require="bootsrap@" data-server="3.3.1" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/united/bootstrap.min.css" />
+    
+    <!-- Add theme library from bootswatch -->
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/united/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <link href="lib/v-accordion/dist/v-accordion.css" rel="stylesheet" />
 
   </head>
+  <!-- define main controller -->
   <body ng-controller="HeaderController">
+
+  <!-- navbar -->
     <div class="container-fluid navbar-default">
+
+    <!-- navbar dropdown menu when the screen resizes to mobile size -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#green-x-navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -24,8 +33,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
+
+        <!-- homepage button -->
         <a class="navbar-brand" href="#/">iGrow</a>
       </div>
+
+      <!-- navigation buttons for different screens -->
       <div class="collapse navbar-collapse" id="green-x-navbar">
         <ul class="nav navbar-nav">
         <li ng-class="{ active: isActive('/plants')}">
@@ -55,16 +68,12 @@
 
     </div>      
     
-<!--       <p id ='demo'></p>
- -->      <!--    <button onclick="Function()">Click me</button> -->
-    
-    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-  <div class="col-xs-12">
-  
-  </div>
-  <div class="container containerx">
-      <div ng-view class='col-xs-12'> </div>
-  </div> 
+<!-- the ng-view directive is where our templates will be loaded into when naviagted to 
+    The container is used to have the body underneath the navigation bar-->
+    <div class="container">
+        <div ng-view class='col-xs-12'> 
+        </div>
+    </div> 
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
