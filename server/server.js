@@ -44,5 +44,4 @@ app.on('exit', function(){
 	server.close();
 })
 module.exports = app;
-module.exports = db;
 
