@@ -1,5 +1,6 @@
 angular.module('iGrow.auth', [])
-
+//Auth controller responsible for client side authentication
+// in signup/signin forms using injected Auth service
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
 
