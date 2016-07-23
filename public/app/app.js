@@ -35,7 +35,7 @@ angular.module('iGrow',[
       controller: 'AuthController'
     })
   .when('/plants', {
-    templateUrl: 'App/Browse-all/browse-all.html',
+    templateUrl: 'app/browse-all/browse-all.html',
     controller: 'BrowseController'
     })
   .when('/mygarden', {
