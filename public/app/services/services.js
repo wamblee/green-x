@@ -11,14 +11,22 @@ angular.module('iGrow.services', [])
       return resp.data;
      });
   };
-
+    var getGarden = function(){
+     return $http({
+      method:'GET',
+      url:'/api/users/garden',
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  };
   //add a plant to my garden
   var AddPlant = function(plantId){
     return $http({
       method:'POST',
       url:'api/users/addplant',
       data: {
-        plantId:plantId
+        plantsId:plantId
       }
      })
     .then(function(resp){
@@ -26,14 +34,15 @@ angular.module('iGrow.services', [])
     })
   }
 
-  var CreatePlant = function(plant){
+  var createPlant = function(plant){
+    console.log(plant)
     return $http({
       method: 'POST',
-      url: '/api/plants',
+      url: '/api/plants/newplant',
       data: plant
     })
     .then(function(resp){
-      return resp;
+      return resp.data;
     })
   }
 
@@ -41,7 +50,8 @@ angular.module('iGrow.services', [])
   return {
     getAll:getAll,
     AddPlant:AddPlant,
-    CreatePlant:CreatePlant
+    createPlant:createPlant,
+    getGarden: getGarden
   }
 
 })
@@ -55,7 +65,7 @@ angular.module('iGrow.services', [])
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
@@ -66,7 +76,7 @@ angular.module('iGrow.services', [])
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
@@ -76,6 +86,7 @@ angular.module('iGrow.services', [])
 
   var signout = function () {
     $window.localStorage.removeItem('com.iGrow');
+    $window.localStorage.removeItem('com.username');
     $location.path('/signin');
   };
 

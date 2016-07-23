@@ -4,13 +4,15 @@ angular.module('iGrow',[
 	'iGrow.auth',
   'iGrow.browse',
   'iGrow.newplant',
+  'iGrow.mygarden',
   'ngRoute',
   'vAccordion', 
   'ngAnimate'
 ])
 
 //routing 
-.controller("HeaderController", function($scope, $location, Auth) {
+.controller("HeaderController", function($window, $scope, $location, Auth) {
+      $scope.data = {}
       $scope.isActive = function (viewLocation) { 
           return viewLocation === $location.path();
       };
@@ -34,10 +36,10 @@ angular.module('iGrow',[
     controller: 'BrowseController'
     })
   .when('/mygarden', {
-   	templateUrl: 'app/mygarden.html',
+   	templateUrl: 'app/mygarden/mygarden.html',
    	controller: 'GardenController'
    })
-    .when('/newplant', {
+  .when('/newplant', {
     templateUrl: 'app/newplant/newplant.html',
     controller: 'plantsController'
    })
