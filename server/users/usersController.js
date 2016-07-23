@@ -23,7 +23,7 @@ module.exports = {
             .then(function (foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
-                res.json({token: token});
+                res.json({token: token, user:user.username});
               } else {
                 return next(new Error('No user'));
               }
@@ -52,7 +52,7 @@ module.exports = {
       })
       .then(function (user) {
         var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        res.json({token: token, user:user.username});
       })
       .fail(function (error) {
         next(error);
@@ -82,10 +82,15 @@ module.exports = {
   },
   // the function that adding new plants to user's garden
   addPlant:function(req,res,next){
-    console.log(req.body)
     var plantsId = req.body.plantsId;
     console.log(plantsId)
-   findOneUser({'username': req.body.username})
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('No token'));
+    } else { 
+      //decoded user token
+      var user = jwt.decode(token, 'secret');
+      findOneUser({username: user.username})
       .then(function (user) {
         if (!user) {
           next(new Error('User does not exist'));
@@ -108,12 +113,33 @@ module.exports = {
       .fail(function(err){
         console.log(err)
       })
+    }
   },
   getGarden: function(req, res, next){
-    var username= req.body.username;
-    User.findUser({username:username})
-    .then(function(data){
-        return data.garden
-    }) 
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('No token'));
+    } else { 
+      //decoded user token
+    var user = jwt.decode(token, 'secret');    
+    findOneUser({username:user.username})
+    .then(function(user){
+      if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+            //pushin new plant to garden array and saving it
+        return user.garden
+      }
+    })
+      .then(function(garden){
+        findPlants({'_id': { $in: garden }})
+        .then(function(plants){
+          res.json(plants)
+        })
+        .fail(function(err){
+          res.send(204)
+        })
+      })
+    }
   }
 };
