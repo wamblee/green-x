@@ -12,7 +12,6 @@ angular.module('iGrow.browse', [])
 		.then(function(resp){
 			$location.path('/mygarden')
 			console.log(resp.data)
-
 		})
 	}
 	// $scope.data.plants = [
