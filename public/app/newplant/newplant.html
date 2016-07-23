@@ -1,14 +1,15 @@
 
 <div id='container'>
   <form name='createplant'>
-	<div>
-		Plant name:<input type="text" name="name" placeholder="Plant Name" ng-model="plant.name"><br>
-		Image url:<input type="text" name="planttype" ng-model="plant.img"><br>
-		Plant type:<input type="text" name="planttype" ng-model="plant.Type"><br>
-		Sun exposure:<input type="text" name="sunExposure" ng-model="plant.sunExposure"><br>
-		Blooming time:<input type="text" name="bloomTime" ng-model="plant.bloomTime"><br>
-		Watering:<input type="text" name="watering" ng-model="plant.watering"><br>
-		<button ng-click='newPlant()'>Create Plant</button>
+	<div id="black font">
+		Plant name:<input type="text" name="name" placeholder="Plant Name" ng-model="plant.name" class="form-control"><br>
+		Image url:<input type="text" name="planttype" placeholder="Image url" ng-model="plant.img" class="form-control"><br>
+		Plant type:<input type="text" name="planttype" placeholder="Plant type" ng-model="plant.Type" class="form-control"><br>
+		Sun exposure:<select name="sunExposure" ng-model="plant.sunExposure"
+		class="form-control"><option value="Full Sun">Full Sun</option><option value="Part Sun">Part Sun</option></option><option value="None">None</option></select><br>
+		Blooming time:<input type="text" name="bloomTime" placeholder="Blooming time" ng-model="plant.bloomTime" class="form-control"><br>
+		Watering:<input type="text" name="watering" placeholder="Watering" ng-model="plant.watering" class="form-control"><br>
+		<button ng-click='newPlant()' class="btn-lg btn-primary btn-block">Create Plant</button>
 	</div>
 </form>
 </div>
