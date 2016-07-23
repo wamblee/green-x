@@ -2,7 +2,6 @@ var Q = require('q');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
-var db = require('../dbConfig.js')
 var Plant = require('../plants/plantsModel')
 
  //creating usermodel and connecting it with plant table
