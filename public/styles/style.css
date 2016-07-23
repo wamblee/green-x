@@ -18,14 +18,16 @@ body {
  background-size: 1440px 800px;
  background-repeat:repeat;
  display: compact;
- font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+ font: 1.5em 'Raleway', sans-serif;
  color:white;
 }
 .panel-collapse {
   float: none;
   position: static;
 }
-
+#black-font {
+  color: black;
+}
 /*.Wrapcontainer {
     position: relative;
     display: inline-block;
