@@ -1,4 +1,4 @@
-<div id='signup'>
+<!-- <div id='signup'>
   <h1>signup</h1>
   <form name="signupForm">
     <input type='text' ng-model='user.username'>
@@ -6,5 +6,23 @@
     <button ng-click="signup()">signup</button>
   </form>
   <a href="#/signin">Already have an account? <strong>Signin</strong> ...</a>
-</div>
+</div> -->
 
+<div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Sign Up</h2>
+        <label for="inputUsername" class="sr-only">User Name</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="" ng-model='user.username'>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" ng-model='user.password'>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" ng-click="signin()">Sign in</button>
+        <h3>   <a href="#/signin">Already have an account? <strong>Signin</strong> </a> </h3>
+      </form>
+
+</div>
