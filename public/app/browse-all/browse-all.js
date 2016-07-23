@@ -3,14 +3,14 @@ angular.module('iGrow.browse', [])
 	$scope.data = {}
 	Plants.getAll()
 	.then(function(resp){
-		
 		console.log($window.localStorage["com.iGrow"])
+		console.log($window.localStorage["com.username"])
 		$scope.data.plants=resp;
 	})
 	$scope.addTree = function (id){
 		Plants.AddPlant(id)
 		.then(function(resp){
-			console.log(resp)
+			console.log(resp.data)
 		})
 	}
 	// $scope.data.plants = [
