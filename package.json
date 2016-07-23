@@ -13,7 +13,7 @@
     "Salah Alomari <sxa741@gmail.com>",
     "Raghad Khawaldeh",
     "Eman",
-    "Rana Kilani"
+    "Rana Kilani <rana.1926@hotmail.com>"
   ],
   "scripts": {
     "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js"
