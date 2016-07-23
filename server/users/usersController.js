@@ -1,7 +1,7 @@
 var User = require('./usersModel.js')
 var mongoose = require('mongoose');
-Q = require('q')
-jwt = require('jwt-simple')
+var Q = require('q')
+var jwt = require('jwt-simple')
 var Plant=require('../plants/plantsModel.js')
 var findPlants = Q.nbind(Plant.find, Plant);
 var findOneUser = Q.nbind(User.findOne, User);

@@ -39,14 +39,14 @@
     "grunt-mocha-test": "^0.10.0",
     "grunt-nodemon": "^0.2.1",
     "grunt-shell": "^0.6.4",
-    "mocha": "^1.17.1"
+    "mocha": "^1.17.1",
+    "jwt-simple": "^0.2.0"
   },
   "repository": {
     "type": "git",
     "url": "http://github.com/Green-x/green-x.git"
   },
   "devDependencies": {
-    "jwt-simple": "^0.2.0",
     "eslint": "^3.0.1",
     "grunt-eslint": "^19.0.0",
     "jshint-stylish": "^2.2.0",
