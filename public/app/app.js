@@ -12,15 +12,16 @@ angular.module('iGrow',[
 
 //routing 
 .controller("HeaderController", function($scope, $location, Auth) {
-      $scope.isActive = function (viewLocation) { 
-          return viewLocation === $location.path();
-      };
-      $scope.logOut = function (){
-        Auth.signout();
-      }
-      $scope.logIn = function (){
-        $location.path('/signin');
-      }
+  //Sets isActive to true or false for highlighting the buttons in the nav panel
+  $scope.isActive = function (viewLocation) { 
+      return viewLocation === $location.path();
+  };
+  $scope.logOut = function (){
+    Auth.signout();
+  }
+  $scope.logIn = function (){
+    $location.path('/signin');
+  }
 })
 
 //routing user to signin page when path includes /signin
@@ -46,8 +47,7 @@ angular.module('iGrow',[
     templateUrl: 'app/newplant/newplant.html',
     controller: 'plantsController'
    })
-
- $httpProvider.interceptors.push('AttachTokens')
+  $httpProvider.interceptors.push('AttachTokens')
 })
 
  .factory('AttachTokens', function ($rootScope, $window) {

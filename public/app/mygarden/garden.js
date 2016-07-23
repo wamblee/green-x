@@ -1,16 +1,16 @@
 angular.module('iGrow.mygarden', [])
-.controller('GardenController', function ($window, $scope, Plants) {
+.controller('GardenController', function ($window, $location, $scope, Plants) {
 	$scope.data = {}
 	Plants.getGarden()
 	.then(function(resp){
-		console.log(resp)
 		$scope.data.plants=resp;
 	})
-	// $scope.addTree = function (id){
-	// 	Plants.(id)
-	// 	.then(function(resp){
-	// 		console.log(resp)
-	// 	})
-	// }
-	
+	$scope.removePlant = function(id){
+		Plants.removePlant(id)
+		.then(function(resp){
+			//After plant is added to user's garden, show user's garden
+			$scope.data.plants=resp.data
+			$location.path('/mygarden')
+		})
+	}
 });

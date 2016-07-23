@@ -5,24 +5,12 @@ angular.module('iGrow.browse', [])
 	.then(function(resp){
 		$scope.data.plants=resp;
 	})
+	//Add plant function
 	$scope.addTree = function (id){
 		Plants.AddPlant(id)
 		.then(function(resp){
+			//After plant is added to user's garden, show user's garden
 			$location.path('/mygarden')
-			console.log(resp.data)
-
 		})
 	}
-	// $scope.data.plants = [
-	// {img: 'https://vienna-wv.com/images/tree.jpg', id:1, name:"Orcidia"},
-	// {img: 'https://vienna-wv.com/images/tree.jpg', id:2, name:"Wisteria"},
-	// {img: 'https://vienna-wv.com/images/tree.jpg', id:3, name:"Maple"},
-	// {img: 'https://vienna-wv.com/images/tree.jpg', id:4, name:"a"},
-	// {img: 'https://vienna-wv.com/images/tree.jpg', id:5, name:"v"},
-	// {img: 'https://vienna-wv.com/images/tree.jpg', id:6, name:"x"},
-	// {img: 'https://vienna-wv.com/images/tree.jpg', id:7, name:"h"},
-	// {img: 'https://vienna-wv.com/images/tree.jpg', id:8, name:"y"},
-	// {img: 'https://vienna-wv.com/images/tree.jpg', id:9, name:"l"}
-
-	// ];
 });

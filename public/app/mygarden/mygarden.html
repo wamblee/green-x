@@ -7,13 +7,15 @@
             <div class='panel panel-default'>
               <div class="panel-heading" role="tab" id="heading-{{plant._id}}"> 
                 <h4 class="panel-title"> 
-                  <a role="button" style="opacity:0.7" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c{{plant._id}}" class="collapsed" data-target="#c{{plant._id}}"> {{plant.name}}</a> 
+                  <a role="button" style="opacity:0.7" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c{{plant._id}}" class="collapsed" data-target="#c{{plant._id}}"> <i class="glyphicon glyphicon-plus"></i>  {{plant.name}}</a> 
                 </h4> 
               </div>
               <div id='c{{plant._id}}' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-{{plant.id}}' aria-expanded='false' style='height:0px;'>
                 <div style="opacity:0.7; font-size:10px" class='panel-body'>
                   <p>Description: </p> <p>Type:</p><p>Sun exposure:</p><p>Bloom time:</p><p>Watering schedule</p>
-                    <button class='btn btn-primary' role='button' data-ng-click='addTree(plant._id)'> Add tree</button>
+                    <button class='btn btn-primary' role='button' data-ng-click='removePlant(plant._id)'> Remove 
+                    <i class="glyphicon glyphicon-remove-sign"> </i>
+                    </button>
                 </div>
               </div>
             </div>
