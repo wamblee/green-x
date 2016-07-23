@@ -1,5 +1,5 @@
 angular.module('iGrow.browse', [])
-.controller('BrowseController', function ($window, $scope, Plants) {
+.controller('BrowseController', function ($window, $scope, $location, Plants) {
 	$scope.data = {}
 	Plants.getAll()
 	.then(function(resp){
@@ -10,7 +10,9 @@ angular.module('iGrow.browse', [])
 	$scope.addTree = function (id){
 		Plants.AddPlant(id)
 		.then(function(resp){
+			$location.path('/mygarden')
 			console.log(resp.data)
+
 		})
 	}
 	// $scope.data.plants = [
