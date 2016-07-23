@@ -2,7 +2,7 @@
   "name": "green-x",
   "version": "0.0.1",
   "description": "Learn all about deployment",
-  "main": "server.js",
+  "main": "server/server.js",
   "license": "Proprietary",
   "private": true,
   "engines": {

@@ -19,12 +19,13 @@ db.once('open',function(){
 
 var app = express();
 // configure our server with all the middleware and routing
+var port = process.env.PORT || 8000;
 require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);
 // start listening to requests on port 8000
 
-app.listen(8000, function () {
-  console.log(' app listening on port 8000!');
+app.listen(port, function () {
+  console.log(' app listening on port ' + port);
 });
 
 //Kills server connection if it crashes or killed
