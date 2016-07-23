@@ -11,7 +11,7 @@ module.exports = function (app, express) {
   app.post('/api/users/signup', usersController.signup);
   app.get('/api/users/signedin', usersController.checkAuth);
   app.post('/api/users/addplant', usersController.addPlant);
-  app.post('/api/users/newplant', plantsController.newPlant)
+  app.post('/api/plants/newplant', plantsController.newPlant)
   app.get('/api/plants/', plantsController.allPlants);
   app.get('/api/users/garden', usersController.getGarden);
   // app.put('/api/users/removeplant', usersController.removePlant);//TODO 

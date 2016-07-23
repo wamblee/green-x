@@ -2,7 +2,7 @@ angular.module('iGrow.services', [])
 
 .factory('Plants', function ($http, $window) {
   // show all plants in my garden
-  var AllPlants = function(){
+  var getAll = function(){
      return $http({
       method:'GET',
       url:'/api/plants'
@@ -11,35 +11,47 @@ angular.module('iGrow.services', [])
       return resp.data;
      });
   };
-
+    var getGarden = function(){
+     return $http({
+      method:'GET',
+      url:'/api/users/garden',
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  };
   //add a plant to my garden
-  var AddPlant = function(plant){
+  var AddPlant = function(plantId){
     return $http({
       method:'POST',
-      url:'/api/plants',
-      data: plant
+      url:'api/users/addplant',
+      data: {
+        plantsId:plantId
+      }
      })
     .then(function(resp){
       return resp;
     })
   }
 
-  var CreatePlant = function(plant){
+  var createPlant = function(plant){
+    console.log(plant)
     return $http({
       method: 'POST',
-      url: '/api/plants',
+      url: '/api/plants/newplant',
       data: plant
     })
     .then(function(resp){
-      return resp;
+      return resp.data;
     })
   }
 
 
   return {
-    AllPlants:AllPlants,
+    getAll:getAll,
     AddPlant:AddPlant,
-    CreatePlant:CreatePlant
+    createPlant:createPlant,
+    getGarden: getGarden
   }
 
 })
@@ -53,7 +65,7 @@ angular.module('iGrow.services', [])
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
@@ -64,7 +76,7 @@ angular.module('iGrow.services', [])
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
@@ -74,6 +86,7 @@ angular.module('iGrow.services', [])
 
   var signout = function () {
     $window.localStorage.removeItem('com.iGrow');
+    $window.localStorage.removeItem('com.username');
     $location.path('/signin');
   };
 

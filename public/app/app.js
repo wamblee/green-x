@@ -4,16 +4,20 @@ angular.module('iGrow',[
 	'iGrow.auth',
   'iGrow.browse',
   'iGrow.newplant',
+  'iGrow.mygarden',
   'ngRoute',
   'vAccordion', 
   'ngAnimate'
 ])
 
 //routing 
-.controller("HeaderController", function($scope, $location) {
+.controller("HeaderController", function($scope, $location, Auth) {
       $scope.isActive = function (viewLocation) { 
           return viewLocation === $location.path();
       };
+      $scope.logOut = function (){
+        Auth.signout();
+      }
 })
 //routing user to signin page when path includes /signin
 .config(function ($routeProvider, $httpProvider) {
@@ -26,19 +30,15 @@ angular.module('iGrow',[
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
-  .when('/', {
-      templateUrl: 'app/auth/signin.html',
-      controller: 'AuthController'
-    })
   .when('/plants', {
     templateUrl: 'App/Browse-all/browse-all.html',
     controller: 'BrowseController'
     })
   .when('/mygarden', {
-   	templateUrl: 'app/mygarden.html',
+   	templateUrl: 'app/mygarden/mygarden.html',
    	controller: 'GardenController'
    })
-    .when('/newplant', {
+  .when('/newplant', {
     templateUrl: 'app/newplant/newplant.html',
     controller: 'plantsController'
    })
