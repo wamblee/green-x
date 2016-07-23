@@ -1,7 +1,7 @@
 angular.module('iGrow.services', [])
 
 .factory('Plants', function ($http, $window) {
-  // show all plants in my garden
+  // show all plants in garden
   var getAll = function(){
      return $http({
       method:'GET',
@@ -11,6 +11,7 @@ angular.module('iGrow.services', [])
       return resp.data;
      });
   };
+  //view plants in garden
     var getGarden = function(){
      return $http({
       method:'GET',
@@ -20,7 +21,7 @@ angular.module('iGrow.services', [])
       return resp.data;
      });
   };
-  //add a plant to my garden
+  //add a plant to garden
   var AddPlant = function(plantId){
     return $http({
       method:'POST',
@@ -33,7 +34,7 @@ angular.module('iGrow.services', [])
       return resp;
     })
   }
-
+//creating a new plant by filling fields by user
   var createPlant = function(plant){
     console.log(plant)
     return $http({
