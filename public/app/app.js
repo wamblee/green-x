@@ -1,3 +1,4 @@
+// connecting the angular iGrow module with different modules
 angular.module('iGrow',[
 	'iGrow.services',
 	'iGrow.auth',
@@ -14,6 +15,7 @@ angular.module('iGrow',[
           return viewLocation === $location.path();
       };
 })
+//routing user to signin page when path includes /signin
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
   .when('/signin', {
@@ -45,10 +47,10 @@ angular.module('iGrow',[
 })
 
  .factory('AttachTokens', function ($rootScope, $window) {
-  // this is an $httpInterceptor
-  // its job is to stop all out going request
+  //an $httpInterceptor's
+  // job is to stop all out going requests
   // then look in local storage and find the user's token
-  // then add it to the header so the server can validate the request
+  //and add it to the header so the server can validate the request
   var attach = {
     request: function (object) {
       var jwt = $window.localStorage.getItem('com.iGrow');
