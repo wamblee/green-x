@@ -14,6 +14,8 @@
     "angular-route": "latest",
     "angular-mocks": "latest",
     "v-accordion": "~1.6.0",
-    "angular-animate": "latest"
+    "angular-animate": "latest",
+    "socket.io-client": "^1.4.8",
+    "socket.io": "^1.4.8"
   }
 }
