@@ -7,7 +7,8 @@ angular.module('iGrow',[
   'iGrow.mygarden',
   'ngRoute',
   'vAccordion', 
-  'ngAnimate'
+  'ngAnimate',
+  'iGrow.What'
 ])
 
 //routing 
@@ -47,6 +48,12 @@ angular.module('iGrow',[
     templateUrl: 'app/newplant/newplant.html',
     controller: 'plantsController'
    })
+  .when('/chat',{
+    templateUrl: 'app/chat/message.html',
+    controller: 'socketController'
+  })
+
+
   $httpProvider.interceptors.push('AttachTokens')
 })
 

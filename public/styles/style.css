@@ -31,25 +31,3 @@ background-color: #FFEBCD;
 #black-font {
   color: black;
 }
-
-.description{
-  background-color:gray ;
-  opacity:0.5
-  color: white;
-  border-radius: 2px;
-  opacity:0.8
-}
-
-.descButton{
-    float:none;
-    display:inline-block;
-    *display:inline; 
-    zoom:0; 
-    text-align:center;
-    color: white;
-}
-.descButton:hover {
-    text-decoration: none;
-    background-color: orange;
-}
-

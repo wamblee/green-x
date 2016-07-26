@@ -70,7 +70,11 @@ angular.module('iGrow.services', [])
   }
 
 })
-
+.factory('socket', function($rootScope){
+  var socket = io.connect('http://localhost:8000');
+  
+  return socket;
+})
 .factory('Auth', function ($http, $location, $window) {
 
   var signin = function (user) {
