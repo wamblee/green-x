@@ -8,7 +8,6 @@ angular.module('iGrow',[
   'ngRoute',
   'vAccordion', 
   'ngAnimate',
-  // 'btford.socket-io',
   'iGrow.What'
 ])
 
