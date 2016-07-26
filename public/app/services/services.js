@@ -24,7 +24,7 @@ angular.module('iGrow.services', [])
   //add a plant to garden
   var AddPlant = function(plantId){
     return $http({
-      method:'POST',
+      method:'POST',  
       url:'api/users/addplant',
       data: {
         plantsId:plantId

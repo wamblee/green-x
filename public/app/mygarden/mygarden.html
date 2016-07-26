@@ -1,7 +1,18 @@
 <div>
-  <p>
-    {{her is  the description}}
-  </p>
+  <div>  
+    <a class="descButton" data-toggle="collapse" class="toggleButton" data-target="#descContent"> description </a>
+    <div class="description" >
+      <p class="collapse content"  id="descContent"  >
+         {{description}}a'lsnfbhdvfbncsml,;.]c,[l msknhiguc av]
+      </p>
+    </div>
+    
+  </div>
+  <div class="comment" data-ng-repeat="comment in comments">
+    <p> {{comment}</p>
+  </div>
+
+
   <div id='container' data-ng-repeat="plant in data.plants">
     <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' style="opacity:0.8"> 
       <div class='col-sm-3 col-md-2'>

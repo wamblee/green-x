@@ -10,7 +10,7 @@ angular.module('iGrow.mygarden', [])
 		.then(function(resp){
 			//After plant is added to user's garden, show user's garden
 			$scope.data.plants=resp.data
-			
+
 			$location.path('/mygarden')
 		})
 	}
