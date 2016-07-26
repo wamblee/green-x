@@ -5,6 +5,9 @@ angular.module('iGrow.mygarden', [])
 	.then(function(resp){
 		$scope.data.plants=resp;
 	})
+	$scope.addComment=function (comment) {
+		$('#comment').prepend("<p class='commentStyle'>"+comment+"</p>")
+	}
 	$scope.removePlant = function(id){
 		Plants.removePlant(id)
 		.then(function(resp){
