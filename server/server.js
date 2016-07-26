@@ -36,16 +36,9 @@ server.listen(port, function () {
 
 
 io.sockets.on('connection' , function(socket){
-	// console.log('I AM FINALLY WORKINGGGGGGGGGGG')
-	// socket.on('hello' , function(data){
-	// 	console.log('MA AZNAKHAKKKKKK')
-	// 	io.sockets.emit('send' , data)
-	// })
-
 	socket.on('send msg' , function(data){
 		io.sockets.emit('get msg' , data);
 	})
-
 })
 
 //Kills server connection if it crashes or killed
