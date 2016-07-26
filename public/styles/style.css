@@ -28,6 +28,12 @@ body {
 #black-font {
   color: black;
 }
+
+#chatWrap{
+  color : black;
+  height: 500px;
+  overflow: auto;
+}
 /*.Wrapcontainer {
     position: relative;
     display: inline-block;
