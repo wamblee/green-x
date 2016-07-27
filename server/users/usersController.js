@@ -1,12 +1,17 @@
 var User = require('./usersModel.js')
 var mongoose = require('mongoose');
-var Q = require('q')
-var jwt = require('jwt-simple')
-var Plant=require('../plants/plantsModel.js')
+var Store=require('../store/storeModel');
+var Q = require('q');
+var jwt = require('jwt-simple');
+var Plant=require('../plants/plantsModel.js');
+var Comment=require('../comments/commentModel.js');
 var findPlants = Q.nbind(Plant.find, Plant);
 var findOneUser = Q.nbind(User.findOne, User);
+var findAllUser = Q.nbind(User.find, User);
 var createUser = Q.nbind(User.create, User);
- 
+var findAllStores=Q.nbind(Store.find, Store);
+var updateLikes = Q.nbind(User.findOneAndUpdate, User);
+var updatedescription=Q.nbind(User.findOneAndUpdate,User);
 
 module.exports = {
   // signin function that check if the user is exist 
@@ -38,7 +43,7 @@ module.exports = {
   signup: function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
-    console.log(username, password);
+    //console.log(username, password);
     findOneUser({username: username})
       .then(function (user) {
         if (user) {
@@ -177,5 +182,96 @@ module.exports = {
         console.log(err)
       })
     }
+  },
+  getStores:function(req,res,next){ 
+  
+    findAllStores()
+      .then(function(stores){
+        res.json(stores);
+      })
+    },
+  getFriends:function(req,res,next){
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('No token'));
+    } else { 
+      //decoded user token
+    var user = jwt.decode(token, 'secret');    
+    findOneUser({username:user.username})
+    .then(function(user){
+      if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+            //pushin new plant to garden array and saving it
+        return user.friends
+      }
+    })
+      .then(function(friends){
+        findAllUser({'_id': { $in: friends }})
+        .then(function(friends){
+          res.json(friends)
+        })
+        .fail(function(err){
+          res.send(204)
+        })
+      })
+    }
+  },
+  
+  addFriend:function(req,res,next){
+    //Get token from header to identify user
+    var friendId = req.body.friendId;
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('No token'));
+    } else { 
+      //decoded user token
+      var user = jwt.decode(token, 'secret');
+      //find user from database
+      findOneUser({username: user.username})
+      .then(function (user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+            //pushin new plant to garden array and saving it
+            //push plant id to garden array on user schema
+           user.friends.push(friendId)
+           user.save();
+           return user.friends
+          }
+        })
+      .then(function(friends){
+        //showing plants details that's inside the garden
+        //Searches the plants schema to find each plant that is listed on the garden
+        findFriends({'_id': { $in: friends}})
+        .then(function(friends){
+          res.json(friends)
+        })
+      })
+      .fail(function(err){
+        console.log(err)
+      })
+    }
+  },
+  updateLikes: function(req,res,next){
+    // var token = req.headers['x-access-token'];
+    // var user = jwt.decode(token, 'secret');
+    var username=req.params.username
+    updateLikes({username:username},{$set:{likes:likes++}},function(err,doc){
+      if(err){
+        console.log("Something wrong when updating data!");
+    }
+    //console.log("dooooc",doc);
+    })
+  },
+  addDescription: function(req,res,next){
+    var token = req.headers['x-access-token'];
+    var user = jwt.decode(token, 'secret');
+    var description=req.body.description;
+    updatedescription({username:user.username},{$set:{description:description}},function(err,doc){
+       if(err){
+        console.log("Something wrong when updating data!");
+      }
+    })
   }
 };
