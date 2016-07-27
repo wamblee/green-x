@@ -70,14 +70,15 @@ angular.module('iGrow.auth', [])
   $scope.user = {};
 
   $scope.signin = function () {
+    
     Auth.signin($scope.user)
       .then(function (resp) {
-        flag = true;
-        //Attach tokens and username to local Storage for use elsewhere
+        $scope.flag = true;
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
-        $location.path('/');
 
+        $location.path('/');
+        $window.location.reload();
       })
       .catch(function (error) {
         console.error(error);
