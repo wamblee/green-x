@@ -14,15 +14,18 @@ angular.module('iGrow.services', [])
      });
   };
  
- var addNewComment = function(comment){
+ var addNewComment = function(text){
+  console.log(text);
      return $http({
       method:'POST',
       url:'/api/users/addcomments',
+      data: text
      })
      .then(function(resp){
       return resp.data;
      });
   };
+
    var getAllComment = function(){
      return $http({
       method:'GET',

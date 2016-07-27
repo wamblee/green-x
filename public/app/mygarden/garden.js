@@ -6,18 +6,26 @@ angular.module('iGrow.mygarden', [])
 		$scope.data.plants=resp;
 		window.user=$window.localStorage['com.username'];
 		///console.log($window.localStorage['com.username'])
+		$scope.username=$window.localStorage['com.username'];
 	})
 
-	Plants.getAllComment()
-	.then(function (resp) {
-		$scope.data.comment=resp;
-		$location.path('/mygarden')
-	})
-
-	$scope.addComment=function (comment) {
-		Plants.addNewComment($window.localStorage['com.username'])
-		$window.localStorage.setItem('com.comment', resp.comment);
+	$scope.addComment=function ( comment) {
+		Plants.addNewComment(comment)
+	
+		Plants.getAllComment()
+		.then(function (resp) {
+			$scope.data.comment=resp;
+			$location.path('/mygarden')
+		})
 	}
+	
+	Plants.getAllComment()
+		.then(function (resp) {
+			$scope.data.comment=resp;
+			$location.path('/mygarden')
+	})
+
+	
 
 	$scope.removePlant = function(id){
 		Plants.removePlant(id)
