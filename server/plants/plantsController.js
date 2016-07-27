@@ -73,9 +73,6 @@ newPlant: function (req, res, next) {
         plant.lifePlant=0;
 
     }
-
   })
-
   }
-
  };
