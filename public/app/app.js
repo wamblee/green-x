@@ -20,7 +20,6 @@ angular.module('iGrow',[
   };
   
   $scope.logOut = function (){    
-    console.log(Auth.isAuth());
     if(Auth.isAuth()){
       Auth.signout();
       $scope.flag = !!$window.localStorage.getItem('com.iGrow');
@@ -102,7 +101,6 @@ window.fbAsyncInit = function() {
   FB.init({
     appId      : '835093243291061',
     status : true,
-    cookie : true,
     xfbml      : true,
     version    : 'v2.7'
   });
