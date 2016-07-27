@@ -12,17 +12,22 @@ angular.module('iGrow',[
 ])
 
 //routing 
-.controller("HeaderController", function($scope, $location, Auth) {
+.controller("HeaderController", function($scope, $window, $location, Auth) {
   //Sets isActive to true or false for highlighting the buttons in the nav panel
+  $scope.flag = !!$window.localStorage.getItem('com.iGrow');
   $scope.isActive = function (viewLocation) { 
       return viewLocation === $location.path();
   };
-  $scope.logOut = function (){
-    Auth.signout();
+  
+  $scope.logOut = function (){    
+    console.log(Auth.isAuth());
+    if(Auth.isAuth()){
+      Auth.signout();
+      $scope.flag = !!$window.localStorage.getItem('com.iGrow');
+      $location.path('/signin');
+    } 
   }
-  $scope.logIn = function (){
-    $location.path('/signin');
-  }
+
 })
 
 //routing user to signin page when path includes /signin
@@ -52,6 +57,10 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
+  // .when('/' , {
+  //   templateUrl: '/',
+  //   controller: 'AuthController'
+  // })
 
 
   $httpProvider.interceptors.push('AttachTokens')
@@ -83,9 +92,26 @@ angular.module('iGrow',[
   // and send that token to the server to see if it is a real user or hasn't expired
   // if it's not valid, we then redirect back to signin/signup
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
-    console.log(next.$$route);
     if (next.$$route.originalPath!=="/signup" && next.$$route  && !Auth.isAuth()) {
       $location.path('/signin')
     }
   })
 });
+
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '835093243291061',
+    status : true,
+    cookie : true,
+    xfbml      : true,
+    version    : 'v2.7'
+  });
+  };
+
+  (function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "https://connect.facebook.net/en_US/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
