@@ -62,11 +62,11 @@
          </ul>
         <form class="navbar-form navbar-right">
         <!-- <button type="submit" ng-show="flag===true" class="btn btn-default navbar-button navbar-right" ng-click="logIn()">Log In</button> -->
-        <button type="submit" ng-if="flag" class="btn btn-default navbar-button navbar-right"  ng-model="maznakhak" ng-click="logOut()">Logout</button>
+        <button type="submit" ng-show="flag" class="btn btn-default navbar-button navbar-right"  ng-model="maznakhak" ng-click="logOut()">Logout</button>
         </form>
       </div>
 
-    </div>      
+    </div>
     
 <!-- the ng-view directive is where our templates will be loaded into when naviagted to 
     The container is used to have the body underneath the navigation bar-->
@@ -75,7 +75,7 @@
         </div>
     </div> 
 
-
+    
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-mocks/angular-mocks.js"></script>
