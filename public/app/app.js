@@ -12,28 +12,22 @@ angular.module('iGrow',[
 ])
 
 //routing 
-.controller("HeaderController", function($scope, $location, Auth) {
+.controller("HeaderController", function($scope, $window, $location, Auth) {
   //Sets isActive to true or false for highlighting the buttons in the nav panel
-  window.flag = false;
-  // $scope.flag = true;
-
+  $scope.flag = !!$window.localStorage.getItem('com.iGrow');
   $scope.isActive = function (viewLocation) { 
       return viewLocation === $location.path();
   };
-  // console.log(flag);
-  $scope.logOut = function (){
+  
+  $scope.logOut = function (){    
+    console.log(Auth.isAuth());
     if(Auth.isAuth()){
-      // $scope.flag = true;
       Auth.signout();
+      $scope.flag = !!$window.localStorage.getItem('com.iGrow');
       $location.path('/signin');
     } 
-    
   }
 
-  // $scope.logIn = function (){
-  //   $scope.flag = false;
-  //   $location.path('/signin');
-  // }
 })
 
 //routing user to signin page when path includes /signin
