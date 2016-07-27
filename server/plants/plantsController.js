@@ -22,7 +22,6 @@ module.exports = {
     var img = req.body.img;
     var plantType = req.body.Type;
     var sunExposure = req.body.sunExposure;
-    var bloomTime = req.body.bloomTime;
     var watering= req.body.watering;
 
     //Use URL image
@@ -31,9 +30,7 @@ module.exports = {
       name:name,
       img: img,
       plantType:plantType,
-      sunExposure:sunExposure,
-      bloomTime:bloomTime,
-      watering:watering
+      sunExposure:sunExposure
     })
     .then(function(newPlant){
       res.json(newPlant);
@@ -41,7 +38,9 @@ module.exports = {
     .catch(function(error){
       res.send(204)
     })
+  },
+  updateWatering:function(req,res,next){
+     var query = { name: req.body.name };
   }
-  
   
  };

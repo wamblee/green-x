@@ -1,5 +1,7 @@
 var plantsController = require('../plants/plantsController.js');
 var usersController = require('../users/usersController.js');
+var storesController = require('../store/storeController.js');
+var commentController = require('../comments/commentController.js');
 var helpers = require('./helpers.js'); // our custom middleware
 
 module.exports = function (app, express) {
@@ -12,11 +14,21 @@ module.exports = function (app, express) {
   app.post('/api/users/signin', usersController.signin);
   app.post('/api/users/signup', usersController.signup);
   app.get('/api/users/signedin', usersController.checkAuth);
-
+//routes for comments
+app.get('/api/users/comments', commentController.getAllComments);
+app.post('/api/users/addcomments', commentController.newComment);
   //Add plant to user garden
   app.post('/api/users/addplant', usersController.addPlant);
+  //store route
+  app.post('/api/users/signinstore',storesController.signin);
+  app.post('/api/users/signupstore',storesController.signup);
   //View user garden
+  app.get('/api/users/stores',usersController.getStores);
   app.get('/api/users/garden', usersController.getGarden);
+  app.get('/api/users/friends',usersController.getFriends);
+  app.post('/api/users/friendadd',usersController.addFriend);
+  app.put('/api/users/likes',usersController.updateLikes);
+  app.put('/api/users/description',usersController.addDescription);
   //Remove plant from user garden
   app.put('/api/users/removeplant', usersController.removePlant);
   
