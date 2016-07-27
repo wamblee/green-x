@@ -1,11 +1,32 @@
 angular.module('iGrow.services', [])
 
 .factory('Plants', function ($http, $window) {
+
   // show all plants in garden
+  
   var getAll = function(){
      return $http({
       method:'GET',
       url:'/api/plants'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  };
+ 
+ var addNewComment = function(comment){
+     return $http({
+      method:'POST',
+      url:'/api/users/addcomments',
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  };
+   var getAllComment = function(){
+     return $http({
+      method:'GET',
+      url:'/api/users/comments',
      })
      .then(function(resp){
       return resp.data;
@@ -66,7 +87,9 @@ angular.module('iGrow.services', [])
     AddPlant:AddPlant,
     createPlant:createPlant,
     getGarden: getGarden,
-    removePlant: removePlant
+    removePlant: removePlant,
+    addNewComment:addNewComment,
+    getAllComment:getAllComment
   }
 
 })

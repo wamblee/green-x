@@ -38,7 +38,8 @@ background-color: #FFEBCD;
   margin-left: 10px;
   margin-right: 10px;
   background-color: gray;
-  opacity:0.8
+  opacity:0.7 ;
+  color: white;
 }
 .commentStyle{
   margin-top: 10px;
@@ -46,5 +47,5 @@ background-color: #FFEBCD;
   margin-left: 10px;
   margin-right: 10px;
   background-color: gray;
-  opacity:0.8
+  opacity:0.7
 }

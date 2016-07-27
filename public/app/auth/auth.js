@@ -16,7 +16,9 @@ angular.module('iGrow.auth', [])
         console.error(error);
       });
   };
-
+  $scope.islog=function(){
+    console.log("islog")
+  };
   $scope.signup = function () {
     Auth.signup($scope.user)
       .then(function (resp) {
