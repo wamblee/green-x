@@ -61,8 +61,8 @@
          </li>
          </ul>
         <form class="navbar-form navbar-right">
-        <button type="submit" ng-show="flag===true" class="btn btn-default navbar-button navbar-right" ng-click="logIn()">Log In</button>
-        <button type="submit" ng-show="flag===false" class="btn btn-default navbar-button navbar-right"  ng-click="logOut()">Logout</button>
+        <!-- <button type="submit" ng-show="flag===true" class="btn btn-default navbar-button navbar-right" ng-click="logIn()">Log In</button> -->
+        <button type="submit" ng-if="flag" class="btn btn-default navbar-button navbar-right"  ng-model="maznakhak" ng-click="logOut()">Logout</button>
         </form>
       </div>
 

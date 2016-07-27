@@ -6,8 +6,18 @@ var PlantSchema = new mongoose.Schema({
  img: String,
  plantType: String,
  sunExposure: String,
- bloomTime: String,
- watering:String
+ watering:{
+ 	type:Number,
+ 	default:0
+ },
+ maxWatering:{
+ 	type:Number,
+ 	default:4
+ },
+ lifePlant:{
+ 	type:Number,
+ 	default:100
+ }///depend on categories
 });
  
 // creating plant model
