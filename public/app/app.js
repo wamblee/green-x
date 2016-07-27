@@ -14,13 +14,23 @@ angular.module('iGrow',[
 //routing 
 .controller("HeaderController", function($scope, $location, Auth) {
   //Sets isActive to true or false for highlighting the buttons in the nav panel
+
+  $scope.flag = true;
+
   $scope.isActive = function (viewLocation) { 
       return viewLocation === $location.path();
   };
+
   $scope.logOut = function (){
-    Auth.signout();
+    if(Auth.isAuth()){
+      $scope.flag = true;
+      Auth.signout();
+    }
+    $location.path('/signin');
+
   }
   $scope.logIn = function (){
+    $scope.flag = false;
     $location.path('/signin');
   }
 })
@@ -52,6 +62,10 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
+  // .when('/' , {
+  //   templateUrl: '/',
+  //   controller: 'AuthController'
+  // })
 
 
   $httpProvider.interceptors.push('AttachTokens')
