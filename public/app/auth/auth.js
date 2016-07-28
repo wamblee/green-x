@@ -70,7 +70,8 @@ angular.module('iGrow.auth', [])
   $scope.user = {};
 
   $scope.signin = function () {
-    
+     console.log($scope.user.type);
+    if ($scope.user.type==="user"){
     Auth.signin($scope.user)
       .then(function (resp) {
         $scope.flag = true;
@@ -83,18 +84,57 @@ angular.module('iGrow.auth', [])
       .catch(function (error) {
         console.error(error);
       });
+      
+    }
+    else {
+      Auth.signinStore($scope.user)
+      .then(function (resp) {
+        $scope.flag = true;
+        $window.localStorage.setItem('com.iGrow', resp.token);
+        $window.localStorage.setItem('com.username', resp.user);
+
+        $location.path('/');
+        $window.location.reload();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+
+    }
   };
 
   $scope.signup = function () {
+      console.log($scope.user.type);
+    if ($scope.user.type==="user"){
     Auth.signup($scope.user)
       .then(function (resp) {
         //Attach tokens and username to local Storage for use elsewhere
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
         $location.path('/');
+        $window.location.reload();
       })
       .catch(function (error) {
         console.error(error);
       });
-  };
+      
+    }
+    else {
+      Auth.signupStore($scope.user)
+      .then(function (resp) {
+        //Attach tokens and username to local Storage for use elsewhere
+        $window.localStorage.setItem('com.iGrow', resp.token);
+        $window.localStorage.setItem('com.username', resp.user);
+        $location.path('/');
+        $window.location.reload();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+      
+    }
+
+
+    }
+  
 })

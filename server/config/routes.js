@@ -1,6 +1,6 @@
 var plantsController = require('../plants/plantsController.js');
 var usersController = require('../users/usersController.js');
-var storesController = require('../store/storeController.js');
+var storeController = require('../store/storeController.js');
 var commentController = require('../comments/commentController.js');
 var helpers = require('./helpers.js'); // our custom middleware
 
@@ -20,8 +20,8 @@ app.post('/api/users/addcomments', commentController.newComment);
   //Add plant to user garden
   app.post('/api/users/addplant', usersController.addPlant);
   //store route
-  app.post('/api/users/signinstore',storesController.signin);
-  app.post('/api/users/signupstore',storesController.signup);
+  app.post('/api/users/signinstore',storeController.signin);
+  app.post('/api/users/signupstore',storeController.signup);
   //View user garden
   app.get('/api/users/stores',usersController.getStores);
   app.get('/api/users/garden', usersController.getGarden);

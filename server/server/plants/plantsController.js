@@ -1,7 +1,5 @@
 var Plant = require('./plantsModel.js');
-var   Q = require('q');
-var jwt = require('jwt-simple');
-var mongoose = require('mongoose');
+    Q = require('q');
 var findPlant = Q.nbind(Plant.findOne, Plant);
 var createPlant = Q.nbind(Plant.create, Plant);
 var findAllPlants = Q.nbind(Plant.find, Plant);
@@ -23,7 +21,7 @@ module.exports = {
   },
  
 newPlant: function (req, res, next) {
-  console.log("new plant in server");
+  console.log("plant created");
     var name = req.body.name;
     var img = req.body.img;
     var plantType = req.body.Type;
@@ -37,29 +35,22 @@ newPlant: function (req, res, next) {
       findOneStore({username:user.username})
      .then(function (user){
       if (user){
-        return user
-      }
-    }).then(function(user){
-
       createPlant({
       name:name,
       img: img,
       plantType:plantType,
-      sunExposure:sunExposure
+      sunExposure:sunExposure,
 
     })
       .then(function(newPlant){
         user.plant.push(newPlant._id)
         res.json(newPlant);
       })
+    }
+    })
       .catch(function(error){
         res.send(204)
       })  
-
-
-      
-    })
-}
 
 },
 
@@ -83,6 +74,9 @@ newPlant: function (req, res, next) {
         plant.lifePlant=0;
 
     }
+
   })
+
   }
+
  };

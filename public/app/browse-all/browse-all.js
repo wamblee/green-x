@@ -3,6 +3,7 @@ angular.module('iGrow.browse', [])
 	$scope.data = {}
 	Plants.getAll()
 	.then(function(resp){
+		console.log("show plants in store",resp);
 		$scope.data.plants=resp;
 	})
 	//Add plant function

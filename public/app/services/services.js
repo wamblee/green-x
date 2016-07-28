@@ -52,10 +52,11 @@ angular.module('iGrow.services', [])
     console.log(plant)
     return $http({
       method: 'POST',
-      url: '/api/plants/newplant',
+      url: 'api/plants/newplant',
       data: plant
     })
     .then(function(resp){
+      console.log(resp.data)
       return resp.data;
     })
   }
@@ -110,11 +111,36 @@ angular.module('iGrow.services', [])
     $location.path('/signin');
   };
 
+ var signinStore = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signinstore',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+   var signupStore = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signupstore',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
+
+
 
   return {
     signin: signin,
     signup: signup,
     isAuth: isAuth,
-    signout: signout
+    signout: signout,
+    signinStore:signinStore,
+    signupStore:signupStore
   };
 });
