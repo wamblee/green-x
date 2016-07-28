@@ -10,7 +10,8 @@ angular.module('iGrow',[
   'ngRoute',
   'vAccordion', 
   'ngAnimate',
-  'iGrow.What'
+  'iGrow.What',
+  'iGrow.storesmap'
 ])
 
 //routing 
@@ -59,11 +60,11 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
+  .when('/storesmap' , {
+    templateUrl: 'app/stores/store.html',
+    controller: 'storeController'
+  })
   .when('/stores', {
-    templateUrl: 'app/stores/stores.html',
-    controller: 'storesController'
-   })
-  .when('/stores/:store', {
     templateUrl: 'app/stores/stores.html',
     controller: 'storesController'
    })
@@ -71,10 +72,6 @@ angular.module('iGrow',[
     templateUrl: 'app/storeinfo/storeinfo.html',
     controller: 'storeinfoController'
    })
-  // .when('/' , {
-  //   templateUrl: '/',
-  //   controller: 'AuthController'
-  // })
 
 
   $httpProvider.interceptors.push('AttachTokens')
@@ -116,7 +113,6 @@ window.fbAsyncInit = function() {
   FB.init({
     appId      : '835093243291061',
     status : true,
-    cookie : true,
     xfbml      : true,
     version    : 'v2.7'
   });

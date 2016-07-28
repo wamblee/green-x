@@ -12,7 +12,7 @@ angular.module('iGrow.auth', [])
         FB.api('/me?fields=id,name,email,permissions', function(response){
           console.log(response);
           checkLoginState();
-          
+          $window.location.reload();  
         })
       }
       else {
