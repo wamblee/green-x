@@ -40,7 +40,11 @@
   </div>
 
 
-  <div id="comment" class="row" ng-repeat=>
+  <div id="comment" class="row" >
+    <div data-ng-repeat="comment in data.comment">
+      <p>{{comment.id}}</p>
+      <p>{{comment.text}}</p>
+    </div>
     <textarea class="form-control" placeholder="add comment" rows="3" ng-model="comment"></textarea>
     <button class="btn btn-default" type="submit" ng-click="addComment(comment)">Comment</button>
   </div>
