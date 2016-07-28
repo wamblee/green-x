@@ -8,18 +8,17 @@
 .nav, .navbar-nav, .nav-tabs, .nav-pills, .descButton {
     text-align:center;
 }
-
-
 .navbar-default {
   background: none;
 }
 body {
  margin: 0;
  background-image: url("../Assets/pic.jpg");
-/* background: rgba(0, 0, 0, .5);*/
-background-color: #FFEBCD;
+ /* background: rgba(0, 0, 0, .5);*/
+ background-color: black;
  background-size: 1368px 768px;
- background-repeat:repeat;
+ background-repeat:no-repeat;
+ background-attachment: fixed;
  display: compact;
  font: 1.5em 'Raleway', sans-serif;
  color:black;
@@ -49,3 +48,14 @@ background-color: #FFEBCD;
   background-color: gray;
   opacity:0.7
 }
+.commntDIV{
+  background-color: white;
+}
+
+#comment{
+  background-color: gray;
+  opacity:0.7 ;
+}
+
+
+

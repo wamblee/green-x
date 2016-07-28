@@ -1,6 +1,10 @@
 angular.module('iGrow.mygarden', [])
 .controller('GardenController', function ($window, $location, $scope, Plants) {
 	$scope.data = {}
+	
+	
+
+
 	Plants.getGarden()
 	.then(function(resp){
 		$scope.data.plants=resp;
@@ -14,7 +18,6 @@ angular.module('iGrow.mygarden', [])
 			Plants.getAllComment()
 			.then(function (resp) {
 				$scope.data.comment=resp;
-				console.log(resp,"from serverrrrrrrrrrrrrrrrrrrrrrrrrrr")
 				$location.path('/mygarden')
 			})
 		})	
@@ -26,6 +29,14 @@ angular.module('iGrow.mygarden', [])
 			$location.path('/mygarden')
 	})
 
+	$scope.editTheDescription = function(description){
+		Plants.editDescription(description)
+		.then(function(resp){
+			$scope.data.description=resp
+			
+			$location.path('/mygarden')
+		})
+	}
 	
 
 	$scope.removePlant = function(id){

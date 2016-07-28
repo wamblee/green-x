@@ -28,7 +28,7 @@ app.post('/api/users/addcomments/:username', commentController.newComment);
   app.get('/api/users/friends',usersController.getFriends);
   app.post('/api/users/friendadd',usersController.addFriend);
   app.put('/api/users/likes',usersController.updateLikes);
-  app.put('/api/users/description',usersController.addDescription);
+  app.post('/api/users/description',usersController.addDescription);
   //Remove plant from user garden
   app.put('/api/users/removeplant', usersController.removePlant);
   
@@ -37,9 +37,13 @@ app.post('/api/users/addcomments/:username', commentController.newComment);
   //View all plants
   app.get('/api/plants', plantsController.allPlants);
   //TODO: delete plant
-  // app.put('/api/plants/deleteplant')
-  //TODO: edit plant records
-  // app.put('/api/plants/editplant')
+  
+  // other garden
+  app.get('/api/users/frindgarden',usersController.getFrindGarden);
+  app.post('/api/users/frindgarden',usersController.addFollower);
+
+
+
 
   // authentication middleware used to decode token and made available on the request
   // app.use('/api/plants', helpers.decode);

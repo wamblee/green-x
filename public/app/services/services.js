@@ -16,7 +16,6 @@ angular.module('iGrow.services', [])
  
  var addNewComment = function(text,username,callback){
   console.log(text);
-  console.log(username,"this is the ussssssssssssssssssssssssser")
      return $http({
       method:'POST',
       url:'/api/users/addcomments/'+ username,
@@ -36,6 +35,18 @@ angular.module('iGrow.services', [])
       return resp.data;
      });
   };
+
+  var editDescription = function(description){
+    console.log(description)
+    return $http({
+      method:'POST',
+      url:'/api/users/description',
+      data: {description:description}
+     })
+    .then(function(resp){
+      return resp.data.description;
+    })
+  }
   //view plants in garden
     var getGarden = function(){
      return $http({
@@ -94,15 +105,48 @@ angular.module('iGrow.services', [])
     getGarden: getGarden,
     removePlant: removePlant,
     addNewComment:addNewComment,
-    getAllComment:getAllComment
+    getAllComment:getAllComment,
+    editDescription:editDescription
   }
 
 })
+
+
+
+
+
+
+
+
+
+//======================================================================================
 .factory('socket', function($rootScope){
   var socket = io.connect('http://localhost:8000');
   
   return socket;
 })
+//=======================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*                                     Auth                                             */
+//=======================================================================================
 .factory('Auth', function ($http, $location, $window) {
 
   var signin = function (user) {
@@ -158,9 +202,44 @@ angular.module('iGrow.services', [])
       return resp.data;
     });
   };
+//=======================================================================================
 
 
 
+
+
+
+
+
+
+
+
+/*                                     frined                                             */
+//=======================================================================================
+  var getFrinedGarden=function () {
+    return $http({
+      method:'GET',
+      url:'/api/users/frindgarden',
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  }
+
+  var addFollower =function (baseID,FollowerID) {
+    return $http({
+      method: 'POST',
+      url:'/api/users/frindgarden',
+      data: {
+            baseID:baseID,
+            FollowerID:FollowerID
+          }
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  }
+//========================================================================================
 
   return {
     signin: signin,
