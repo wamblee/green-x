@@ -5,6 +5,8 @@ angular.module('iGrow',[
   'iGrow.browse',
   'iGrow.newplant',
   'iGrow.mygarden',
+  'iGrow.stores',
+  'iGrow.storeinfo',
   'ngRoute',
   'vAccordion', 
   'ngAnimate',
@@ -58,12 +60,18 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
-
-  .when('/stores' , {
+  .when('/storesmap' , {
     templateUrl: 'app/stores/store.html',
     controller: 'storeController'
   })
-  
+  .when('/stores', {
+    templateUrl: 'app/stores/stores.html',
+    controller: 'storesController'
+   })
+  .when('/:store', {
+    templateUrl: 'app/storeinfo/storeinfo.html',
+    controller: 'storeinfoController'
+   })
 
 
   $httpProvider.interceptors.push('AttachTokens')

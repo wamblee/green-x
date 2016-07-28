@@ -5,7 +5,7 @@ angular.module('iGrow.newplant', [])
   $scope.plant = {};
 // creating new plants and route to create plant page
   $scope.newPlant = function () {
-    console.log($scope.plant)
+  
     Plants.createPlant($scope.plant)
       .then(function (resp) {
         console.log(resp)
