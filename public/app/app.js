@@ -8,7 +8,8 @@ angular.module('iGrow',[
   'ngRoute',
   'vAccordion', 
   'ngAnimate',
-  'iGrow.What'
+  'iGrow.What',
+  'iGrow.stores'
 ])
 
 //routing 
@@ -56,10 +57,10 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
-  // .when('/' , {
-  //   templateUrl: '/',
-  //   controller: 'AuthController'
-  // })
+  .when('/stores' , {
+    templateUrl: 'app/stores/store.html',
+    controller: 'storeController'
+  })
 
 
   $httpProvider.interceptors.push('AttachTokens')

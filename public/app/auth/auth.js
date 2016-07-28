@@ -3,16 +3,18 @@ angular.module('iGrow.auth', [])
 // in signup/signin forms using injected Auth service
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   
+  // $window.checkLoginState();
 
   $scope.FBLogin = function(){
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
         $location.path('/');
+        
         console.log('Logged in.');
         FB.api('/me?fields=id,name,email,permissions', function(response){
           console.log(response);
           checkLoginState();
-          
+          $window.location.reload();  
         })
       }
       else {
@@ -21,6 +23,7 @@ angular.module('iGrow.auth', [])
              $window.localStorage.setItem('com.username', response.name);
              checkLoginState();
              $location.path('/');
+             // $window.location.reload();
            console.log('Welcome!  Fetching your information.... ');
            FB.api('/me?fields=id,name,email,permissions', function(response) {
             console.log(response);
@@ -76,7 +79,6 @@ angular.module('iGrow.auth', [])
         $scope.flag = true;
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
-
         $location.path('/');
         $window.location.reload();
       })
