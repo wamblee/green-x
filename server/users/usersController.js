@@ -135,7 +135,7 @@ module.exports = {
            } else {
             //pushin new plant to garden array and saving it
         return user.garden
-      }
+        }
     })
       .then(function(garden){
         findPlants({'_id': { $in: garden }})

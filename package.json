@@ -20,7 +20,6 @@
     "postinstall": "bower install"
   },
   "dependencies": {
-    "bower" : "latest",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
     "bower": "latest",
@@ -37,6 +36,7 @@
     "grunt-mocha-test": "^0.10.0",
     "grunt-nodemon": "^0.2.1",
     "grunt-shell": "^0.6.4",
+    "hover.css": "^2.0.2",
     "jwt-simple": "^0.2.0",
     "mocha": "^1.17.1",
     "mongoose": "^4.1.0",

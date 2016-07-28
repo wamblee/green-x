@@ -6,10 +6,10 @@ var CommentSchema = new mongoose.Schema({
     required: true
   },
   userid:{
-    type:Number
+    type:mongoose.Schema.Types.ObjectId
   },
   friendid:{
-    type:Number
+    type:mongoose.Schema.Types.ObjectId
   }
 });
 

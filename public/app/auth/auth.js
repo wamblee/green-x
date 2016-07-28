@@ -102,7 +102,9 @@ angular.module('iGrow.auth', [])
 
     }
   };
-
+  $scope.islog=function(){
+    console.log("islog")
+  };
   $scope.signup = function () {
       console.log($scope.user.type);
     if ($scope.user.type==="user"){

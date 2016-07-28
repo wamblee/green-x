@@ -16,7 +16,7 @@ module.exports = function (app, express) {
   app.get('/api/users/signedin', usersController.checkAuth);
 //routes for comments
 app.get('/api/users/comments', commentController.getAllComments);
-app.post('/api/users/addcomments', commentController.newComment);
+app.post('/api/users/addcomments/:username', commentController.newComment);
   //Add plant to user garden
   app.post('/api/users/addplant', usersController.addPlant);
   //store route
