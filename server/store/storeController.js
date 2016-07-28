@@ -38,6 +38,7 @@ module.exports = {
   },
   // the function that saves username and password when signup for the first time
   signup: function (req, res, next) {
+    console.log("signup in storeController")
     var username = req.body.username;
     var password = req.body.password;
     var storename= req.body.storename;
