@@ -21,9 +21,11 @@
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" ng-model='user.password'>
     <div class="checkbox">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
+     
+      <br>
+       <input type="radio" name="typeuser" value="user" ng-model="user.type"> User<br>
+       <input type="radio" name="typeuser" value="store" ng-model="user.type">Store<br>
+
     </div>
     <button class="btn btn-lg btn-primary btn-block" ng-click="signin()">Sign in</button>
     
