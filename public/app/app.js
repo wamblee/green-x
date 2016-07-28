@@ -21,6 +21,7 @@ angular.module('iGrow',[
   };
   
   $scope.logOut = function (){    
+    console.log(Auth.isAuth());
     if(Auth.isAuth()){
       Auth.signout();
       $scope.flag = !!$window.localStorage.getItem('com.iGrow');
@@ -57,10 +58,12 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
+
   .when('/stores' , {
     templateUrl: 'app/stores/store.html',
     controller: 'storeController'
   })
+  
 
 
   $httpProvider.interceptors.push('AttachTokens')

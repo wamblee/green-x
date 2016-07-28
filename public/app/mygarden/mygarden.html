@@ -1,5 +1,19 @@
-<div id='container' data-ng-repeat="plant in data.plants">
-    <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' style="opacity:0.7"> 
+<div>
+  {{user}}
+  <div>  
+  <button type="button"  class="btn btn-default" data-toggle="collapse" class="toggleButton" data-target="#descContent">description</button>
+    <div class="description" >
+      <p class="collapse content"  id="descContent"  >
+         {{description}},pmkojnihbugvyfvgbuhnijmokmjnihbugyvfctvgbh
+      </p>
+    </div>    
+  </div>
+  
+  
+
+
+  <div class="row" id='container' data-ng-repeat="plant in data.plants">
+    <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' style="opacity:0.8"> 
       <div class='col-sm-3 col-md-2'>
         <div class='thumbnail'>
           <img style="width:120px; height:120px; opacity:1" src={{plant.img}}>
@@ -24,3 +38,13 @@
       </div>
     </div> 
   </div>
+
+
+  <div id="comment" class="row" ng-repeat=>
+    <textarea class="form-control" placeholder="add comment" rows="3" ng-model="comment"></textarea>
+    <button class="btn btn-default" type="submit" ng-click="addComment(comment)">Comment</button>
+  </div>
+
+
+
+</div>

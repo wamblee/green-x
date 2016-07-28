@@ -12,6 +12,9 @@
 
     <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
 
+    <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button> -->
+
     <button ng-click="FBLogout()">LogOut</button>
     <label for="inputUsername" class="sr-only">User Name</label>
     <input type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="" ng-model='user.username'>

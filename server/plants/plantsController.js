@@ -1,12 +1,17 @@
 var Plant = require('./plantsModel.js');
     Q = require('q');
+var jwt = require('jwt-simple');
 var findPlant = Q.nbind(Plant.findOne, Plant);
 var createPlant = Q.nbind(Plant.create, Plant);
 var findAllPlants = Q.nbind(Plant.find, Plant);
 var User=require('../users/usersController.js');
 var Store=require('../store/storeController.js');
 var findOneStore = Q.nbind(Store.find, Store);
+<<<<<<< HEAD
 
+=======
+var findOneUser = Q.nbind(User.find,User);
+>>>>>>> 414814f4e3d4a0c5fb0a5d0fc0ef3fc99841fb7b
 module.exports = {
 
   allPlants: function (req, res, next) {
@@ -38,7 +43,11 @@ newPlant: function (req, res, next) {
       name:name,
       img: img,
       plantType:plantType,
+<<<<<<< HEAD
       sunExposure:sunExposure,
+=======
+      sunExposure:sunExposure
+>>>>>>> 414814f4e3d4a0c5fb0a5d0fc0ef3fc99841fb7b
 
     })
       .then(function(newPlant){
