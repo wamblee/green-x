@@ -7,16 +7,19 @@ angular.module('iGrow.mygarden', [])
 		window.user=$window.localStorage['com.username'];
 		///console.log($window.localStorage['com.username'])
 		$scope.username=$window.localStorage['com.username'];
+		
 	})
 
 	$scope.addComment=function ( comment) {
-		Plants.addNewComment(comment)
-	
-		Plants.getAllComment()
-		.then(function (resp) {
-			$scope.data.comment=resp;
-			$location.path('/mygarden')
+		Plants.addNewComment(comment,$scope.username,function (data) {	
+			Plants.getAllComment()
+			.then(function (resp) {
+				$scope.data.comment=resp;
+				console.log(resp,"from serverrrrrrrrrrrrrrrrrrrrrrrrrrr")
+				$location.path('/mygarden')
+			})
 		})
+	
 	}
 	
 	Plants.getAllComment()
