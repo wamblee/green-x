@@ -13,6 +13,15 @@ angular.module('iGrow.services', [])
       return resp.data;
      });
   };
+   var getStores = function(){
+     return $http({
+      method:'GET',
+      url:'/api/users/stores'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  };
  
  var addNewComment = function(text,username,callback){
   console.log(text);
@@ -84,8 +93,25 @@ angular.module('iGrow.services', [])
       console.log(resp.data)
       return resp.data;
     })
-  }
+  };
+  var selectStore=function (store){
+    return $http({
+      method:'GET',
+      url:'/api/stores/'+ store
 
+    }).then(function (resp){
+      return resp.data;
+    })
+  };
+var getStoreInfo=function (store){
+    return $http({
+      method:'GET',
+      url:'/api/'+ store
+
+    }).then(function (resp){
+      return resp.data;
+    })
+  };
 
   return {
     getAll:getAll,
@@ -94,7 +120,10 @@ angular.module('iGrow.services', [])
     getGarden: getGarden,
     removePlant: removePlant,
     addNewComment:addNewComment,
-    getAllComment:getAllComment
+    getAllComment:getAllComment,
+    getStores:getStores,
+    selectStore:selectStore,
+    getStoreInfo:getStoreInfo
   }
 
 })
