@@ -1,12 +1,9 @@
 var Plant = require('./plantsModel.js');
-<<<<<<< HEAD
+
 var   Q = require('q');
 var jwt = require('jwt-simple');
 var mongoose = require('mongoose');
-=======
-    Q = require('q');
-var jwt = require('jwt-simple');
->>>>>>> 414814f4e3d4a0c5fb0a5d0fc0ef3fc99841fb7b
+
 var findPlant = Q.nbind(Plant.findOne, Plant);
 var createPlant = Q.nbind(Plant.create, Plant);
 var findAllPlants = Q.nbind(Plant.find, Plant);
