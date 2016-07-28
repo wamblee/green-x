@@ -7,7 +7,7 @@ angular.module('iGrow.services', [])
   var getAll = function(){
      return $http({
       method:'GET',
-      url:'/api/plants'
+      url:'/api/users/store'
      })
      .then(function(resp){
       return resp.data;

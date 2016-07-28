@@ -90,5 +90,32 @@ module.exports = {
       .then(function(stores){
         res.json(stores);
       })
+    },
+    getOneStore: function(req, res, next){
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('No token'));
+    } else { 
+      //decoded user token
+    var user = jwt.decode(token, 'secret');    
+    findOneStore({username:user.username})
+    .then(function(user){
+      if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+            //pushin new plant to garden array and saving it
+        return user.plant
+        }
+    })
+      .then(function(plant){
+        findPlants({'_id': { $in: plant }})
+        .then(function(plants){
+          res.json(plants)
+        })
+        .fail(function(err){
+          res.send(204)
+        })
+      })
     }
+  }
 }

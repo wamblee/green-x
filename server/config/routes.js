@@ -23,7 +23,8 @@ app.post('/api/users/addcomments/:username', commentController.newComment);
   app.post('/api/users/signinstore',storeController.signin);
   app.post('/api/users/signupstore',storeController.signup);
   //View user garden
-  app.get('/api/users/stores',usersController.getStores);
+ // app.get('/api/users/stores',usersController.getStores);
+  app.get('/api/users/store',storeController.getOneStore);
   app.get('/api/users/garden', usersController.getGarden);
   app.get('/api/users/friends',usersController.getFriends);
   app.post('/api/users/friendadd',usersController.addFriend);
