@@ -5,6 +5,8 @@ angular.module('iGrow',[
   'iGrow.browse',
   'iGrow.newplant',
   'iGrow.mygarden',
+  'iGrow.stores',
+  'iGrow.storeinfo',
   'ngRoute',
   'vAccordion', 
   'ngAnimate',
@@ -57,6 +59,18 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
+  .when('/stores', {
+    templateUrl: 'app/stores/stores.html',
+    controller: 'storesController'
+   })
+  .when('/stores/:store', {
+    templateUrl: 'app/stores/stores.html',
+    controller: 'storesController'
+   })
+  .when('/:store', {
+    templateUrl: 'app/storeinfo/storeinfo.html',
+    controller: 'storeinfoController'
+   })
   // .when('/' , {
   //   templateUrl: '/',
   //   controller: 'AuthController'

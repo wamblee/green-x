@@ -8,8 +8,8 @@ var findPlant = Q.nbind(Plant.findOne, Plant);
 var createPlant = Q.nbind(Plant.create, Plant);
 var findAllPlants = Q.nbind(Plant.find, Plant);
 var User=require('../users/usersController.js');
-var Store=require('../store/storeController.js');
-var findOneStore = Q.nbind(Store.find, Store);
+var Store=require('../store/storeModel.js');
+var findOneStore = Q.nbind(Store.findOne,Store);
 var findOneUser = Q.nbind(User.find,User);
 module.exports = {
 
@@ -36,8 +36,11 @@ newPlant: function (req, res, next) {
     } else { 
       var user= jwt.decode(token, 'secret');
       var userid=user._id;
+      console.log(user.username);
+      console.log(user)
       findOneStore({username:user.username})
      .then(function (user){
+      console.log(user,"userrrrrrrrrrrrrrrrrrrrrrrr");
       if (user){
         return user
       }
@@ -51,7 +54,8 @@ newPlant: function (req, res, next) {
 
     })
       .then(function(newPlant){
-        user.plant.push(newPlant._id)
+        user.plant.push(newPlant._id);
+        user.save();
         res.json(newPlant);
       })
       .catch(function(error){
