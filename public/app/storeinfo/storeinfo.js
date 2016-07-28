@@ -1,11 +1,7 @@
 angular.module('iGrow.storeinfo', [])
 .controller('storeinfoController', function ($window, $scope, $location, Plants) {
  	$scope.data = {}
-// 	Plants. getStores()
-// 	.then(function(resp){
-// 		console.log("show all stores",resp);
-// 		$scope.data.stores=resp;
-// 	})
+
 $scope.store= $location.path().split('/');
 	console.log($scope.store);
  Plants.getStoreInfo($scope.store[1])
@@ -18,7 +14,14 @@ $scope.store= $location.path().split('/');
         console.log(error);
 
       })
-
+/////// add from store to garden 
+$scope.addTree = function (id){
+    Plants.AddPlant(id)
+    .then(function(resp){
+      //After plant is added to user's garden, show user's garden
+      $location.path('/mygarden')
+    })
+  }
 
 
 
