@@ -1,4 +1,4 @@
-angular.module('iGrow.stores',[])
+angular.module('iGrow.storesmap',[])
 .controller('storeController' , function($scope, Auth, $window){
 	 $scope.map;
      $window.initMap = function() {

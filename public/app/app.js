@@ -11,7 +11,7 @@ angular.module('iGrow',[
   'vAccordion', 
   'ngAnimate',
   'iGrow.What',
-  'iGrow.stores'
+  'iGrow.storesmap'
 ])
 
 //routing 
