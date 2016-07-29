@@ -120,6 +120,13 @@ angular.module('iGrow.storesmap',[])
               })
             }
 
+             var marker = new google.maps.Marker({
+              position: pos,
+              map: $scope.map,
+              draggable : true,
+              title: 'Mee'
+            });
+
             function AutoCenter() {
               //  Create a new viewpoint bound
               var bounds = new google.maps.LatLngBounds();
