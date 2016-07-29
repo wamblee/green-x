@@ -36,7 +36,7 @@ $scope.data = {}
 		Plants.getGarden()
 		.then(function(resp){
 			$scope.data.gardens=resp;
-			$location.path('/mygarden')
+			$location.path('/'+id)
 		})
 	})
 }});
