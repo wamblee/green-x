@@ -91,6 +91,8 @@ module.exports = {
         res.json(stores);
       })
     },
+
+
     getOneStore: function(req, res, next){
     var token = req.headers['x-access-token'];
     if (!token) {
@@ -118,8 +120,9 @@ module.exports = {
       })
     }
   },
+
   getInfoStore:function (req,res,next){
-    console.log(req.params);
+    console.log(req.params.store);
      var storename=req.params.store;
      console.log(storename);
      findOneStore({storename:storename})
@@ -139,6 +142,26 @@ module.exports = {
         .fail(function(err){
           res.send(204)
         })
+      })
+  },
+
+  addLocation : function(req,res,next){
+    var lat =  req.body.lat ;
+    var lng = req.body.lng ; 
+    var store = req.body.store;
+    Store.findOne({storename : store})
+      .exec(function(err,store){
+        if(!store){
+          res.status(500).send('Store Not Found');
+        } else {
+          store.location = {
+            lat : lat, 
+            lng : lng
+          }
+          store.save(function(err,savedStore){
+            res.status(201).send('Added the location to store')
+          })
+        }
       })
   }
 
