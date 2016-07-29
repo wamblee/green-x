@@ -1,4 +1,7 @@
 <div> 
 <h1>TEST</h1>
-	<div id="map" style="width:500px;height:400px;position:right"></div>
+	<div id="map" style="width:80%;height:500px;"></div>
+	<div>
+		<button  ng-click="viewStore(store.storename)" class="button" ng-repeat="store in data.stores " >		{{store.storename}}</button>
+	</div>
 </div>
