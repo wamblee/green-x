@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
 var Plant = require('../plants/plantsModel.js');
-
+var Store=require('../store/storeModel');
  //creating usermodel and connecting it with plant table
 var StoreSchema = new mongoose.Schema({
   username: {
@@ -28,6 +28,7 @@ var StoreSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref:'Plant'
   }]
+  
 });
 StoreSchema.methods.comparePasswords = function (candidatePassword) {
   var savedPassword = this.password;

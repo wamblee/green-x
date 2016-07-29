@@ -5,10 +5,13 @@ angular.module('iGrow',[
   'iGrow.browse',
   'iGrow.newplant',
   'iGrow.mygarden',
+  'iGrow.stores',
+  'iGrow.storeinfo',
   'ngRoute',
   'vAccordion', 
   'ngAnimate',
-  'iGrow.What'
+  'iGrow.What',
+  'iGrow.storesmap'
 ])
 
 //routing 
@@ -62,6 +65,20 @@ angular.module('iGrow',[
     controller: 'GardenFrinedController'
   })
 
+  .when('/storesmap' , {
+    templateUrl: 'app/stores/store.html',
+    controller: 'storeController'
+  })
+  .when('/stores', {
+    templateUrl: 'app/stores/stores.html',
+    controller: 'storesController'
+   })
+  .when('/:store', {
+    templateUrl: 'app/storeinfo/storeinfo.html',
+    controller: 'storeinfoController'
+   })
+>>>>>>> 40da86a23fe7092c540d8b33bfd7d97ffa263fcc
+
 
   $httpProvider.interceptors.push('AttachTokens')
 })
@@ -102,7 +119,6 @@ window.fbAsyncInit = function() {
   FB.init({
     appId      : '835093243291061',
     status : true,
-    cookie : true,
     xfbml      : true,
     version    : 'v2.7'
   });
