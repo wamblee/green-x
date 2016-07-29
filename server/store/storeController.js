@@ -1,7 +1,7 @@
 var User = require('../users/usersModel.js');
 var Store=require('../store/storeModel');
 var mongoose = require('mongoose');
-var Q = require('q')
+var Q = require('q');
 var jwt = require('jwt-simple')
 var Plant=require('../plants/plantsModel.js')
 var findPlants = Q.nbind(Plant.find, Plant);
@@ -90,5 +90,56 @@ module.exports = {
       .then(function(stores){
         res.json(stores);
       })
+    },
+    getOneStore: function(req, res, next){
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('No token'));
+    } else { 
+      //decoded user token
+    var user = jwt.decode(token, 'secret');    
+    findOneStore({username:user.username})
+    .then(function(user){
+      if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+            //pushin new plant to garden array and saving it
+        return user.plant
+        }
+    })
+      .then(function(plant){
+        findPlants({'_id': { $in: plant }})
+        .then(function(plants){
+          res.json(plants)
+        })
+        .fail(function(err){
+          res.send(204)
+        })
+      })
     }
+  },
+  getInfoStore:function (req,res,next){
+    console.log(req.params);
+     var storename=req.params.store;
+     console.log(storename);
+     findOneStore({storename:storename})
+    .then(function(user){
+      if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+            //pushin new plant to garden array and saving it
+        return user.plant
+        }
+    })
+      .then(function(plant){
+        findPlants({'_id': { $in: plant }})
+        .then(function(plants){
+          res.json(plants)
+        })
+        .fail(function(err){
+          res.send(204)
+        })
+      })
+  }
+
 }

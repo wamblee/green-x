@@ -209,7 +209,7 @@ module.exports = {
       .then(function(friends){
         findAllUser({'_id': { $in: friends }})
         .then(function(friends){
-          console.log(friends)
+          //console.log(friends)
           res.json(friends)
         })
         .fail(function(err){
@@ -218,7 +218,21 @@ module.exports = {
       })
     }
   },
-  
+  getfriendGarden:function (req,res,next){
+    //console.log(req.params,"params");
+     var friend=req.body.friend;
+     console.log(friend);
+     //console.log(friend);
+     findOneUser({username:friend})
+    .then(function(user){
+      if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+         res.json(user)
+        }
+    })
+  },
+
   addFriend:function(req,res,next){
     console.log(req);
     //Get token from header to identify user

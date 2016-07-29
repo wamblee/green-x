@@ -45,7 +45,16 @@ angular.module('iGrow.services', [])
   var getAll = function(){
      return $http({
       method:'GET',
-      url:'/api/plants'
+      url:'/api/users/store'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  };
+   var getStores = function(){
+     return $http({
+      method:'GET',
+      url:'/api/users/stores'
      })
      .then(function(resp){
       return resp.data;
@@ -122,8 +131,38 @@ angular.module('iGrow.services', [])
       console.log(resp.data)
       return resp.data;
     })
-  }
+  };
+  var selectStore=function (store){
+    return $http({
+      method:'GET',
+      url:'/api/stores/'+ store
+
+    }).then(function (resp){
+      return resp.data;
+    })
+  };
+  var getFriendGarden=function(friend){
+    return $http({
+      method:'POST',
+      url:'/api/users/garden',
+      data:{friend:friend}
+    }).then(function (resp){
+      console.log(resp)
+      return resp.data;
+    })
+  };
+var getStoreInfo=function (store){
+    return $http({
+      method:'GET',
+      url:'/api/'+ store
+
+    }).then(function (resp){
+      return resp.data;
+    })
+  };
+
   return {
+    getFriendGarden:getFriendGarden,
     getFriends:getFriends,
     addFriend:addFriend,
     getAllUsers:getAllUsers,
@@ -134,7 +173,10 @@ angular.module('iGrow.services', [])
     getGarden: getGarden,
     removePlant: removePlant,
     addNewComment:addNewComment,
-    getAllComment:getAllComment
+    getAllComment:getAllComment,
+    getStores:getStores,
+    selectStore:selectStore,
+    getStoreInfo:getStoreInfo
   }
 })
 .factory('socket', function($rootScope){

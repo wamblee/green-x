@@ -1,14 +1,18 @@
 // connecting the angular iGrow module with different modules
 angular.module('iGrow',[
+  'iGrow.friends',
 	'iGrow.services',
 	'iGrow.auth',
   'iGrow.browse',
   'iGrow.newplant',
   'iGrow.mygarden',
+  'iGrow.stores',
+  'iGrow.storeinfo',
   'ngRoute',
   'vAccordion', 
   'ngAnimate',
-  'iGrow.What'
+  'iGrow.What',
+  'iGrow.storesmap'
 ])
 
 //routing 
@@ -47,6 +51,10 @@ angular.module('iGrow',[
    	templateUrl: 'app/mygarden/mygarden.html',
    	controller: 'GardenController'
    })
+  .when('/browseusers', {
+    templateUrl: 'app/usersfriends/usersfriends.html',
+    controller: 'friendController'
+   })
   .when('/newplant', {
     templateUrl: 'app/newplant/newplant.html',
     controller: 'plantsController'
@@ -55,11 +63,22 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
-  // .when('/' , {
-  //   templateUrl: '/',
-  //   controller: 'AuthController'
-  // })
-
+  .when('/storesmap' , {
+    templateUrl: 'app/stores/store.html',
+    controller: 'storeController'
+  })
+  .when('/stores', {
+    templateUrl: 'app/stores/stores.html',
+    controller: 'storesController'
+   })
+  .when('/:store', {
+    templateUrl: 'app/storeinfo/storeinfo.html',
+    controller: 'storeinfoController'
+   })
+   .when('/garden', {
+    templateUrl: 'app/storeinfo/storeinfo.html',
+    controller: 'storeinfoController'
+   })
 
   $httpProvider.interceptors.push('AttachTokens')
 })
@@ -100,7 +119,6 @@ window.fbAsyncInit = function() {
   FB.init({
     appId      : '835093243291061',
     status : true,
-    cookie : true,
     xfbml      : true,
     version    : 'v2.7'
   });

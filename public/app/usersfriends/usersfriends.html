@@ -24,14 +24,13 @@
               <div class="panel-heading" role="tab" id="heading-{{plant._id}}"> 
                 <h4 class="panel-title"> 
                 <!-- href="javascript:;" with data-target to control the element to be collapsed, using plant objectIds to make each element unique -->
-                  <a role="button" style="opacity:0.9" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c{{plant._id}}" class="collapsed" data-target="#c{{plant._id}}"> <i class="glyphicon glyphicon-plus"></i> {{plant.name}}</a> 
+                  <a role="button" style="opacity:0.9" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c{{plant._id}}" class="collapsed" data-target="#c{{plant._id}}"> <i class="glyphicon glyphicon-plus"></i> {{plant.username}}</a> 
                 </h4> 
               </div>
               <!-- content to be expanded -->
               <div id='c{{plant._id}}' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-{{plant.id}}' aria-expanded='false' style='height:0px;'>
                 <div style="opacity:0.9; font-size:10px" class='panel-body'>
-                  <p>Description: </p><p>Type:</p><p>Sun exposure:</p><p>Bloom time:</p><p>Watering schedule</p>
-                    <button class='btn btn-primary' role='button' data-ng-click='addTree(plant._id)'> Add tree</button>
+                    <button class='btn btn-primary' role='button' data-ng-click='addFriend(plant._id)'> Follow</button>
                 </div>
               </div>
             </div>
@@ -40,4 +39,6 @@
       </div>
     </div> 
   </div>
+  <li ng-click="getFriendGarden(friend.username)" style="color:white" ng-repeat= "friend in data.friends">{{friend.username}}</li>
+  <li ng-repeat="garden in gardens">{{garden.name}} {{garden.description}}</li>
 </div>

@@ -32,4 +32,5 @@ angular.module('iGrow.What', [])
 
 	$scope.initialize();
 	console.log($scope.msgs);
+	console.log($window.localStorage.getItem('com.username'));
 });
