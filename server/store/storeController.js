@@ -25,7 +25,7 @@ module.exports = {
             .then(function (foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
-                res.json({token: token, user:user.username});
+                res.json({token: token, user:user.username , store:user.storename});
               } else {
                 return next(new Error('No user'));
               }
