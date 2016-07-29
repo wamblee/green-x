@@ -97,6 +97,7 @@ angular.module('iGrow.auth', [])
         $window.localStorage.setItem('user' , 'store');
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
+        $window.localStorage.setItem('com.storename', resp.store);
         $location.path('/');
         $window.location.reload();
       })
@@ -121,11 +122,7 @@ angular.module('iGrow.auth', [])
     Auth.signup($scope.user)
       .then(function (resp) {
         //Attach tokens and username to local Storage for use elsewhere
-        $window.localStorage.setItem('user' , 'customer');
-        $window.localStorage.setItem('com.iGrow', resp.token);
-        $window.localStorage.setItem('com.username', resp.user);
-        
-        $window.location.reload();
+        $location.path('/signin');
       })
       .catch(function (error) {
         console.error(error);
@@ -137,20 +134,14 @@ angular.module('iGrow.auth', [])
       .then(function (resp) {
         console.log(resp);
         //Attach tokens and username to local Storage for use elsewhere
-        $window.localStorage.setItem('user' , 'store');
-        $window.localStorage.setItem('com.iGrow', resp.token);
-        $window.localStorage.setItem('com.username', resp.user);
         swal({
           title: 'Welcome ' + resp.user  ,
           text : 'Please visit  Store page to save your location in our map' ,
           imageUrl : '../../Assets/Pear_Tree_Big-icon.png'
-        }, function(confirm){
-          if(confirm){
-            swal('Have Fun');
-          }
         })
-        setTimeout(function(){$location.path('/');
-        $window.location.reload();},4000);
+        setTimeout(function(){
+        $location.path('/signin');
+        },4000);
       })
       .catch(function (error) {
         console.error(error);
