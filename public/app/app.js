@@ -61,6 +61,12 @@ angular.module('iGrow',[
     controller: 'socketController'
   })
 
+  .when('/frinedGarden' , {
+    templateUrl: 'app/frinedGarden/frinedGarden.html',
+    controller: 'GardenFrinedController'
+  })
+
+
   .when('/storesmap' , {
     templateUrl: 'app/stores/store.html',
     controller: 'storeController'
@@ -80,6 +86,7 @@ angular.module('iGrow',[
     templateUrl: 'app/storeinfo/storeinfo.html',
     controller: 'storeinfoController'
    })
+
 
   // .when('/' , {
   //   templateUrl: '/',

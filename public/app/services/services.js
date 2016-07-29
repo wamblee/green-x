@@ -25,7 +25,6 @@ angular.module('iGrow.services', [])
  
  var addNewComment = function(text,username,callback){
   console.log(text);
-  console.log(username,"this is the ussssssssssssssssssssssssser")
      return $http({
       method:'POST',
       url:'/api/users/addcomments/'+ username,
@@ -45,6 +44,18 @@ angular.module('iGrow.services', [])
       return resp.data;
      });
   };
+
+  var editDescription = function(description){
+    console.log(description)
+    return $http({
+      method:'POST',
+      url:'/api/users/description',
+      data: {description:description}
+     })
+    .then(function(resp){
+      return resp.data.description;
+    })
+  }
   //view plants in garden
     var getGarden = function(){
      return $http({
@@ -108,10 +119,33 @@ var getStoreInfo=function (store){
       method:'GET',
       url:'/api/'+ store
 
-    }).then(function (resp){
+
+/*                                     frined                                             */
+//=======================================================================================
+  var getFrinedGarden=function () {
+    return $http({
+      method:'GET',
+      url:'/api/users/frindgarden',
+     })
+     .then(function(resp){
       return resp.data;
+     });
+  }
+
+  var addFollower =function (baseID,FollowerID) {
+    return $http({
+      method: 'POST',
+      url:'/api/users/frindgarden',
+      data: {
+            baseID:baseID,
+            FollowerID:FollowerID
+          }
     })
-  };
+    .then(function (resp) {
+      return resp.data;
+    });
+  }
+//========================================================================================
 
   return {
     getAll:getAll,
@@ -120,6 +154,9 @@ var getStoreInfo=function (store){
     getGarden: getGarden,
     removePlant: removePlant,
     addNewComment:addNewComment,
+    editDescription:editDescription,
+    addFollower:addFollower,
+    getFrinedGarden:getFrinedGarden
     getAllComment:getAllComment,
     getStores:getStores,
     selectStore:selectStore,
@@ -127,11 +164,43 @@ var getStoreInfo=function (store){
   }
 
 })
+
+
+
+
+
+
+
+
+
+//======================================================================================
 .factory('socket', function($rootScope){
   var socket = io.connect('http://localhost:8000');
   
   return socket;
 })
+//=======================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*                                     Auth                                             */
+//=======================================================================================
 .factory('Auth', function ($http, $location, $window) {
 
   var signin = function (user) {
@@ -187,8 +256,7 @@ var getStoreInfo=function (store){
       return resp.data;
     });
   };
-
-
+//=======================================================================================
 
 
   return {

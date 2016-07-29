@@ -264,6 +264,7 @@ module.exports = {
     //console.log("dooooc",doc);
     })
   },
+
   addDescription: function(req,res,next){
     var token = req.headers['x-access-token'];
     var user = jwt.decode(token, 'secret');
@@ -272,6 +273,8 @@ module.exports = {
        if(err){
         console.log("Something wrong when updating data!");
       }
+      console.log(doc)
+      res.json(doc);
     })
   }
 };
