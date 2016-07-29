@@ -60,6 +60,11 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
+  .when('/frinedGarden' , {
+    templateUrl: 'app/frinedGarden/frinedGarden.html',
+    controller: 'GardenFrinedController'
+  })
+
   .when('/storesmap' , {
     templateUrl: 'app/stores/store.html',
     controller: 'storeController'
@@ -72,6 +77,7 @@ angular.module('iGrow',[
     templateUrl: 'app/storeinfo/storeinfo.html',
     controller: 'storeinfoController'
    })
+>>>>>>> 40da86a23fe7092c540d8b33bfd7d97ffa263fcc
 
 
   $httpProvider.interceptors.push('AttachTokens')
