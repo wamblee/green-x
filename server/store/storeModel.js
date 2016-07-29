@@ -22,7 +22,7 @@ var StoreSchema = new mongoose.Schema({
     unique:true
   },
   location:{
-    type:String
+    type: mongoose.Schema.Types.Mixed
   },
   plant:[{
     type: mongoose.Schema.Types.ObjectId,
