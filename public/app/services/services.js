@@ -36,6 +36,17 @@ angular.module('iGrow.services', [])
      });
   };
 
+  var  addLocation = function(location){
+    return $http({
+      method : 'POST', 
+      url: '/api/stores/location', 
+      data : location
+    })
+    .then(function(response){
+      return response;
+    })
+  };
+
    var getAllComment = function(){
      return $http({
       method:'GET',
@@ -123,7 +134,8 @@ var getStoreInfo=function (store){
     getAllComment:getAllComment,
     getStores:getStores,
     selectStore:selectStore,
-    getStoreInfo:getStoreInfo
+    getStoreInfo:getStoreInfo,
+    addLocation:addLocation
   }
 
 })
