@@ -2,8 +2,6 @@ angular.module('iGrow.auth', [])
 //Auth controller responsible for client side authentication
 // in signup/signin forms using injected Auth service
 .controller('AuthController', function ($scope, $window, $location, Auth) {
-  
-
   $scope.FBLogin = function(){
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
@@ -75,13 +73,19 @@ angular.module('iGrow.auth', [])
     Auth.signin($scope.user)
       .then(function (resp) {
         $scope.flag = true;
+        $window.localStorage.setItem('user' , 'customer');
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
-
         $location.path('/');
         $window.location.reload();
       })
       .catch(function (error) {
+        swal({
+          title : 'Your <span style="color:red">username</span> or <span style="color:red">password</span>  is incorrect',
+          text : 'Maybe you forgot to <a href="#/signup">SignUp</a>',
+          html : true,
+          timer : 3000
+        },'','error');
         console.error(error);
       });
       
@@ -90,13 +94,19 @@ angular.module('iGrow.auth', [])
       Auth.signinStore($scope.user)
       .then(function (resp) {
         $scope.flag = true;
+        $window.localStorage.setItem('user' , 'store');
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
-
         $location.path('/');
         $window.location.reload();
       })
       .catch(function (error) {
+        swal({
+          title : 'Your <span style="color:red">username</span> or <span style="color:red">password</span>  is incorrect',
+          text : 'Maybe you forgot to <a href="#/signup">SignUp</a>',
+          html : true,
+          timer : 3000
+        },'','error');
         console.error(error);
       });
 
@@ -111,9 +121,10 @@ angular.module('iGrow.auth', [])
     Auth.signup($scope.user)
       .then(function (resp) {
         //Attach tokens and username to local Storage for use elsewhere
+        $window.localStorage.setItem('user' , 'customer');
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
-        $location.path('/');
+        
         $window.location.reload();
       })
       .catch(function (error) {
@@ -124,11 +135,22 @@ angular.module('iGrow.auth', [])
     else {
       Auth.signupStore($scope.user)
       .then(function (resp) {
+        console.log(resp);
         //Attach tokens and username to local Storage for use elsewhere
+        $window.localStorage.setItem('user' , 'store');
         $window.localStorage.setItem('com.iGrow', resp.token);
         $window.localStorage.setItem('com.username', resp.user);
-        $location.path('/');
-        $window.location.reload();
+        swal({
+          title: 'Welcome ' + resp.user  ,
+          text : 'Please visit  Store page to save your location in our map' ,
+          imageUrl : '../../Assets/Pear_Tree_Big-icon.png'
+        }, function(confirm){
+          if(confirm){
+            swal('Have Fun');
+          }
+        })
+        setTimeout(function(){$location.path('/');
+        $window.location.reload();},4000);
       })
       .catch(function (error) {
         console.error(error);

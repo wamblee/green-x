@@ -5,7 +5,7 @@
     <title>iGrow</title>   
     <!-- Add bootstrap library -->
     <link data-require="bootsrap@" data-server="3.3.1" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-   
+    <link rel="stylesheet" type="text/css" href="lib/sweetalert/dist/sweetalert.css">
     <!-- Add Jquery for bootsrap to function -->
     <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -64,7 +64,7 @@
          <li ng-class="{ active: isActive('/chat')}">
          <a href='#/chat'>Chat</a>
          <li>
-         <a href='#/stores' data-toggle="tab">All Stores</a>
+         <a href='#/stores'>All Stores</a>
          </li>
           <li>
          <a href='#/' data-toggle="tab">Contact us</a>
@@ -74,7 +74,7 @@
         <form class="navbar-form navbar-right">
         <button type="submit" ng-show="flag" class="btn btn-default navbar-button navbar-right"  ng-model="maznakhak" ng-click="logOut()">Logout
 
-            <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
+            <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" ng-click="logOut()"></div>
 
         </button>
         <form class="navbar-form navbar-right">  
@@ -98,9 +98,8 @@
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-mocks/angular-mocks.js"></script>
     <script src="lib/angular-animate/angular-animate.js"></script>
-
     <script src="/socket.io/socket.io.js"></script>
-    
+    <script src="lib/sweetalert/dist/sweetalert.min.js"></script>
     <script src="lib/v-accordion/dist/v-accordion.js"></script>
     <script src="app/browse-all/browse-all.js"></script>
     <script src="app/mygarden/garden.js"></script>
