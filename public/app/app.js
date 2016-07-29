@@ -21,15 +21,13 @@ angular.module('iGrow',[
   
   $scope.logOut = function (){    
     console.log(Auth.isAuth());
-    if(Auth.isAuth()){
+    // if(Auth.isAuth()){
       Auth.signout();
       $scope.flag = !!$window.localStorage.getItem('com.iGrow');
       $location.path('/signin');
-    } 
+    // } 
   }
-
 })
-
 //routing user to signin page when path includes /signin
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider

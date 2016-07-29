@@ -1,9 +1,47 @@
 angular.module('iGrow.services', [])
 
 .factory('Plants', function ($http, $window) {
-
+  var getFriends=function(){
+    return $http({
+      method:'GET',
+      url:'/api/users/friends'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  }
+  var addFriend=function(friendid){
+    console.log(friendid);
+    return $http({
+      method:'POST',  
+      url:'/api/users/friendadd',
+      data: {
+        friendid:friendid
+      }
+     })
+    .then(function(resp){
+      return resp;
+    })
+  }
+  var getAllUsers=function(){
+    return $http({
+      method:'GET',
+      url:'/api/users/allusers'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  }
   // show all plants in garden
-  
+  var getMessages=function(){
+    return $http({
+      method:'GET',
+      url:'/api/users/message'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  };
   var getAll = function(){
      return $http({
       method:'GET',
@@ -85,9 +123,11 @@ angular.module('iGrow.services', [])
       return resp.data;
     })
   }
-
-
   return {
+    getFriends:getFriends,
+    addFriend:addFriend,
+    getAllUsers:getAllUsers,
+    getMessages:getMessages,
     getAll:getAll,
     AddPlant:AddPlant,
     createPlant:createPlant,
@@ -96,7 +136,6 @@ angular.module('iGrow.services', [])
     addNewComment:addNewComment,
     getAllComment:getAllComment
   }
-
 })
 .factory('socket', function($rootScope){
   var socket = io.connect('http://localhost:8000');
@@ -158,10 +197,6 @@ angular.module('iGrow.services', [])
       return resp.data;
     });
   };
-
-
-
-
   return {
     signin: signin,
     signup: signup,

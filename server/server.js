@@ -2,7 +2,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var User=require('./users/usersModel');
 var Plant=require('./plants/plantsModel')
-
+var Messages=require('./messages/messageController.js');
+var jwt = require('jwt-simple');
 
 // connect to mongo database named "iGrow"
 var mongoURL = process.env.MONGODB_URI || 'mongodb://127.0.0.1:/iGrow';
@@ -34,10 +35,61 @@ server.listen(port, function () {
   console.log(' app listening on port ' + port);
 });
 
+var numOfUsers = 0;
+var users = [];
 
 io.sockets.on('connection' , function(socket){
+	var addedUser = false;
+	var messages; 
+	socket.emit('users' , users);
+	Messages.getAllMessages(function(msgs){
+		io.sockets.emit('get all', msgs);
+	});
+		
+	socket.on('add user', function(username){
+		if(addedUser) return;
+		console.log('User connected');
+		console.log(numOfUsers);	
+		socket.username = username;
+		if(users.indexOf(socket.username) === -1){
+			users.push(username)
+		}
+		++numOfUsers;
+		addedUser = true;
+		socket.emit('login' , {
+			users  : users,
+			numOfUsers : numOfUsers
+		})
+		socket.broadcast.emit('user joined' , {
+			users : users ,
+			username : socket.username ,
+			numOfUsers : numOfUsers
+		})
+	})
+	
+
 	socket.on('send msg' , function(data){
+		
+		Messages.addMessage({
+			text:data.text,
+			username:data.username
+		});
 		io.sockets.emit('get msg' , data);
+	})
+
+	socket.on('disconnect', function(){
+		console.log('disconnected');
+		if(addedUser){
+			--numOfUsers
+			// console.log(numOfUsers);
+			users.splice(users.indexOf(socket.username),1)
+			console.log(socket.username + ' Just Left');
+			socket.broadcast.emit('user left' , {
+				users : users,
+				username : socket.username , 
+				numOfUsers : numOfUsers
+			})
+		}
 	})
 })
 

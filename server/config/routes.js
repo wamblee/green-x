@@ -1,4 +1,5 @@
 var plantsController = require('../plants/plantsController.js');
+var messageController = require('../messages/messageController.js');
 var usersController = require('../users/usersController.js');
 var storeController = require('../store/storeController.js');
 var commentController = require('../comments/commentController.js');
@@ -10,6 +11,8 @@ module.exports = function (app, express) {
     res.render('public/index.html');
   });
 
+  app.get('/api/users/allusers',usersController.getAllusers);
+  app.get('/api/users/message',messageController.getAll);
   //Routes to handle authentication
   app.post('/api/users/signin', usersController.signin);
   app.post('/api/users/signup', usersController.signup);
@@ -19,6 +22,7 @@ app.get('/api/users/comments', commentController.getAllComments);
 app.post('/api/users/addcomments/:username', commentController.newComment);
   //Add plant to user garden
   app.post('/api/users/addplant', usersController.addPlant);
+  //app.post('/api/users/addplant', usersController.addFriend);
   //store route
   app.post('/api/users/signinstore',storeController.signin);
   app.post('/api/users/signupstore',storeController.signup);
@@ -26,7 +30,7 @@ app.post('/api/users/addcomments/:username', commentController.newComment);
   app.get('/api/users/stores',usersController.getStores);
   app.get('/api/users/garden', usersController.getGarden);
   app.get('/api/users/friends',usersController.getFriends);
-  app.post('/api/users/friendadd',usersController.addFriend);
+  app.post('/api/users/friendadd/',usersController.addFriend);
   app.put('/api/users/likes',usersController.updateLikes);
   app.put('/api/users/description',usersController.addDescription);
   //Remove plant from user garden
