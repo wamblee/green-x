@@ -57,10 +57,10 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
-  // .when('/' , {
-  //   templateUrl: '/',
-  //   controller: 'AuthController'
-  // })
+  .when('/frinedGarden' , {
+    templateUrl: 'app/frinedGarden/frinedGarden.html',
+    controller: 'GardenFrinedController'
+  })
 
 
   $httpProvider.interceptors.push('AttachTokens')

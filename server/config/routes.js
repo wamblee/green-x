@@ -39,8 +39,8 @@ app.post('/api/users/addcomments/:username', commentController.newComment);
   //TODO: delete plant
   
   // other garden
-  app.get('/api/users/frindgarden',usersController.getFrindGarden);
-  app.post('/api/users/frindgarden',usersController.addFollower);
+  app.get('/api/users/frindgarden',usersController.getFrindGarden);//comment plant descr
+  app.post('/api/users/frindgarden',usersController.addFollower); //  fol
 
 
 

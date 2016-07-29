@@ -97,6 +97,32 @@ angular.module('iGrow.services', [])
     })
   }
 
+/*                                     frined                                             */
+//=======================================================================================
+  var getFrinedGarden=function () {
+    return $http({
+      method:'GET',
+      url:'/api/users/frindgarden',
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  }
+
+  var addFollower =function (baseID,FollowerID) {
+    return $http({
+      method: 'POST',
+      url:'/api/users/frindgarden',
+      data: {
+            baseID:baseID,
+            FollowerID:FollowerID
+          }
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  }
+//========================================================================================
 
   return {
     getAll:getAll,
@@ -106,7 +132,9 @@ angular.module('iGrow.services', [])
     removePlant: removePlant,
     addNewComment:addNewComment,
     getAllComment:getAllComment,
-    editDescription:editDescription
+    editDescription:editDescription,
+    addFollower:addFollower,
+    getFrinedGarden:getFrinedGarden
   }
 
 })
@@ -204,42 +232,6 @@ angular.module('iGrow.services', [])
   };
 //=======================================================================================
 
-
-
-
-
-
-
-
-
-
-
-/*                                     frined                                             */
-//=======================================================================================
-  var getFrinedGarden=function () {
-    return $http({
-      method:'GET',
-      url:'/api/users/frindgarden',
-     })
-     .then(function(resp){
-      return resp.data;
-     });
-  }
-
-  var addFollower =function (baseID,FollowerID) {
-    return $http({
-      method: 'POST',
-      url:'/api/users/frindgarden',
-      data: {
-            baseID:baseID,
-            FollowerID:FollowerID
-          }
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  }
-//========================================================================================
 
   return {
     signin: signin,

@@ -28,6 +28,7 @@ angular.module('iGrow.mygarden', [])
 			$scope.data.comment=resp;
 			$location.path('/mygarden')
 	})
+	
 
 	$scope.editTheDescription = function(description){
 		Plants.editDescription(description)
