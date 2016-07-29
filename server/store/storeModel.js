@@ -28,6 +28,7 @@ var StoreSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref:'Plant'
   }]
+  
 });
 StoreSchema.methods.comparePasswords = function (candidatePassword) {
   var savedPassword = this.password;

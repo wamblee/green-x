@@ -12,4 +12,5 @@ angular.module('iGrow.What', [])
 		$scope.msgs.push(data);
 		$scope.$digest();
 	})
+	console.log($window.localStorage.getItem('com.username'));
 });
