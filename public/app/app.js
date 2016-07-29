@@ -63,10 +63,10 @@ angular.module('iGrow',[
     templateUrl: 'app/stores/stores.html',
     controller: 'storesController'
    })
-  .when('/stores/:store', {
-    templateUrl: 'app/stores/stores.html',
-    controller: 'storesController'
-   })
+  // .when('/stores/:store', {
+  //   templateUrl: 'app/stores/stores.html',
+  //   controller: 'storesController'
+  //  })
   .when('/:store', {
     templateUrl: 'app/storeinfo/storeinfo.html',
     controller: 'storeinfoController'
