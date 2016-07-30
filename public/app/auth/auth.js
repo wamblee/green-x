@@ -91,8 +91,7 @@ angular.module('iGrow.auth', [])
           timer : 3000
         },'','error');
         console.error(error);
-      });
-      
+      }); 
     }
     else {
       Auth.signinStore($scope.user)
@@ -120,6 +119,14 @@ angular.module('iGrow.auth', [])
   $scope.islog=function(){
     console.log("islog")
   };
+  $scope.updateRadio = function(){
+    if($scope.user.type === 'store'){
+      $scope.type = true;
+    } else {
+      $scope.type = false;
+    }
+  }
+  // console.log($scope.user.type);
   $scope.signup = function () {
       console.log($scope.user.type);
     if ($scope.user.type==="user"){
@@ -127,6 +134,11 @@ angular.module('iGrow.auth', [])
       .then(function (resp) {
         //Attach tokens and username to local Storage for use elsewhere
         $location.path('/signin');
+         swal({
+          title: 'Welcome ' + resp.user  + ', please sign in',
+          text : 'Enjoy Your time running' ,
+          imageUrl : '../../Assets/Pear_Tree_Big-icon.png'
+        })
       })
       .catch(function (error) {
         console.error(error);
