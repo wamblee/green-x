@@ -1,5 +1,5 @@
 angular.module('iGrow.storesmap',[])
-.controller('storeController' , function($scope, Auth, $window, Plants, $location){
+.controller('storeController' , function($scope, Auth, $window, Plants, $location , $http){
 	  $scope.map;
     $scope.value = true;
     console.log($scope.value);
@@ -27,6 +27,7 @@ angular.module('iGrow.storesmap',[])
         })
 
     }
+
      var infoWindow = null;
      $window.initMap = function() {
         $scope.map = new google.maps.Map(document.getElementById('map'), {
@@ -62,7 +63,7 @@ angular.module('iGrow.storesmap',[])
                 })
               }
             }
-            var image = 'https://cdn3.iconfinder.com/data/icons/trees-volume-1/72/33-128.png';
+            var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
             var markersArray = [];
             for(var i = 0 ; i < $scope.data.stores.length; i++){
               if($scope.data.stores[i].location){
@@ -80,8 +81,8 @@ angular.module('iGrow.storesmap',[])
 
             function rad(x) {return x*Math.PI/180;}
             function find_closest_marker( event ) {
-                var lat = event.latLng.lat();
-                var lng = event.latLng.lng();
+                var lat = event.lat;
+                var lng = event.lng;
                 var R = 500; // radius of earth in km
                 var distances = [];
                 var closest = -1;
@@ -101,12 +102,20 @@ angular.module('iGrow.storesmap',[])
                 }
 
 
-                // alert(markersArray[closest].title);
-                swal({
-                  title : 'Gotcha' ,
-                  text : '<b style="color:blue">' + markersArray[closest].title + '</b> <br><p>Is the closest Place to You '+ $window.localStorage.getItem('com.username')+ '</p>',
-                  html : true
-                });
+               var marker = new google.maps.Marker({
+                position: pos,
+                map: $scope.map,
+                draggable : true,
+                title: 'Mee'
+              });
+
+              var info = '<span style="color:pink">You are here</span>' + '<br>' + ' ' + $window.localStorage.getItem('com.username') + '<br><b>Country</b> : '+ window.localStorage.getItem('country') + '<br><b>Weather</b>:  ' + window.localStorage.getItem('weather') + '<br><b> The closest place to you is ' + '<a href=#/' + markersArray[closest].title +'>'+ markersArray[closest].title+'</a>'   ;
+              var infoWindow = new google.maps.InfoWindow({map: $scope.map});
+              infoWindow.setPosition(pos);
+              infoWindow.setContent(info);
+              $scope.map.setCenter(pos);
+              $scope.map.setZoom(17)
+
             }
 
 
@@ -124,12 +133,78 @@ angular.module('iGrow.storesmap',[])
               })
             }
 
-             var marker = new google.maps.Marker({
-              position: pos,
-              map: $scope.map,
-              draggable : true,
-              title: 'Mee'
-            });
+            var position = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + pos.lat + ',' + pos.lng + '&sensor=false';
+
+             var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({'latLng': pos }, function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                              var country = getCountry(results);
+                                $window.localStorage.setItem('country' , country);
+                                processForm(getCountry(results));
+                                // console.log(getCountry(results));
+                            }
+                        }
+              });
+
+              function getCountry(results)
+              {
+                  for (var i = 0; i < results[0].address_components.length; i++)
+                  {
+                  var shortname = results[0].address_components[i].short_name;
+                  var longname = results[0].address_components[i].long_name;
+                  var type = results[0].address_components[i].types;
+                  if (type.indexOf("country") != -1)
+                  {
+
+                      if (!isNullOrWhitespace(shortname))
+                      {
+                          return shortname;
+                      }
+                      else
+                      {
+                        return longname;
+                      }
+                  }
+                }
+              }
+
+              function isNullOrWhitespace(text) {
+                  if (text == null) {
+                      return true;
+                  }
+                  return text.replace(/\s/gi, '').length < 1;
+              }
+
+              function processForm(country) {
+                // Fetch the data from the public API through JSONP.
+                // See http://openweathermap.org/API#weather.
+                $.ajax({
+                  type: 'GET',
+                  url: 'http://api.openweathermap.org/data/2.5/weather?q=' + country +'&APPID=4f27f6f4eab43afca7bfd7e02b2d0cc4',
+                  jsonp: 'callback',
+                  dataType: 'jsonp',
+                  // work with the response
+                  success: function (response) {
+                    console.log(response.main.temp - 273.15);
+                    var temp = response.main.temp - 273.15;
+                    $window.localStorage.setItem('weather' , temp);
+                    console.log('Succeeeded')
+                  } , 
+                  error: function(error){
+                    console.log(error);
+                  }
+                });
+              }
+              
+              // swal({
+              //   title : 'Ahha',
+              //   text : "Coool you are in " + $window.localStorage.getItem('country') + ' the weather is ' + $window.localStorage.getItem('weather')
+              // })
+
+
+
+             
 
             function AutoCenter() {
               //  Create a new viewpoint bound
@@ -145,14 +220,10 @@ angular.module('iGrow.storesmap',[])
             AutoCenter();
 
             if($window.localStorage.getItem('user') === 'customer'){
-              google.maps.event.addListener($scope.map, 'click', find_closest_marker);
+              find_closest_marker(pos);
+              // google.maps.event.addListener($scope.map, 'click', find_closest_marker);
             } 
-              var info = 'You are here' + '<br>' + ' ' + $window.localStorage.getItem('com.username');
-            var infoWindow = new google.maps.InfoWindow({map: $scope.map});
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(info);
-            $scope.map.setCenter(pos);
-            $scope.map.setZoom(17)
+            
           }, function() {
             handleLocationError(true, infoWindow, $scope.map.getCenter());
           });
