@@ -59,7 +59,7 @@
          <li ng-class="{ active: isActive('/newplant')}">
          <a href='#/newplant'>Create a Plant</a>
          </li>
-         <li>
+       
          <li ng-class="{ active: isActive('/stores')}">
          <a href='#/storesmap'>Nearby Stores</a>
          </li>
@@ -67,15 +67,18 @@
          <!-- <a href='#/chat' data-toggle="tab">Chat</a> -->
          <li ng-class="{ active: isActive('/chat')}">
          <a href='#/chat'>Chat</a>
+         </li>
          <li>
          <a href='#/stores' data-toggle="tab">All Stores</a>
          </li>
           <li>
          <a href='#/browseusers'>Browse Users</a>
          </li>
+
          <li>
          <a href='#/weather' data-toggle="tab">weather</a>
          </li>
+
          </ul>
         <form class="navbar-form navbar-right">
         <button type="submit" ng-show="flag" class="btn btn-default navbar-button navbar-right"  ng-model="maznakhak" ng-click="logOut()">Logout
@@ -113,6 +116,7 @@
     <script src="app/stores/store.js"></script>
     <script src="app/newplant/newplant.js"></script>
     <script src="app/stores/stores.js"></script>
+    <script src="app/gardeninfo/gardeninfo.js"></script>
     <script src="app/storeinfo/storeinfo.js"></script>
     <script src="app/auth/auth.js"></script>
     <script src="app/chat/message.js"></script>
