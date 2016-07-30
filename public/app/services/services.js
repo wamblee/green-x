@@ -1,9 +1,47 @@
 angular.module('iGrow.services', [])
 
 .factory('Plants', function ($http, $window) {
-
+  var getFriends=function(){
+    return $http({
+      method:'GET',
+      url:'/api/users/friends'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  }
+  var addFriend=function(friendid){
+    console.log(friendid);
+    return $http({
+      method:'POST',  
+      url:'/api/users/friendadd',
+      data: {
+        friendid:friendid
+      }
+     })
+    .then(function(resp){
+      return resp;
+    })
+  }
+  var getAllUsers=function(){
+    return $http({
+      method:'GET',
+      url:'/api/users/allusers'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  }
   // show all plants in garden
-  
+  var getMessages=function(){
+    return $http({
+      method:'GET',
+      url:'/api/users/message'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  };
   var getAll = function(){
      return $http({
       method:'GET',
@@ -23,7 +61,7 @@ angular.module('iGrow.services', [])
      });
   };
  
- var addNewComment = function(text,username,callback){
+ var addNewComment = function(text,username){
   console.log(text);
      return $http({
       method:'POST',
@@ -31,7 +69,7 @@ angular.module('iGrow.services', [])
       data: {text:text}
      })
      .then(function(resp){
-      return callback( resp.data);
+      return resp.data;
      });
   };
 
@@ -114,11 +152,22 @@ angular.module('iGrow.services', [])
       return resp.data;
     })
   };
+  var getFriendGarden=function(friend){
+    return $http({
+      method:'POST',
+      url:'/api/users/garden',
+      data:{friend:friend}
+    }).then(function (resp){
+      console.log(resp)
+      return resp.data;
+    })
+  };
 var getStoreInfo=function (store){
     return $http({
       method:'GET',
       url:'/api/'+ store
-
+});
+}
 
 /*                                     frined                                             */
 //=======================================================================================
@@ -148,6 +197,11 @@ var getStoreInfo=function (store){
 //========================================================================================
 
   return {
+    getFriendGarden:getFriendGarden,
+    getFriends:getFriends,
+    addFriend:addFriend,
+    getAllUsers:getAllUsers,
+    getMessages:getMessages,
     getAll:getAll,
     AddPlant:AddPlant,
     createPlant:createPlant,
@@ -156,13 +210,12 @@ var getStoreInfo=function (store){
     addNewComment:addNewComment,
     editDescription:editDescription,
     addFollower:addFollower,
-    getFrinedGarden:getFrinedGarden
+    getFrinedGarden:getFrinedGarden,
     getAllComment:getAllComment,
     getStores:getStores,
     selectStore:selectStore,
     getStoreInfo:getStoreInfo
   }
-
 })
 
 
@@ -256,8 +309,8 @@ var getStoreInfo=function (store){
       return resp.data;
     });
   };
-//=======================================================================================
 
+//=======================================================================================
 
   return {
     signin: signin,
