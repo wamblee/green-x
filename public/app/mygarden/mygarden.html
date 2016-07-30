@@ -1,23 +1,50 @@
 <div>
-  <div>  
-  <button type="button"  class="btn btn-default" data-toggle="collapse"  class="toggleButton"  data-target="#descContent,#editbtndesc" >description</button>
-  <button type="button" class="btn btn-default btn-sm" data-toggle="collapse"  class="toggleButton"  data-target='#edittxt'>
-    <span class="glyphicon glyphicon-pencil"></span> Edit
-  </button>
-  
-  <div class="description" >
-    <div class="collapse content"  id="descContent"  >
-       <p>{{data.description}}</p>
-      
-      <p>
-        <textarea id="edittxt" class="collapse content" class="form-control" placeholder="add comment" rows="3" ng-model="desTxt" style="color: black;">{{edittxt}}</textarea>
-        <button id="editbtndesc" class="collapse content" type="button" class="toggleButton"  class="collapse content" data-target="edittxt"  class="btn btn-default btn-sm" ng-click="editTheDescription(desTxt)">
-           Save
-        </button>
+
+  <div class="row">
+    <div class="col-md-3">  
+      <button type="button"  class="Fbutton" data-toggle="collapse"  class="toggleButton"  data-target="#descContent,#editbtndesc" >description</button>
+    </div>
+
+
+    <div class="col-md-2">
+      <button type="button" class="btn btn-default" data-toggle="collapse"  class="toggleButton"  data-target='#edittxt'>
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+     </button>
+    </div>
+  </div> 
+
+
+  <div class="row" >
+   <div class="description" >
+      <div class="collapse content"  id="descContent"  >
+        <p>{{data.description}}</p>
+        <p>
+          <textarea id="edittxt" class="collapse content" class="form-control" placeholder="add comment" rows="3" ng-model="desTxt" style="color: black;">{{edittxt}}</textarea>
+          <button id="editbtndesc" class="collapse content" type="button" class="toggleButton"  class="collapse content" data-target="edittxt"  class="Fbutton" ng-click="editTheDescription(desTxt)">
+               Save
+          </button>
       </p>
     </div>
   </div>    
-  </div>
+ </div>
+   
+
+
+<div>
+<button class="Fbutton" data-toggle="collapse"  class="toggleButton"  data-target="#toto">friend</button>
+ 
+  <table class="collapse content"  id="toto" >
+    <tr>
+      <td data-ng-repeat="f in data.friends">
+         <button  class="friendsbutton"><span class="glyphicon glyphicon-user"></span>  {{f.username}}</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<br>
+
+
+ 
 
   <div class="row" id='container' data-ng-repeat="plant in data.plants">
     <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' style="opacity:0.8"> 
