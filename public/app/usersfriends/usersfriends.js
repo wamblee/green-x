@@ -28,15 +28,31 @@ $scope.data = {}
 	});
 		})
 	}
-	$scope.getFriendGarden=function(id){
-		Plants.getFriendGarden(id)
-		.then(function(resp){
-			console.log(resp)
+	$scope.getFriendGarden=function(user){
+      console.log(user);
+      Plants.selectUser(user)
+      .then(function (data){
+      	console.log(data,"user dataaaaa")
+        $location.path('/1/'+user);
+
+      })
+      .catch(function (error){
+        console.log(error);
+
+      })
+
+    
+
+
+	// 	Plants.getFriendGarden(user)
+	// 	.then(function(resp){
+	// 		console.log(resp)
 			
-		Plants.getGarden()
-		.then(function(resp){
-			$scope.data.gardens=resp;
-			$location.path('/'+id)
-		})
-	})
-}});
+	// 	Plants.getGarden()
+	// 	.then(function(resp){
+	// 		$scope.data.gardens=resp;
+	// 		$location.path('/'+user)
+	// 	})
+	// })
+}
+});

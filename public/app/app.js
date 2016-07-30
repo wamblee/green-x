@@ -9,6 +9,7 @@ angular.module('iGrow',[
   'iGrow.mygarden',
   'iGrow.stores',
   'iGrow.storeinfo',
+  'iGrow.gardeninfo',
   'ngRoute',
   'vAccordion', 
   'ngAnimate',
@@ -90,7 +91,11 @@ angular.module('iGrow',[
   //   controller: 'storesController'
   //  })
 
-  .when('/:store', {
+   .when('/1/:user', {
+    templateUrl: 'app/gardeninfo/gardeninfo.html',
+    controller: 'gardeninfoController'
+   })
+  .when('/2/:store', {
     templateUrl: 'app/storeinfo/storeinfo.html',
     controller: 'storeinfoController'
    })
@@ -103,10 +108,6 @@ angular.module('iGrow',[
   // })
 
 
-   .when('/garden', {
-    templateUrl: 'app/storeinfo/storeinfo.html',
-    controller: 'storeinfoController'
-   })
 
   $httpProvider.interceptors.push('AttachTokens')
 })

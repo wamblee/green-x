@@ -13,7 +13,7 @@ $scope.viewStore=function (store){
       Plants.selectStore(store)
       .then(function (data){
       	console.log(data,"my dataaaaaaaaaaaaaaaa")
-        $location.path('/'+store);
+        $location.path('/2/'+store);
 
       })
       .catch(function (error){
