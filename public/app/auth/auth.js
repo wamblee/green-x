@@ -6,6 +6,7 @@ angular.module('iGrow.auth', [])
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
         $location.path('/');
+        $window.localStorage.setItem('user' , 'customer');
         console.log('Logged in.');
         FB.api('/me?fields=id,name,email,permissions', function(response){
           console.log(response);
@@ -16,14 +17,17 @@ angular.module('iGrow.auth', [])
       else {
         FB.login(function(response) {
           if (response.authResponse) {
-             $window.localStorage.setItem('com.username', response.name);
+             console.log(response);
              checkLoginState();
-             $location.path('/');
+            $window.localStorage.setItem('com.iGrow', response.authResponse.accessToken); 
            console.log('Welcome!  Fetching your information.... ');
            FB.api('/me?fields=id,name,email,permissions', function(response) {
             console.log(response);
-             console.log('Good to see you, ' + response.name + '.');
-             console.log(response.email);             
+            $window.localStorage.setItem('com.username', response.name);
+            $window.localStorage.setItem('user' , 'customer');
+            console.log('Good to see you, ' + response.name + '.');
+            console.log(response.email);             
+            $location.path('/');
            });
           } else {
            console.log('User cancelled login or did not fully authorize.');
@@ -68,7 +72,7 @@ angular.module('iGrow.auth', [])
   $scope.user = {};
 
   $scope.signin = function () {
-     console.log($scope.user.type);
+     // console.log($scope.user.type);
     if ($scope.user.type==="user"){
     Auth.signin($scope.user)
       .then(function (resp) {
@@ -133,15 +137,14 @@ angular.module('iGrow.auth', [])
       Auth.signupStore($scope.user)
       .then(function (resp) {
         console.log(resp);
+        $location.path('/signin');
         //Attach tokens and username to local Storage for use elsewhere
         swal({
-          title: 'Welcome ' + resp.user  ,
+          title: 'Welcome ' + resp.user  + ', please sign in',
           text : 'Please visit  Store page to save your location in our map' ,
           imageUrl : '../../Assets/Pear_Tree_Big-icon.png'
         })
-        setTimeout(function(){
-        $location.path('/signin');
-        },4000);
+        
       })
       .catch(function (error) {
         console.error(error);
