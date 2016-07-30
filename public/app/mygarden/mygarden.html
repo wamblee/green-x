@@ -50,7 +50,7 @@
   <div id="comment" class="row" >  
     <div  data-ng-repeat="comment in data.comment">
      <div >
-          <p style=" font-weight: bold;">{{comment.friendid}}</p>
+          <p style=" font-weight: bold;">{{username}}</p>
       <div class="row">
           <p class="col-md-1"></p>
           <p class="col-md-6">{{comment.text}}</p>
@@ -59,9 +59,9 @@
     
     </div>
     <textarea id="" class="form-control" placeholder="add comment" rows="3" ng-model="comment" style="color:red"></textarea>
-    <a href=""><button class="btn btn-default"  type="submit" ng-click="addComment(comment)">Comment</button></a>
+    <a ><button class="btn btn-default" id="scrollArea" type="submit" ng-click="addComment(comment)">Comment</button></a>
   </div>
 
 
-
+<div id="bottom"></div>
 </div>

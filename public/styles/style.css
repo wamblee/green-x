@@ -59,8 +59,14 @@ body {
     border-radius: 4px;
   }
 
+#scrollArea {
+  overflow: auto;
+}
 
-
+#bottom {
+  display: block;
+  margin-top: 2000px;
+}
 
 
 .button {
