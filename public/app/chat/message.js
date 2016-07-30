@@ -4,27 +4,27 @@ angular.module('iGrow.What', [])
 	$scope.msgs = [];
 	$scope.users={};
 	$scope.testing = '';
+	$scope.msg = {};
 	socket.on('get msg' , function(data){
 		console.log('Came here');
 		console.log(data);
 		$scope.msgs.push(data);
 		$scope.$digest();
 	});
+
 	if($window.localStorage.getItem('user') === 'store'){
 		socket.emit('login' , {user : 'store' , name : $window.localStorage.getItem('com.storename')})
+		$scope.msg.username = $window.localStorage.getItem('com.storename');
 	} else {
+		$scope.msg.username = $window.localStorage.getItem('com.username');	
 		socket.emit('login' , {user : 'customer', name : $window.localStorage.getItem('com.username')})
 		console.log('Done this');
 	}
-
 	socket.on('users' , function(data){
 		$scope.users = data;
 		$scope.$digest();
 		console.log($scope.users);
-	})
-	
-	$scope.msg = {};
-	$scope.msg.username = $window.localStorage.getItem('com.username');
+	})	
 	$scope.sendMsg = function(){
 		socket.emit('send msg' , $scope.msg)
 		$scope.msg.text = "";
@@ -49,5 +49,6 @@ angular.module('iGrow.What', [])
       .catch(function (error){
         console.log(error);
       })
-	}
+	};
+	
 });
