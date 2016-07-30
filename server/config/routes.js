@@ -17,8 +17,10 @@ module.exports = function (app, express) {
   app.post('/api/users/signin', usersController.signin);
   app.post('/api/users/signup', usersController.signup);
   app.get('/api/users/signedin', usersController.checkAuth);
-  app.get('/api/users/comments', commentController.getAllComments);
-  app.post('/api/users/addcomments/:username', commentController.newComment);
+  app.get('/api/us/:user', commentController.getAllComments);
+  app.get('/api/1/:user',usersController.getInfoGarden);
+  app.post('/api/1/:user', commentController.newComment);
+
   app.post('/api/users/addplant', usersController.addPlant);
   app.post('/api/users/signinstore',storeController.signin);
   app.post('/api/users/signupstore',storeController.signup);
@@ -30,11 +32,9 @@ module.exports = function (app, express) {
   app.get('/api/users/stores',usersController.getStores);
   app.get('/api/users/store',storeController.getOneStore);
   app.get('/api/stores/:store',storeController.getInfoStore);
-  app.get('/api/:store',storeController.getInfoStore);
-  /////////////////////////////////////////////////////
-
-
-
+  app.get('/api/browseusers/:user',usersController.getInfoGarden)
+  app.get('/api/2/:store',storeController.getInfoStore);
+  
   app.get('/api/users/garden', usersController.getGarden);
   app.get('/api/users/friends',usersController.getFriends);
   app.post('/api/users/friendadd/',usersController.addFriend);

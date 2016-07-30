@@ -1,0 +1,69 @@
+<div>
+  <div>  
+  <button type="button"  class="btn btn-default" data-toggle="collapse"  class="toggleButton"  data-target="#descContent,#editbtndesc" >description</button>
+  <button type="button" class="btn btn-default btn-sm" data-toggle="collapse"  class="toggleButton"  data-target='#edittxt'>
+    <span class="glyphicon glyphicon-pencil"></span> Edit
+  </button>
+  
+  <div class="description" >
+    <div class="collapse content"  id="descContent"  >
+       <p>{{data.description}}</p>
+      
+      <p>
+        <textarea id="edittxt" class="collapse content" class="form-control" placeholder="add comment" rows="3" ng-model="desTxt" style="color: black;">{{edittxt}}</textarea>
+        <button id="editbtndesc" type="button" class="toggleButton"  class="collapse content" data-target="edittxt"  class="btn btn-default btn-sm" ng-click="editTheDescription(desTxt)">
+           Save
+        </button>
+      </p>
+    </div>
+
+
+
+
+
+  </div>    
+  </div>
+  <div class="row" id='container' data-ng-repeat="plant in data.plants">
+    <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' style="opacity:0.8"> 
+      <div class='col-sm-3 col-md-2'>
+        <div class='thumbnail'>
+          <img style="width:120px; height:120px; opacity:1" src={{plant.img}}>
+          <div class='caption'>
+            <div class='panel panel-default'>
+              <div class="panel-heading" role="tab" id="heading-{{plant._id}}"> 
+                <h4 class="panel-title"> 
+                  <a role="button" style="opacity:0.7" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c{{plant._id}}" class="collapsed" data-target="#c{{plant._id}}"> <i class="glyphicon glyphicon-plus"></i>  {{plant.name}}</a> 
+                </h4> 
+              </div>
+              <div id='c{{plant._id}}' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-{{plant.id}}' aria-expanded='false' style='height:0px;'>
+                <div style="opacity:0.7; font-size:10px" class='panel-body'>
+                  <p>Description: </p> <p>Type:</p><p>Sun exposure:</p><p>Bloom time:</p><p>Watering schedule</p>
+                    <button class='btn btn-primary' role='button' data-ng-click='removePlant(plant._id)'> Remove 
+                    <i class="glyphicon glyphicon-remove-sign"> </i>
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+
+
+
+  <div id="comment" class="row" >
+    <div data-ng-repeat="comment in data.comment">
+     <div class="commntDIV">
+       <p>{{friend}}</p>
+      <p>{{comment.text}}</p>
+     </div>
+    </div>
+    <textarea id="" class="form-control" placeholder="add comment" rows="3" ng-model="comment"></textarea>
+    <a href=""><button class="btn btn-default"  type="submit" ng-click="addComment(comment)">Comment</button></a>
+
+  </div>
+
+
+
+</div>

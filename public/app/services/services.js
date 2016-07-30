@@ -61,17 +61,18 @@ angular.module('iGrow.services', [])
      });
   };
  
- var addNewComment = function(text,username){
+ var addNewComment = function(text,user){
   console.log(text);
      return $http({
       method:'POST',
-      url:'/api/users/addcomments/'+ username,
+      url:'/api/1/'+ user,
       data: {text:text}
      })
      .then(function(resp){
       return resp.data;
      });
   };
+
 
   var  addLocation = function(location){
     return $http({
@@ -87,7 +88,7 @@ angular.module('iGrow.services', [])
    var getAllComment = function(){
      return $http({
       method:'GET',
-      url:'/api/users/comments',
+      url:'/api/us/'+ user
      })
      .then(function(resp){
       return resp.data;
@@ -176,20 +177,44 @@ angular.module('iGrow.services', [])
 var getStoreInfo=function (store){
     return $http({
       method:'GET',
-      url:'/api/'+ store
-});
-}
+      url:'/api/2/'+ store
+
+      }).then(function (resp){
+      return resp.data;
+    })
+  };  
+
+var getGardenInfo=function (user){
+    return $http({
+      method:'GET',
+      url:'/api/1/'+ user
+
+      }).then(function (resp){
+      return resp.data;
+    })
+  };  
+  var selectUser=function (user){
+    return $http({
+      method:'GET',
+      url:'/api/browseusers/'+ user
+
+    }).then(function (resp){
+      return resp.data;
+    })
+  };
+
+
 
 /*                                     frined                                             */
 //=======================================================================================
   var getFrinedGarden=function () {
     return $http({
       method:'GET',
-      url:'/api/users/frindgarden',
+      url:'/api/users/frindgarden'
      })
      .then(function(resp){
       return resp.data;
-     });
+     })
   }
 
   var addFollower =function (baseID,FollowerID) {
@@ -226,7 +251,12 @@ var getStoreInfo=function (store){
     getStores:getStores,
     selectStore:selectStore,
     getStoreInfo:getStoreInfo,
+<<<<<<< HEAD
     addLocation:addLocation
+=======
+    getGardenInfo:getGardenInfo,
+    selectUser:selectUser
+>>>>>>> eaf4b9408304fff8f0356154330b4f19bdf8405e
   }
 })
 

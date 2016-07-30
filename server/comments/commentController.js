@@ -10,8 +10,8 @@ var findAllComments=Q.nbind(Comment.find, Comment);
 module.exports = {
   newComment: function (req, res, next) {
     var text = req.body.text;
-    console.log(text)
-    var username=req.params.username;
+    console.log('params in newComment',req.params);
+    var username=req.params.user;
     var token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('No token'));
@@ -19,12 +19,15 @@ module.exports = {
       //decoded user token
       var friend = jwt.decode(token, 'secret');
       var friendid=friend._id;
+      var friendName=friend.username;
+      console.log("friend name",friendName);
      //console.log(username,"this is the user name")
      // console.log(friendid,"this is the friend name")
      findOneUser({username:username})
      .then(function (user){
       //console.log(user,"inside userttttttttttttttttttttttttttttttttt")
      	if (user){
+        console.log(user,"user in newComment");
      		return user
      	}
      }).then(function (user){
@@ -36,7 +39,8 @@ module.exports = {
 	    .then(function(newComment){
 	    	user.comments.push(newComment._id);
         user.save();
-	      res.json(newComment);
+          
+	      res.json(friendName);
 	    })
 	    .catch(function(error){
 	      res.send(204)
@@ -45,16 +49,16 @@ module.exports = {
     }
 },
 getAllComments:function(req,res,next){
-    var token = req.headers['x-access-token'];
-    if (!token) {
-      next(new Error('No token'));
-    } else { 
+   var token = req.headers['x-access-token'];
       //decoded user token
-    var user = jwt.decode(token, 'secret');
-    //console.log(user,"userrrrrrrrrrrrrrrrrrrrr")    
-    findOneUser({username:user.username})
+      var friend = jwt.decode(token, 'secret');
+      var friendid=friend._id;
+      var friendName=friend.username;
+  console.log("anaaaaaaaaaaaaaaaaaaaa hooooooooooon")
+   var username=req.params.user;
+   console.log("get comment params",req.params);
+    findOneUser({username:username})
     .then(function(user){
-      console.log(user)
       if (!user) {
           next(new Error('User does not exist'));
            } else {
@@ -66,12 +70,12 @@ getAllComments:function(req,res,next){
       .then(function(comments){
         findAllComments({'_id': { $in: comments }})
         .then(function(comments){
-          res.json(comments)
+          res.json({comments:comments,friendName:friendName})
         })
         .fail(function(err){
           res.send(204)
         })
       })
-    }
+    
   }
 }
