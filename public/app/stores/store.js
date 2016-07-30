@@ -1,7 +1,11 @@
 angular.module('iGrow.storesmap',[])
 .controller('storeController' , function($scope, Auth, $window, Plants, $location){
 	  $scope.map;
-
+    $scope.value = true;
+    console.log($scope.value);
+    $scope.hideMap = function(){
+      $scope.value = !$scope.value;
+    }
     $scope.data = {}
     Plants. getStores()
     .then(function(resp){
@@ -41,6 +45,7 @@ angular.module('iGrow.storesmap',[])
             var obj = pos;
 
 
+            console.log($scope.data);
 
             if($window.localStorage.getItem('user') === 'store'){
               var flag = false;
@@ -63,7 +68,7 @@ angular.module('iGrow.storesmap',[])
               if($scope.data.stores[i].location){
                 var marker = new google.maps.Marker({
                   position: $scope.data.stores[i].location,
-                  html : 'Store Name : <b>' + $scope.data.stores[i].storename + '</b><ul><li>Please Call 079 280 6680 For more info</li><li>For a Quick Visit Click on our Store at the bottom</li></ul>' ,
+                  html : 'Store Name : <b>' + $scope.data.stores[i].storename + '</b><ul><li>Please Call 0' + $scope.data.stores[i].number + ' ' + 'For more info </li><li>For a Quick Visit Click on our Store at the bottom</li></ul>' ,
                   map: $scope.map,
                   icon : image,
                   title: $scope.data.stores[i].storename
@@ -141,10 +146,8 @@ angular.module('iGrow.storesmap',[])
 
             if($window.localStorage.getItem('user') === 'customer'){
               google.maps.event.addListener($scope.map, 'click', find_closest_marker);
-              var info = 'You are here' + '<br>' + 'Name : ' + $window.localStorage.getItem('com.username');
-            } else {
-              var info = 'Store Name :' + 'masthal' + '<br>'+ 'Number : ' + '09234\n'
-            }
+            } 
+              var info = 'You are here' + '<br>' + ' ' + $window.localStorage.getItem('com.username');
             var infoWindow = new google.maps.InfoWindow({map: $scope.map});
             infoWindow.setPosition(pos);
             infoWindow.setContent(info);
