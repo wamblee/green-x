@@ -118,6 +118,10 @@ var getStoreInfo=function (store){
     return $http({
       method:'GET',
       url:'/api/'+ store
+      }).then(function (resp){
+      return resp.data;
+    })
+  };  
 
 
 /*                                     frined                                             */
@@ -125,11 +129,11 @@ var getStoreInfo=function (store){
   var getFrinedGarden=function () {
     return $http({
       method:'GET',
-      url:'/api/users/frindgarden',
+      url:'/api/users/frindgarden'
      })
      .then(function(resp){
       return resp.data;
-     });
+     })
   }
 
   var addFollower =function (baseID,FollowerID) {
@@ -156,7 +160,7 @@ var getStoreInfo=function (store){
     addNewComment:addNewComment,
     editDescription:editDescription,
     addFollower:addFollower,
-    getFrinedGarden:getFrinedGarden
+    getFrinedGarden:getFrinedGarden,
     getAllComment:getAllComment,
     getStores:getStores,
     selectStore:selectStore,
