@@ -25,7 +25,7 @@ module.exports = {
             .then(function (foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
-                res.json({token: token, user:user.username});
+                res.json({token: token, user:user.username , store:user.storename});
               } else {
                 return next(new Error('No user'));
               }
@@ -42,6 +42,7 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
     var storename= req.body.storename;
+    var number = req.body.number;
     //console.log(username, password);
     findOneStore({username: username})
       .then(function (user) {
@@ -51,7 +52,8 @@ module.exports = {
           return createStore({
             username: username,
             password: password,
-            storename:storename
+            storename:storename,
+            number: number
           });
         }
       })
@@ -91,6 +93,8 @@ module.exports = {
         res.json(stores);
       })
     },
+
+
     getOneStore: function(req, res, next){
     var token = req.headers['x-access-token'];
     if (!token) {
@@ -118,8 +122,9 @@ module.exports = {
       })
     }
   },
+
   getInfoStore:function (req,res,next){
-    console.log(req.params);
+    console.log(req.params.store);
      var storename=req.params.store;
      console.log(storename);
      findOneStore({storename:storename})
@@ -137,8 +142,28 @@ module.exports = {
           res.json(plants)
         })
         .fail(function(err){
-          res.send(204)
+          res.status(404).send('Not possible');
         })
+      })
+  },
+
+  addLocation : function(req,res,next){
+    var lat =  req.body.lat ;
+    var lng = req.body.lng ; 
+    var store = req.body.store;
+    Store.findOne({storename : store})
+      .exec(function(err,store){
+        if(!store){
+          res.status(500).send('Store Not Found');
+        } else {
+          store.location = {
+            lat : lat, 
+            lng : lng
+          }
+          store.save(function(err,savedStore){
+            res.status(201).send('Added the location to store')
+          })
+        }
       })
   }
 

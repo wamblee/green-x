@@ -10,7 +10,7 @@ module.exports = function (app, express) {
   app.get('/', function (req, res) {
     res.render('public/index.html');
   });
-app.post('/api/users/garden',usersController.getfriendGarden)
+  app.post('/api/users/garden',usersController.getfriendGarden)
   app.get('/api/users/allusers',usersController.getAllusers);
   app.get('/api/users/message',messageController.getAll);
   //Routes to handle authentication
@@ -24,6 +24,11 @@ app.post('/api/users/garden',usersController.getfriendGarden)
   app.post('/api/users/addplant', usersController.addPlant);
   app.post('/api/users/signinstore',storeController.signin);
   app.post('/api/users/signupstore',storeController.signup);
+
+  //View user garden
+
+  /////////////////////////////////////////////////////
+  app.post('/api/stores/location' , storeController.addLocation);
   app.get('/api/users/stores',usersController.getStores);
   app.get('/api/users/store',storeController.getOneStore);
   app.get('/api/stores/:store',storeController.getInfoStore);

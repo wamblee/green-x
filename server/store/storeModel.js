@@ -11,6 +11,10 @@ var StoreSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  number: {
+    type: Number, 
+    required: true
+  },
   password: {
     type: String,
     required: true
@@ -22,7 +26,7 @@ var StoreSchema = new mongoose.Schema({
     unique:true
   },
   location:{
-    type:String
+    type: mongoose.Schema.Types.Mixed
   },
   plant:[{
     type: mongoose.Schema.Types.ObjectId,

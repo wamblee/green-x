@@ -1,4 +1,10 @@
 <div> 
-<h1>TEST</h1>
-	<div id="map" style="width:500px;height:400px;position:right"></div>
+<h1 style="color:white">Stores</h1>
+	<div>
+		<button  ng-click="viewStore(store.storename)" class="button" ng-repeat="store in data.stores " >		{{store.storename}}</button>
+	</div>
+	<label>
+		<button ng-click="hideMap()" class="btn-success" style="border-radius:10px;">Hide Map</button>
+	</label>
+	<div ng-show="value" id="map" style="width:80%;height:500px;"></div>
 </div>

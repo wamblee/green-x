@@ -4,13 +4,19 @@ $scope.data = {}
 	///plants.getAllUsers
 	Plants.getFriends()
 			.then(function(resp){
-		//console.log(resp)
 		$scope.data.friends=resp;
 	});
 
 	Plants.getAllUsers()
 	.then(function(resp){
-		//console.log("show users in database",resp);
+		var user= $window.localStorage.getItem('com.username');
+               for(var i=0;i<resp.length;i++){
+                   
+                   if(resp[i].username===user){
+                       resp.splice(i,1);
+                       break;
+                   }
+               }
 		$scope.data.plants=resp;
 	})
 	//Add plant function
@@ -18,6 +24,7 @@ $scope.data = {}
 		//console.log(id)
 		Plants.addFriend(id)
 		.then(function(resp){
+
 		//	console.log(resp);
 			//After plant is added to user's garden, show user's garden
 			//$location.path('/mygarden');

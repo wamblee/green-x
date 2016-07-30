@@ -7,12 +7,10 @@ $scope.store= $location.path().split('/');
  Plants.getStoreInfo($scope.store[2])
       .then(function (plants){
         console.log(plants,"data for specific store");
-        $scope.data.plants=plants;
-
+        $scope.data.plants=plants.data;
       })
       .catch(function (error){
         console.log(error);
-
       })
 /////// add from store to garden 
 $scope.addTree = function (id){

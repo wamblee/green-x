@@ -73,7 +73,19 @@ angular.module('iGrow.services', [])
      });
   };
 
-   var getAllComment = function(user){
+
+  var  addLocation = function(location){
+    return $http({
+      method : 'POST', 
+      url: '/api/stores/location', 
+      data : location
+    })
+    .then(function(response){
+      return response;
+    })
+  };
+
+   var getAllComment = function(){
      return $http({
       method:'GET',
       url:'/api/us/'+ user
@@ -239,6 +251,7 @@ var getGardenInfo=function (user){
     getStores:getStores,
     selectStore:selectStore,
     getStoreInfo:getStoreInfo,
+    addLocation:addLocation,
     getGardenInfo:getGardenInfo,
     selectUser:selectUser
   }
@@ -254,7 +267,7 @@ var getGardenInfo=function (user){
 
 //======================================================================================
 .factory('socket', function($rootScope){
-  var socket = io.connect('http://localhost:8000');
+  var socket = io.connect('http://localhost:3000');
   
   return socket;
 })

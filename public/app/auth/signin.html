@@ -1,34 +1,33 @@
 <div class="container">
   <form class="form-signin">
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <h2 style="color:white" class="form-signin-heading">Please sign in</h2>
 
     <!-- <button ng-click="FBLogin()">Facebook Login</button> -->
-    <svg ng-click="FBLogin()" style="width:92px;height:92px" viewBox="0 0 24 24">
+    <!-- <svg ng-click="FBLogin()" style="width:92px;height:92px" viewBox="0 0 24 24">
     <path fill="#000000" d="M19,4V7H17A1,1 0 0,0 16,8V10H19V13H16V20H13V13H11V10H13V7.5C13,5.56 14.57,4 16.5,4M20,2H4A2,2 0 0,0 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" />
-    </svg>
+    </svg> -->
 
     <!-- <fb:login-button style="width:100%;height:100%;" scope="public_profile,email" onlogin="checkLoginState();">
     </fb:login-button> -->
 
-    <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
+    
 
     <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
     </fb:login-button> -->
 
-    <button ng-click="FBLogout()">LogOut</button>
+<!--     <button ng-click="FBLogout()">LogOut</button> -->
     <label for="inputUsername" class="sr-only">User Name</label>
     <input type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="" ng-model='user.username'>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" ng-model='user.password'>
-    <div class="checkbox">
-     
-      <br>
-       <input type="radio" name="typeuser" value="user" ng-model="user.type"> User<br>
-       <input type="radio" name="typeuser" value="store" ng-model="user.type">Store<br>
+    <div style="color:white" class="checkbox">
+       <input type="radio" name="typeuser" value="user" ng-model="user.type" required="" ng-change="updateRadio()"> User 
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <input type="radio" name="typeuser" value="store" ng-model="user.type" required="" ng-change="updateRadio()"> Store<br>
 
     </div>
     <button class="btn btn-lg btn-primary btn-block" ng-click="signin()">Sign in</button>
-    
+    <div class="fb-login-button"  data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
  <h3> <a href="#/signup">Don't have an account? <strong>Signup</strong></a> </h3>
   </form>
 </div>

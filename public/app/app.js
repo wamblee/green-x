@@ -20,6 +20,16 @@ angular.module('iGrow',[
 //routing 
 .controller("HeaderController", function($scope, $window, $location, Auth) {
   //Sets isActive to true or false for highlighting the buttons in the nav panel
+
+
+  if($window.localStorage.getItem('user') === 'customer'){
+    $scope.garden = true;
+    $scope.show = false;
+  } else {
+    $scope.show = true;
+    $scope.garden = false;
+  }
+
   $scope.flag = !!$window.localStorage.getItem('com.iGrow');
   $scope.isActive = function (viewLocation) { 
       return viewLocation === $location.path();
@@ -69,13 +79,10 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
-
   .when('/frinedGarden' , {
     templateUrl: 'app/frinedGarden/frinedGarden.html',
     controller: 'GardenFrinedController'
   })
-
-
   .when('/storesmap' , {
     templateUrl: 'app/stores/store.html',
     controller: 'storeController'

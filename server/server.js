@@ -35,63 +35,67 @@ server.listen(port, function () {
   console.log(' app listening on port ' + port);
 });
 
-var numOfUsers = 0;
-var users = [];
-
+var users = {
+	customers : {
+		names : [],
+		counter : 0
+	} , 
+	stores : {
+		names : [] ,
+		counter : 0
+	}
+}
 io.sockets.on('connection' , function(socket){
-	var addedUser = false;
-	var messages; 
-	socket.emit('users' , users);
-	Messages.getAllMessages(function(msgs){
-		io.sockets.emit('get all', msgs);
-	});
-		
-	socket.on('add user', function(username){
-		if(addedUser) return;
-		console.log('User connected');
-		console.log(numOfUsers);	
-		socket.username = username;
-		if(users.indexOf(socket.username) === -1){
-			users.push(username)
+	console.log('Connected');
+	socket.on('login' , function(data){
+		// holds data.user && data.name
+		if(users.customers.names.indexOf(data.name) > -1 || users.stores.names.indexOf(data.name) > -1){
+			io.sockets.emit('users', users);
+			socket.broadcast.emit('users', users);
+			console.log('Not gonna Add you');
+		} else {
+			if(data.user === 'store'){
+				user = 'store';
+				socket.username = data.name;
+				users.stores.names.push(data.name);
+				users.stores.counter++;
+			} else {
+				user = 'customer'
+				socket.username = data.name;
+				users.customers.names.push(data.name);
+				users.customers.counter++;
+			}
+			console.log(users);
+			console.log('reached here');
+			io.sockets.emit('users', users);
+			socket.broadcast.emit('users', users);
 		}
-		++numOfUsers;
-		addedUser = true;
-		socket.emit('login' , {
-			users  : users,
-			numOfUsers : numOfUsers
-		})
-		socket.broadcast.emit('user joined' , {
-			users : users ,
-			username : socket.username ,
-			numOfUsers : numOfUsers
-		})
+
 	})
-	
 
 	socket.on('send msg' , function(data){
-		
-		Messages.addMessage({
-			text:data.text,
-			username:data.username
-		});
-		io.sockets.emit('get msg' , data);
+		console.log(data);
+		io.sockets.emit('get msg', data);
+		// socket.broadcast.emit('get msg' , data);
 	})
 
-	socket.on('disconnect', function(){
-		console.log('disconnected');
-		if(addedUser){
-			--numOfUsers
-			// console.log(numOfUsers);
-			users.splice(users.indexOf(socket.username),1)
-			console.log(socket.username + ' Just Left');
-			socket.broadcast.emit('user left' , {
-				users : users,
-				username : socket.username , 
-				numOfUsers : numOfUsers
-			})
+
+	socket.on('disconnect',function(){
+		var string = socket.username + ' Just Left';
+		if(user === 'store'){
+			users.stores.names.splice(users.stores.names.indexOf(socket.username),1);
+			--users.stores.counter;
+		} else {
+			users.customers.names.splice(users.customers.names.indexOf(socket.username),1);
+			--users.customers.counter;
 		}
+		console.log(string);
+		var object =  {users : users , string : string} ;
+		io.sockets.emit('user left', object);
+		// socket.broadcast.emit('user left', users);
+		socket.broadcast.emit('user left', object);
 	})
-})
+});
 
 //Kills server connection if it crashes or killed
 //this is important so not to keep the 8000 port busy

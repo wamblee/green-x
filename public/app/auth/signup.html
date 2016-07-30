@@ -5,13 +5,15 @@
     <input type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="" ng-model='user.username'>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" ng-model='user.password'>
-    <input type="text"  placeholder="Store Name" 
-     ng-model='user.storename'  class="form-control">
     <div class="checkbox">
-      <input type="radio" name="typeuser" value="user" ng-model="user.type"> User<br>
-       <input type="radio" name="typeuser" value="store" ng-model="user.type">Store<br>
+      <input type="radio" name="typeuser" value="user" ng-model="user.type" required="" ng-change="updateRadio()"> User 
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <input type="radio" name="typeuser" value="store" ng-model="user.type" required="" ng-change="updateRadio()"> Store<br>
+       <input type="text"  placeholder="Store Name" ng-model='user.storename' ng-show="type" required="" class="form-control">
+       <input type="number"  placeholder="Store Number" ng-model='user.number' ng-show="type" required="" class="form-control">
 
     </div>
+    
     <button class="btn btn-lg btn-primary btn-block" ng-click="signup()">Sign Up</button>
     <h3>   <a href="#/signin">Already have an account? <strong>Signin</strong> </a> </h3>
   </form>
