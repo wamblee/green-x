@@ -10,7 +10,7 @@ module.exports = function (app, express) {
   app.get('/', function (req, res) {
     res.render('public/index.html');
   });
-app.post('/api/users/garden',usersController.getfriendGarden)
+  app.post('/api/users/garden',usersController.getfriendGarden)
   app.get('/api/users/allusers',usersController.getAllusers);
   app.get('/api/users/message',messageController.getAll);
   //Routes to handle authentication

@@ -42,6 +42,7 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
     var storename= req.body.storename;
+    var number = req.body.number;
     //console.log(username, password);
     findOneStore({username: username})
       .then(function (user) {
@@ -51,7 +52,8 @@ module.exports = {
           return createStore({
             username: username,
             password: password,
-            storename:storename
+            storename:storename,
+            number: number
           });
         }
       })
@@ -140,7 +142,7 @@ module.exports = {
           res.json(plants)
         })
         .fail(function(err){
-          res.send(204)
+          res.status(404).send('Not possible');
         })
       })
   },
