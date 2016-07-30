@@ -9,6 +9,7 @@ angular.module('iGrow',[
   'iGrow.mygarden',
   'iGrow.stores',
   'iGrow.storeinfo',
+  'iGrow.gardeninfo',
   'ngRoute',
   'vAccordion', 
   'ngAnimate',
@@ -68,27 +69,45 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
+
   .when('/frinedGarden' , {
     templateUrl: 'app/frinedGarden/frinedGarden.html',
     controller: 'GardenFrinedController'
   })
 
+
   .when('/storesmap' , {
     templateUrl: 'app/stores/store.html',
     controller: 'storeController'
   })
+
   .when('/stores', {
     templateUrl: 'app/stores/stores.html',
     controller: 'storesController'
    })
-  .when('/:store', {
+
+  // .when('/stores/:store', {
+  //   templateUrl: 'app/stores/stores.html',
+  //   controller: 'storesController'
+  //  })
+
+   .when('/1/:user', {
+    templateUrl: 'app/gardeninfo/gardeninfo.html',
+    controller: 'gardeninfoController'
+   })
+  .when('/2/:store', {
     templateUrl: 'app/storeinfo/storeinfo.html',
     controller: 'storeinfoController'
    })
-   .when('/garden', {
-    templateUrl: 'app/storeinfo/storeinfo.html',
-    controller: 'storeinfoController'
-   })
+
+
+
+  // .when('/' , {
+  //   templateUrl: '/',
+  //   controller: 'AuthController'
+  // })
+
+
 
   $httpProvider.interceptors.push('AttachTokens')
 })

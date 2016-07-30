@@ -4,7 +4,7 @@ angular.module('iGrow.storeinfo', [])
 
 $scope.store= $location.path().split('/');
 	console.log($scope.store);
- Plants.getStoreInfo($scope.store[1])
+ Plants.getStoreInfo($scope.store[2])
       .then(function (plants){
         console.log(plants,"data for specific store");
         $scope.data.plants=plants;
