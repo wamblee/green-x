@@ -16,7 +16,7 @@ angular.module('iGrow.mygarden', [])
 			Plants.getAllComment()
 			.then(function (resp) {
 				$scope.data.comment=resp;
-				$location.path('/mygarden')
+				$location.path('/mygarden');
 			})
 
 		})	

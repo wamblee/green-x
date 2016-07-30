@@ -11,18 +11,14 @@
       
       <p>
         <textarea id="edittxt" class="collapse content" class="form-control" placeholder="add comment" rows="3" ng-model="desTxt" style="color: black;">{{edittxt}}</textarea>
-        <button id="editbtndesc" type="button" class="toggleButton"  class="collapse content" data-target="edittxt"  class="btn btn-default btn-sm" ng-click="editTheDescription(desTxt)">
+        <button id="editbtndesc" class="collapse content" type="button" class="toggleButton"  class="collapse content" data-target="edittxt"  class="btn btn-default btn-sm" ng-click="editTheDescription(desTxt)">
            Save
         </button>
       </p>
     </div>
-
-
-
-
-
   </div>    
   </div>
+
   <div class="row" id='container' data-ng-repeat="plant in data.plants">
     <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' style="opacity:0.8"> 
       <div class='col-sm-3 col-md-2'>
@@ -49,23 +45,21 @@
       </div>
     </div> 
   </div>
-<<<<<<< HEAD
-  <div id="comment" class="row" ng-repeat=>
-    <textarea class="form-control" placeholder="add comment" rows="3" ng-model="comment"></textarea>
-    <button class="btn btn-default" type="submit" ng-click="addComment(comment)">Comment</button>
-=======
 
 
-  <div id="comment" class="row" >
-    <div data-ng-repeat="comment in data.comment">
-     <div class="commntDIV">
-       <p>{{comment.friendid}}</p>
-      <p>{{comment.text}}</p>
+  <div id="comment" class="row" >  
+    <div  data-ng-repeat="comment in data.comment">
+     <div >
+          <p style=" font-weight: bold;">{{comment.friendid}}</p>
+      <div class="row">
+          <p class="col-md-1"></p>
+          <p class="col-md-6">{{comment.text}}</p>
+      </div>
      </div>
+    
     </div>
-    <textarea id="" class="form-control" placeholder="add comment" rows="3" ng-model="comment"></textarea>
+    <textarea id="" class="form-control" placeholder="add comment" rows="3" ng-model="comment" style="color:red"></textarea>
     <a href=""><button class="btn btn-default"  type="submit" ng-click="addComment(comment)">Comment</button></a>
->>>>>>> 5f8e438235e7071900eb69e4364899d323d1258f
   </div>
 
 
