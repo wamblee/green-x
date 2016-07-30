@@ -62,10 +62,7 @@
          <li ng-class="{ active: isActive('/chat')}">
          <a href='#/chat'>Chat</a>
          </li>
-         <li>
-         <a href='#/stores' data-toggle="tab">All Stores</a>
-         </li>
-          <li>
+          <li ng-show="garden" ng-class="{ active: isActive('/browseusers')}" >
          <a href='#/browseusers'>Browse Users</a>
          </li>
 

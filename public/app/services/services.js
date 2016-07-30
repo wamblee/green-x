@@ -251,12 +251,9 @@ var getGardenInfo=function (user){
     getStores:getStores,
     selectStore:selectStore,
     getStoreInfo:getStoreInfo,
-<<<<<<< HEAD
-    addLocation:addLocation
-=======
+    addLocation:addLocation,
     getGardenInfo:getGardenInfo,
     selectUser:selectUser
->>>>>>> eaf4b9408304fff8f0356154330b4f19bdf8405e
   }
 })
 

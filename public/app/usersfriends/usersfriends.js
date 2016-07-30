@@ -4,6 +4,14 @@ $scope.data = {}
 	///plants.getAllUsers
 	Plants.getFriends()
 			.then(function(resp){
+				var user= $window.localStorage.getItem('com.username');
+               for(var i=0;i<resp.length;i++){
+                   
+                   if(resp[i].username===user){
+                       resp.splice(i,1);
+                       break;
+                   }
+               }
 		//console.log(resp)
 		$scope.data.friends=resp;
 	});
