@@ -44,10 +44,14 @@
       <div class="collapse navbar-collapse" id="green-x-navbar">
         <ul class="nav navbar-nav">
         <li ng-class="{ active: isActive('/plants')}">
+         <!-- <a href='#/plants'>Browse Users</a> -->
          <a href='#/plants'>My Store</a>
          </li>
          <li ng-class="{ active: isActive('/mygarden')}">
          <a href='#/mygarden'>My Garden</a>
+         </li>
+         <li>
+         <a href='#/' data-toggle="tab">Friend Garden</a>
          </li>
          <!-- <li>
          <a href='#/' data-toggle="tab">Categories</a>
@@ -68,13 +72,12 @@
          <a href='#/stores' data-toggle="tab">All Stores</a>
          </li>
           <li>
-         <a href='#/' data-toggle="tab">Contact us</a>
+         <a href='#/browseusers'>Browse Users</a>
          </li>
 
          <li>
-         <a href='#/frinedGarden' data-toggle="tab">frinedGarden</a>
+         <a href='#/weather' data-toggle="tab">weather</a>
          </li>
-
 
          </ul>
         <form class="navbar-form navbar-right">
@@ -117,6 +120,9 @@
     <script src="app/auth/auth.js"></script>
     <script src="app/chat/message.js"></script>
     <script src="app/services/services.js"></script>
-    <script src="app/app.js"></script>    
+    <script src="app/weather/weatherController.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/usersfriends/usersfriends.js"></script>
+    
   </body>
 </html>

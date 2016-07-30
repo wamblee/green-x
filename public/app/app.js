@@ -1,5 +1,7 @@
 // connecting the angular iGrow module with different modules
 angular.module('iGrow',[
+  'jsbin',
+  'iGrow.friends',
 	'iGrow.services',
 	'iGrow.auth',
   'iGrow.browse',
@@ -24,18 +26,20 @@ angular.module('iGrow',[
   
   $scope.logOut = function (){    
     console.log(Auth.isAuth());
-    if(Auth.isAuth()){
+    // if(Auth.isAuth()){
       Auth.signout();
       $scope.flag = !!$window.localStorage.getItem('com.iGrow');
       $location.path('/signin');
-    } 
+    // } 
   }
-
 })
-
 //routing user to signin page when path includes /signin
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
+  .when('/weather', {
+      templateUrl: 'app/weather/weather.html',
+      controller: 'DemoCtrl'
+    })
   .when('/signin', {
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
@@ -51,6 +55,10 @@ angular.module('iGrow',[
   .when('/mygarden', {
    	templateUrl: 'app/mygarden/mygarden.html',
    	controller: 'GardenController'
+   })
+  .when('/browseusers', {
+    templateUrl: 'app/usersfriends/usersfriends.html',
+    controller: 'friendController'
    })
   .when('/newplant', {
     templateUrl: 'app/newplant/newplant.html',
@@ -88,11 +96,17 @@ angular.module('iGrow',[
    })
 
 
+
   // .when('/' , {
   //   templateUrl: '/',
   //   controller: 'AuthController'
   // })
 
+
+   .when('/garden', {
+    templateUrl: 'app/storeinfo/storeinfo.html',
+    controller: 'storeinfoController'
+   })
 
   $httpProvider.interceptors.push('AttachTokens')
 })
