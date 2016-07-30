@@ -25,7 +25,6 @@ module.exports = {
      // console.log(friendid,"this is the friend name")
      findOneUser({username:username})
      .then(function (user){
-      //console.log(user,"inside userttttttttttttttttttttttttttttttttt")
      	if (user){
         console.log(user,"user in newComment");
      		return user
@@ -39,8 +38,10 @@ module.exports = {
 	    .then(function(newComment){
 	    	user.comments.push(newComment._id);
         user.save();
-          
+
+
 	      res.json(friendName);
+
 	    })
 	    .catch(function(error){
 	      res.send(204)
@@ -48,6 +49,7 @@ module.exports = {
 	  })
     }
 },
+
 getAllComments:function(req,res,next){
    var token = req.headers['x-access-token'];
       //decoded user token

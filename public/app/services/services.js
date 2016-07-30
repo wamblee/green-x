@@ -61,8 +61,9 @@ angular.module('iGrow.services', [])
      });
   };
  
+
  var addNewComment = function(text,user){
-  console.log(text);
+
      return $http({
       method:'POST',
       url:'/api/1/'+ user,
