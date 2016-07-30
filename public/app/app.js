@@ -1,5 +1,6 @@
 // connecting the angular iGrow module with different modules
 angular.module('iGrow',[
+  'jsbin',
   'iGrow.friends',
 	'iGrow.services',
 	'iGrow.auth',
@@ -35,6 +36,10 @@ angular.module('iGrow',[
 //routing user to signin page when path includes /signin
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
+  .when('/weather', {
+      templateUrl: 'app/weather/weather.html',
+      controller: 'DemoCtrl'
+    })
   .when('/signin', {
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
@@ -63,6 +68,11 @@ angular.module('iGrow',[
     templateUrl: 'app/chat/message.html',
     controller: 'socketController'
   })
+  .when('/frinedGarden' , {
+    templateUrl: 'app/frinedGarden/frinedGarden.html',
+    controller: 'GardenFrinedController'
+  })
+
   .when('/storesmap' , {
     templateUrl: 'app/stores/store.html',
     controller: 'storeController'

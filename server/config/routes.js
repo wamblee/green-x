@@ -30,10 +30,20 @@ app.post('/api/users/garden',usersController.getfriendGarden)
   app.get('/api/users/friends',usersController.getFriends);
   app.post('/api/users/friendadd/',usersController.addFriend);
   app.put('/api/users/likes',usersController.updateLikes);
-  app.put('/api/users/description',usersController.addDescription);
+  app.post('/api/users/description',usersController.addDescription);
+  //Remove plant from user garden
   app.put('/api/users/removeplant', usersController.removePlant);
   app.post('/api/plants/newplant', plantsController.newPlant)
   app.get('/api/plants', plantsController.allPlants);
+
+  //TODO: delete plant
+  
+  // other garden
+  // app.get('/api/users/frindgarden',usersController.getFrindGarden);//comment plant descr
+  // app.post('/api/users/frindgarden',usersController.addFollower); //  fol
+
+
+
 
   // authentication middleware used to decode token and made available on the request
   // app.use('/api/plants', helpers.decode);

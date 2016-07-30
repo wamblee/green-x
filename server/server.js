@@ -26,7 +26,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
 // configure our server with all the middleware and routing
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3000;
 require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);
 // start listening to requests on port 8000
