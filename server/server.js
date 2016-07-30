@@ -2,7 +2,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var User=require('./users/usersModel');
 var Plant=require('./plants/plantsModel')
-
+var Messages=require('./messages/messageController.js');
+var jwt = require('jwt-simple');
 
 // connect to mongo database named "iGrow"
 var mongoURL = process.env.MONGODB_URI || 'mongodb://127.0.0.1:/iGrow';
@@ -25,7 +26,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
 // configure our server with all the middleware and routing
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3000;
 require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);
 // start listening to requests on port 8000
@@ -33,7 +34,6 @@ require('./config/routes.js')(app, express);
 server.listen(port, function () {
   console.log(' app listening on port ' + port);
 });
-
 
 var users = {
 	customers : {
@@ -45,7 +45,6 @@ var users = {
 		counter : 0
 	}
 }
-var user;
 io.sockets.on('connection' , function(socket){
 	console.log('Connected');
 	socket.on('login' , function(data){
@@ -96,7 +95,7 @@ io.sockets.on('connection' , function(socket){
 		// socket.broadcast.emit('user left', users);
 		socket.broadcast.emit('user left', object);
 	})
-})
+});
 
 //Kills server connection if it crashes or killed
 //this is important so not to keep the 8000 port busy

@@ -209,6 +209,7 @@ module.exports = {
       .then(function(friends){
         findAllUser({'_id': { $in: friends }})
         .then(function(friends){
+          //console.log(friends)
           res.json(friends)
         })
         .fail(function(err){
@@ -217,10 +218,27 @@ module.exports = {
       })
     }
   },
-  
+  getfriendGarden:function (req,res,next){
+    //console.log(req.params,"params");
+     var friend=req.body.friend;
+     console.log(friend);
+     //console.log(friend);
+     findOneUser({username:friend})
+    .then(function(user){
+      if (!user) {
+          next(new Error('User does not exist'));
+           } else {
+         res.json(user)
+        }
+    })
+  },
+
   addFriend:function(req,res,next){
+    console.log(req);
     //Get token from header to identify user
-    var friendId = req.body.friendId;
+    var friendId = req.body.friendid;
+    console.log(req.data)
+    console.log(friendId,"friends")
     var token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('No token'));
@@ -233,18 +251,16 @@ module.exports = {
         if (!user) {
           next(new Error('User does not exist'));
            } else {
-            //pushin new plant to garden array and saving it
-            //push plant id to garden array on user schema
            user.friends.push(friendId)
            user.save();
+           console.log(user.friends);
            return user.friends
           }
         })
       .then(function(friends){
-        //showing plants details that's inside the garden
-        //Searches the plants schema to find each plant that is listed on the garden
-        findFriends({'_id': { $in: friends}})
+        findAllUser({'_id': { $in: friends}})
         .then(function(friends){
+          console.log(friends)
           res.json(friends)
         })
       })
@@ -264,6 +280,7 @@ module.exports = {
     //console.log("dooooc",doc);
     })
   },
+
   addDescription: function(req,res,next){
     var token = req.headers['x-access-token'];
     var user = jwt.decode(token, 'secret');
@@ -272,6 +289,14 @@ module.exports = {
        if(err){
         console.log("Something wrong when updating data!");
       }
+      console.log(doc)
+      res.json(doc);
     })
+  },
+  getAllusers:function(req,res,next){
+    findAllUser()
+    .then(function(users){
+      res.json(users);
+    });
   }
 };

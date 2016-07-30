@@ -22,8 +22,4 @@ $scope.addTree = function (id){
       $location.path('/mygarden')
     })
   }
-
-
-
-	
 });

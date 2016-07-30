@@ -15,7 +15,6 @@
 	<p ng-repeat="msg in msgs track by $index"  style="font-size:2em;color:yellow">
 	<span data="{{msg.username}}">{{msg.username}}</span>: {{msg.text}}</p>
 	</div>
-
 	<form ng-submit="sendMsg()" >
 		<input type="text" ng-model="msg.text" style="width:100%;color:black">
 	</form>

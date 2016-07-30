@@ -1,9 +1,47 @@
 angular.module('iGrow.services', [])
 
 .factory('Plants', function ($http, $window) {
-
+  var getFriends=function(){
+    return $http({
+      method:'GET',
+      url:'/api/users/friends'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  }
+  var addFriend=function(friendid){
+    console.log(friendid);
+    return $http({
+      method:'POST',  
+      url:'/api/users/friendadd',
+      data: {
+        friendid:friendid
+      }
+     })
+    .then(function(resp){
+      return resp;
+    })
+  }
+  var getAllUsers=function(){
+    return $http({
+      method:'GET',
+      url:'/api/users/allusers'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  }
   // show all plants in garden
-  
+  var getMessages=function(){
+    return $http({
+      method:'GET',
+      url:'/api/users/message'
+     })
+     .then(function(resp){
+      return resp.data;
+     });
+  };
   var getAll = function(){
      return $http({
       method:'GET',
@@ -23,16 +61,15 @@ angular.module('iGrow.services', [])
      });
   };
  
- var addNewComment = function(text,username,callback){
+ var addNewComment = function(text,username){
   console.log(text);
-  console.log(username,"this is the ussssssssssssssssssssssssser")
      return $http({
       method:'POST',
       url:'/api/users/addcomments/'+ username,
       data: {text:text}
      })
      .then(function(resp){
-      return callback( resp.data);
+      return resp.data;
      });
   };
 
@@ -56,6 +93,18 @@ angular.module('iGrow.services', [])
       return resp.data;
      });
   };
+
+  var editDescription = function(description){
+    console.log(description)
+    return $http({
+      method:'POST',
+      url:'/api/users/description',
+      data: {description:description}
+     })
+    .then(function(resp){
+      return resp.data.description;
+    })
+  }
   //view plants in garden
     var getGarden = function(){
      return $http({
@@ -114,36 +163,109 @@ angular.module('iGrow.services', [])
       return resp.data;
     })
   };
+  var getFriendGarden=function(friend){
+    return $http({
+      method:'POST',
+      url:'/api/users/garden',
+      data:{friend:friend}
+    }).then(function (resp){
+      console.log(resp)
+      return resp.data;
+    })
+  };
 var getStoreInfo=function (store){
     return $http({
       method:'GET',
       url:'/api/'+ store
+});
+}
 
-    }).then(function (resp){
+/*                                     frined                                             */
+//=======================================================================================
+  var getFrinedGarden=function () {
+    return $http({
+      method:'GET',
+      url:'/api/users/frindgarden',
+     })
+     .then(function(resp){
       return resp.data;
+     });
+  }
+
+  var addFollower =function (baseID,FollowerID) {
+    return $http({
+      method: 'POST',
+      url:'/api/users/frindgarden',
+      data: {
+            baseID:baseID,
+            FollowerID:FollowerID
+          }
     })
-  };
+    .then(function (resp) {
+      return resp.data;
+    });
+  }
+//========================================================================================
 
   return {
+    getFriendGarden:getFriendGarden,
+    getFriends:getFriends,
+    addFriend:addFriend,
+    getAllUsers:getAllUsers,
+    getMessages:getMessages,
     getAll:getAll,
     AddPlant:AddPlant,
     createPlant:createPlant,
     getGarden: getGarden,
     removePlant: removePlant,
     addNewComment:addNewComment,
+    editDescription:editDescription,
+    addFollower:addFollower,
+    getFrinedGarden:getFrinedGarden,
     getAllComment:getAllComment,
     getStores:getStores,
     selectStore:selectStore,
     getStoreInfo:getStoreInfo,
     addLocation:addLocation
   }
-
 })
+
+
+
+
+
+
+
+
+
+//======================================================================================
 .factory('socket', function($rootScope){
   var socket = io.connect('http://localhost:8000');
   
   return socket;
 })
+//=======================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*                                     Auth                                             */
+//=======================================================================================
 .factory('Auth', function ($http, $location, $window) {
 
   var signin = function (user) {
@@ -200,8 +322,7 @@ var getStoreInfo=function (store){
     });
   };
 
-
-
+//=======================================================================================
 
   return {
     signin: signin,

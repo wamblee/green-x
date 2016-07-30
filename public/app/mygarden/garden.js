@@ -1,39 +1,46 @@
 angular.module('iGrow.mygarden', [])
 .controller('GardenController', function ($window, $location, $scope, Plants) {
 	$scope.data = {}
+	
+	
+
+
 	Plants.getGarden()
 	.then(function(resp){
 		$scope.data.plants=resp;
 		window.user=$window.localStorage['com.username'];
-		///console.log($window.localStorage['com.username'])
 		$scope.username=$window.localStorage['com.username'];
-		
 	})
-
 	$scope.addComment=function ( comment) {
 		Plants.addNewComment(comment,$scope.username,function (data) {	
 			Plants.getAllComment()
 			.then(function (resp) {
 				$scope.data.comment=resp;
-				console.log(resp,"from serverrrrrrrrrrrrrrrrrrrrrrrrrrr")
 				$location.path('/mygarden')
 			})
-		})
-	
+
+		})	
+
 	}
-	
 	Plants.getAllComment()
 		.then(function (resp) {
 			$scope.data.comment=resp;
 			$location.path('/mygarden')
 	})
 
-	
+
+	$scope.editTheDescription = function(description){
+		Plants.editDescription(description)
+		.then(function(resp){
+			$scope.data.description=resp
+			
+			$location.path('/mygarden')
+		})
+	}
 
 	$scope.removePlant = function(id){
 		Plants.removePlant(id)
 		.then(function(resp){
-			//After plant is added to user's garden, show user's garden
 			$scope.data.plants=resp.data
 			$location.path('/mygarden')
 		})
