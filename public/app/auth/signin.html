@@ -1,6 +1,6 @@
 <div class="container">
   <form class="form-signin">
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <h2 style="color:white" class="form-signin-heading">Please sign in</h2>
 
     <!-- <button ng-click="FBLogin()">Facebook Login</button> -->
     <svg ng-click="FBLogin()" style="width:92px;height:92px" viewBox="0 0 24 24">
@@ -20,11 +20,10 @@
     <input type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="" ng-model='user.username'>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" ng-model='user.password'>
-    <div class="checkbox">
-     
-      <br>
-       <input type="radio" name="typeuser" value="user" ng-model="user.type"> User<br>
-       <input type="radio" name="typeuser" value="store" ng-model="user.type">Store<br>
+    <div style="color:white" class="checkbox">
+       <input type="radio" name="typeuser" value="user" ng-model="user.type" required="" ng-change="updateRadio()"> User 
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <input type="radio" name="typeuser" value="store" ng-model="user.type" required="" ng-change="updateRadio()"> Store<br>
 
     </div>
     <button class="btn btn-lg btn-primary btn-block" ng-click="signin()">Sign in</button>
